@@ -22,9 +22,11 @@
 (defn parse-method-name
     "returns the method name for a methodcall"
     [x] (when-let [name (xml1-> x :methodName text)]
-            (when (-> name .trim empty? not) name)))
+            (when (-> name .trim empty? not) (keyword name))))
 
 ; value parsing
+(defn first-child [n] (first (zf/children n)))
+
 (declare parse-value)
 
 (defn strip-leading-plus [s] (su/replace s #"^\s*\+" ""))
@@ -36,9 +38,15 @@
                         "1" true
                         "throw exception here"))
 
-(defn parse-struct [v] "barf")
+(defn parse-struct-member [m] (let [name (xml1-> m :name first-child)
+                                    val  (xml1-> m :value first-child)]
+                                  (if (or name val)
+                                      [(keyword (text name)), (parse-value val)]
+                                      [nil, nil])))
 
-(defn parse-array [v] (vec (map parse-value (xml-> v :array :data :value #(first (zf/children %))))))
+(defn parse-struct [v] (into {} (map parse-struct-member (xml-> v :struct :member))))
+
+(defn parse-array [v] (vec (map parse-value (xml-> v :array :data :value first-child))))
 
 (defmulti parse-value #(:tag (zip/node %)))
 
@@ -56,10 +64,11 @@
 
 (defn parse-params
     "returns a vector containing one element for each param in the method call"
-    [x] (vec (map parse-value (xml-> x :params :param :value #(first (zf/children %))))))
+    [x] (vec (map parse-value (xml-> x :params :param :value first-child))))
 
 (defn parse-method-call
-    "Takes xml structure representing an RPC method call"
+    "Takes xml structure representing an RPC method call and returns a new MethodCall 
+     record."
     [x] (when (method-call? x) 
             (MethodCall. (parse-method-name x) 
                          (parse-params x))))

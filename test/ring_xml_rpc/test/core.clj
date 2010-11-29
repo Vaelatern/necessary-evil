@@ -114,7 +114,7 @@
             </params>
         </methodCall>")
 
-(defxml method-call-empty-array-arg xml-prolog
+(defxml method-call-array-arg xml-prolog
         "<methodCall>
             <methodName>test.method.name</methodName>
             <params>
@@ -157,6 +157,59 @@
             </params>
         </methodCall>")
 
+(defxml method-call-struct-arg xml-prolog
+        "<methodCall>
+            <methodName>test.method.name</methodName>
+            <params>
+                <param>
+                    <value>
+                        <struct>
+                        </struct>
+                    </value>
+                </param>
+                <param>
+                    <value>
+                        <struct>
+                            <member>
+                                <name>key</name>
+                                <value><string>value</string></value>
+                            </member>
+                        </struct>
+                    </value>
+                </param>
+                <param>
+                    <value>
+                        <struct>
+                            <member>
+                                <name>numeral</name>
+                                <value><i4>123</i4></value>
+                            </member>
+                            <member>
+                                <name>composite</name>
+                                <value>
+                                    <struct>
+                                        <member>
+                                            <name>key</name>
+                                            <value><string>value</string></value>
+                                        </member>
+                                        <member>
+                                            <name>array!</name>
+                                            <value>
+                                                <array>
+                                                    <data>
+                                                        <value>frobitz</value>
+                                                    </data>
+                                                </array>
+                                            </value>
+                                        </member>
+                                    </struct>
+                                </value>
+                            </member>
+                        </struct>
+                    </value>
+                </param>
+            </params>
+        </methodCall>")
 
 
 ; Actual tests to follow
@@ -172,16 +225,29 @@
   (is (= (parse-method-name empty-method-call) nil) 
       "methodName should be nil if missing")
   (is (= (parse-method-name method-call-empty-method-name) nil)
-       "methodname should be nil if empty"))
+       "methodname should be nil if empty")
+  (is (= (parse-method-name method-call-test-method-name) :test.method.name)))
 
 (deftest params
-  (is (= (parse-params method-call-default-arg) ["string"]) "did not parse untyped string correctly")
-  (is (= (parse-params method-call-string-arg) ["string"]) "did not parse string correctly")
-  (is (= (parse-params method-call-int-arg) [1 0 -1 1000 -1000 42 1 0 -1 1000 -1000 42]) "did not parse ints correctly")
-  (is (java.util.Arrays/equals (first (parse-params method-call-base64-arg)) base64text-plain) "did not parse base64 correctly") 
-  (is (= (parse-params method-call-double-arg) [1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.5 0.0 -1.5 1000.50 -1000.50 42.234]) "did not parse doubles correctly")
-  (is (= (parse-params method-call-bool-arg) [true false ]) "did not parse bools correctly")
-  (is (= (first (parse-params method-call-date-arg)) (time/date-time 2010 11 29 21 02 34)) "did not parse date correctly")
-  (is (= (parse-params method-call-empty-array-arg) [[] ["string"] ["string" 123 [true]]])))
+  (is (= (parse-params method-call-default-arg) ["string"]) 
+      "did not parse untyped string correctly")
+  (is (= (parse-params method-call-string-arg) ["string"]) 
+      "did not parse string correctly")
+  (is (= (parse-params method-call-int-arg) [1 0 -1 1000 -1000 42 1 0 -1 1000 -1000 42]) 
+      "did not parse ints correctly")
+  (is (java.util.Arrays/equals (first (parse-params method-call-base64-arg)) base64text-plain) 
+      "did not parse base64 correctly") 
+  (is (= (parse-params method-call-double-arg) [1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.5 0.0 -1.5 1000.50 -1000.50 42.234]) 
+      "did not parse doubles correctly")
+  (is (= (parse-params method-call-bool-arg) [true false ]) 
+      "did not parse bools correctly")
+  (is (= (first (parse-params method-call-date-arg)) (time/date-time 2010 11 29 21 02 34)) 
+      "did not parse date correctly"))
+      
+(deftest compound-params
+  (is (= (parse-params method-call-array-arg) [[] ["string"] ["string" 123 [true]]])
+      "did not parse arrays correctly")
+  (is (= (parse-params method-call-struct-arg) [{} {:key "value"} {:numeral 123, :composite {:key "value", :array! ["frobitz"]}}])
+      "did not parse arrays correctly"))
   
   

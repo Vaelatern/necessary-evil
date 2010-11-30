@@ -1,6 +1,6 @@
 (ns ring-xml-rpc.test.core
   (:use [ring-xml-rpc.core] :reload)
-  (:use [ring-xml-rpc.parse] :reload)
+  (:use [ring-xml-rpc.methodcall] :reload)
   (:use [clojure.test])
   (:require [clj-time.core :as time])
   (:import org.apache.commons.codec.binary.Base64))

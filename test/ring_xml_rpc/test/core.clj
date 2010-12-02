@@ -250,4 +250,30 @@
   (is (= (parse-params method-call-struct-arg) [{} {:key "value"} {:numeral 123, :composite {:key "value", :array! ["frobitz"]}}])
       "did not parse arrays correctly"))
   
+(deftest value-type-elem-test
+  (is (= (value-type-elem "hello") {:tag :string :attrs nil :content ["hello"]})
+      "string generates correct nodes")
+  (is (= (value-type-elem 1) {:tag :int :attrs nil :content ["1"]}) 
+      "int generates correct nodes")
+  (is (= (value-type-elem true) {:tag :boolean :attrs nil :content ["1"]}) 
+      "true generates correct nodes")
+  (is (= (value-type-elem false) {:tag :boolean :attrs nil :content ["0"]}) 
+      "true generates correct nodes")
+  (is (= (value-type-elem 1.2) {:tag :double :attrs nil :content ["1.2"]})
+      "double generates correct nodes")
+  (is (= (value-type-elem []) 
+        {:tag :array :attrs nil :content 
+            [{:tag :data :attrs nil :content []}]})
+      "empty array generates correct nodes")
+  (is (= (value-type-elem []) 
+        {:tag :array :attrs nil :content 
+          [{:tag :data :attrs nil :content 
+            [{:tag :value :attrs nil :content 
+              [{:tag :int :attrs nil :content ["1"]}]}]}]})
+      "array of 1 item generates correct nodes"))
+      
+(deftest emit-method-call-test
+    (is (= (to-xml (emit-method-call (ring-xml-rpc.methodcall.MethodCall. :test.method.name [])))
+         method-call-test-method-name)))
+  
   

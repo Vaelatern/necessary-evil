@@ -1,4 +1,4 @@
-in(ns ring-xml-rpc.methodcall
+(ns ring-xml-rpc.methodcall
     (:use [clojure.contrib.zip-filter.xml])
     (:require [clojure.zip :as zip]
               [clojure.xml :as xml]

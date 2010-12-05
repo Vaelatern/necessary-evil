@@ -1,14 +1,28 @@
 (ns necessary-evil.test.core
   (:use [necessary-evil.core] :reload)
   (:use [necessary-evil.methodcall] :reload)
+  (:use [necessary-evil.value] :reload)
   (:use [clojure.test])
-  (:require [clj-time.core :as time])
+  (:require [clj-time.core :as time]
+            [clojure.xml :as xml])
   (:import org.apache.commons.codec.binary.Base64))
 
 (defn to-xml [s] (-> s java.io.StringReader. 
                        org.xml.sax.InputSource. 
                        clojure.xml/parse
                        clojure.zip/xml-zip))
+
+(defn compare-xml
+  "takes two pieces of xml, either in clojure.xml or textual form and compares them.
+   returns true if two pieces of forms are isomorphic."
+  [a b]
+  (let [munge (fn [x] (if (string? x)
+                       (to-xml x)
+                       (to-xml (with-out-str (xml/emit x)))))
+        a* (munge a)
+        b* (munge b)]
+    (= a b)))
+
 
 (defmacro defxml 
     "Creates an xml blob from some strings"

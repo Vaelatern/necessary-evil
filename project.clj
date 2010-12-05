@@ -1,4 +1,4 @@
-(defproject ring-xml-rpc "1.0.0-SNAPSHOT"
+(defproject necessary-evil "1.0.0-SNAPSHOT"
   :description "An implementation of XML-RPC for the Clojure Ring HTTP stack"
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]

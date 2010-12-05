@@ -1,6 +1,6 @@
-(ns ring-xml-rpc.test.core
-  (:use [ring-xml-rpc.core] :reload)
-  (:use [ring-xml-rpc.methodcall] :reload)
+(ns necessary-evil.test.core
+  (:use [necessary-evil.core] :reload)
+  (:use [necessary-evil.methodcall] :reload)
   (:use [clojure.test])
   (:require [clj-time.core :as time])
   (:import org.apache.commons.codec.binary.Base64))
@@ -273,7 +273,7 @@
       "array of 1 item generates correct nodes"))
       
 (deftest emit-method-call-test
-    (is (= (to-xml (emit-method-call (ring-xml-rpc.methodcall.MethodCall. :test.method.name [])))
+    (is (= (to-xml (emit-method-call (necessary-evil.methodcall.MethodCall. :test.method.name [])))
          method-call-test-method-name)))
   
   

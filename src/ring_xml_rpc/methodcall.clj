@@ -96,7 +96,15 @@
    various types as values for the xml-rpc format"
   (value-type-elem [x]))
 
-(defn value-elem [content] (elem :value [(value-type-elem content)]))
+(defn value-elem
+  "value-elem creates the <value> elements and the appropriate child element for it's
+   arguments. This calls out to value-type-elem."
+  [content] (elem :value [(value-type-elem content)]))
+
+(defn- struct-member-elem
+  "creates an xml element for a key-value pair."
+  [[key value]] (elem :member [(elem :name [(name key)])
+                               (value-elem value)]))
 
 (extend-protocol ValueTypeElem
   String 
@@ -120,8 +128,8 @@
   (value-type-elem [this] (elem :array [(elem :data (vec (map value-elem this)))]))
   
   clojure.lang.IPersistentMap ; a map becomes a xml-rpc struct 
-  (value-type-elem [this] (elem :struct))
-  )
+  (value-type-elem [this] (elem :struct (vec (map struct-member-elem this)))))
+
 
 (defn emit-method-call
   "This function returns a string that represents a method call record in the 

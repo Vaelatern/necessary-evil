@@ -1,15 +1,13 @@
 (ns necessary-evil.methodcall
-  (:use [clojure.contrib.zip-filter.xml]
-        [necessary-evil.xml-utils]
-        [necessary-evil.value])
+  "This module implements the methodCall wire format portion of the XML-RPC spec.
+   You can find the official spect at http://www.xmlrpc.com/spec."
+  (:use [clojure.contrib.zip-filter.xml :on [xml->]]
+        (necessary-evil xml-utils value))
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
             [clojure.contrib.zip-filter :as zf]
-            [clojure.contrib.str-utils2 :as su])
+            [clojure.string :as su])
   (:import org.apache.commons.codec.binary.Base64))
-
-;; This module implements the methodCall format portion of XML-RPC spec.
-;; You can find the official spec at http://www.xmlrpc.com/spec
 
 (defrecord MethodCall [method-name parameters])
 

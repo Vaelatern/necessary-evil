@@ -287,7 +287,7 @@
       "array of 1 item generates correct nodes"))
       
 (deftest emit-method-call-test
-    (is (= (to-xml (emit-method-call (necessary-evil.methodcall.MethodCall. :test.method.name [])))
+    (is (= (to-xml (emit-methodcall (necessary-evil.methodcall.MethodCall. :test.method.name [])))
          method-call-test-method-name)))
   
   

@@ -5,9 +5,7 @@
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
             [clojure.contrib.zip-filter :as zf]
-            [clojure.contrib.str-utils2 :as su]
-            [clj-time.core :as time]
-            [clj-time.format :as time-format])
+            [clojure.contrib.str-utils2 :as su])
   (:import org.apache.commons.codec.binary.Base64))
 
 ;; This module implements the methodCall format portion of XML-RPC spec.
@@ -34,14 +32,14 @@
   "returns a vector containing one element for each param in the method call"
   [x] (vec (map parse-value (xml-> x :params :param :value first-child))))
 
-(defn parse-method-call
+(defn parse-methodcall
   "Takes xml structure representing an RPC method call and returns a new MethodCall
    record."
   [x] (when (method-call? x) 
         (MethodCall. (parse-method-name x) 
                      (parse-params x))))
 
-(defn emit-method-call
+(defn emit-methodcall
   "This function returns a string that represents a method call record in the 
    XML format described by the xml-rpc 'spec'."
   [mc]
@@ -52,3 +50,5 @@
                                                  params))]
                    [name-elem])]
     (with-out-str (xml/emit (elem :methodCall children)))))
+
+

@@ -2,15 +2,11 @@
   (:use [necessary-evil.core] :reload)
   (:use [necessary-evil.methodcall] :reload)
   (:use [necessary-evil.value] :reload)
-  (:use [clojure.test])
+  (:use [clojure.test]
+        [necessary-evil.xml-utils :only [to-xml]])
   (:require [clj-time.core :as time]
             [clojure.xml :as xml])
   (:import org.apache.commons.codec.binary.Base64))
-
-(defn to-xml [s] (-> s java.io.StringReader. 
-                       org.xml.sax.InputSource. 
-                       clojure.xml/parse
-                       clojure.zip/xml-zip))
 
 (defn compare-xml
   "takes two pieces of xml, either in clojure.xml or textual form and compares them.

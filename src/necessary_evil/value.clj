@@ -1,6 +1,20 @@
 (ns necessary-evil.value
-  (:use [clojure.contrib.zip-filter.xml])
-  (:use [necessary-evil.xml-utils])
+  "This module parses and emits xml for xml-rpc value nodes. This is
+   shared by the various forms required for method calls, results and
+   faults
+
+   The library has a pair of functions, parse-value and value-elem,
+   that are used for reading and writing values. 
+
+   The value types handled by this library can be extended by creating
+   new method implementations for the parse-value multimethod where
+   the name of the element is a clojure keyword.
+
+   You should also extend the ValueTypeElem protocol to support the
+   return type of your new method implementation to generate the xml
+   that your parse-value implementation consumes."
+  (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1-> text]]
+        [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
             [clojure.contrib.zip-filter :as zf]
@@ -9,22 +23,8 @@
             [clj-time.format :as time-format])
   (:import org.apache.commons.codec.binary.Base64))
 
-;; This library parses and emits xml for xml-rpc value nodes. This is
-;; shared by the various forms required for method calls, results and
-;; faults
-;;
-;; The library has a pair of functions, parse-value and value-elem,
-;; that are used for reading and writing values. 
-;;
-;; The value types handled by this library can be extended by creating
-;; new method implementations for the parse-value multimethod where
-;; the name of the element is a clojure keyword.
-;;
-;; You should also extend the ValueTypeElem protocol to support the
-;; return type of your new method implementation to generate the xml
-;; that your parse-value implementation consumes.
-
-;; dave winer has kindly defined his own variation on ISO 8601 date time formatting
+;; dave winer has kindly defined his own variation on ISO 8601 date
+;; time formatting
 (def winer-time (time-format/formatter "yyyyMMdd'T'HH:mm:ss"))
 
 ;; The following implements deserialization of values with a multi-method

@@ -7,7 +7,7 @@
 
    methods-map is a map of keyword (method name) to fn"
   [methods-map]
-  (fn [req] (if-let [method-call (methodcall/parse-methodcall (:body req))]
+  (fn [req] (if-let [method-call (methodcall/parse (:body req))]
              (if-let [method (methods-map (:method-name method-call))]
                (apply method (:parameters method-call))
                "fail")

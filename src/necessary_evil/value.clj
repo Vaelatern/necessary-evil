@@ -1,7 +1,7 @@
 (ns necessary-evil.value
-  "This module parses and emits xml for xml-rpc value nodes. This is
-   shared by the various forms required for method calls, results and
-   faults
+  "This module parses and creates xml for xml-rpc value nodes. This is
+   shared by the various forms required for method calls, responses and
+   response faults.
 
    The library has a pair of functions, parse-value and value-elem,
    that are used for reading and writing values. 
@@ -31,7 +31,7 @@
 
 (declare parse-value)
 
-(defn strip-leading-plus [s] (su/replace s #"^\s*\+" ""))
+(defn strip-leading-plus [s] (su/replace (.trim  s) #"^\+" ""))
 
 (defn parse-int [v] (Integer. (strip-leading-plus (text v))))
 

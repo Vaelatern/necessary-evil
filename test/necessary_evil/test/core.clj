@@ -1,6 +1,6 @@
 (ns necessary-evil.test.core
   (:use [necessary-evil.core] :reload)
-  (:use [necessary-evil.methodcall] :reload)
+  (:require [necessary-evil.methodcall :as methodcall] :reload)
   (:use [necessary-evil.value] :reload)
   (:use [clojure.test]
         [necessary-evil.xml-utils :only [to-xml]])
@@ -225,39 +225,40 @@
 ; Actual tests to follow
 
 (deftest is-method-call
-    (is (= (method-call? not-method-call) false) "methld-call? should not be true for <methodCall> rooted documents")
-    (is (method-call? empty-method-call))
-    (is (method-call? method-call-empty-method-name))
-    (is (method-call? method-call-test-method-name)))
+    (is (= (methodcall/method-call? not-method-call) false) "methld-call? should not be true for <methodCall> rooted documents")
+    (is (methodcall/method-call? empty-method-call))
+    (is (methodcall/method-call? method-call-empty-method-name))
+    (is (methodcall/method-call? method-call-test-method-name)))
 
 
 (deftest method-names
-  (is (= (parse-method-name empty-method-call) nil) 
+  (is (= (methodcall/parse-method-name empty-method-call) nil) 
       "methodName should be nil if missing")
-  (is (= (parse-method-name method-call-empty-method-name) nil)
+  (is (= (methodcall/parse-method-name method-call-empty-method-name) nil)
        "methodname should be nil if empty")
-  (is (= (parse-method-name method-call-test-method-name) :test.method.name)))
+  (is (= (methodcall/parse-method-name method-call-test-method-name) :test.method.name)))
 
 (deftest params
-  (is (= (parse-params method-call-default-arg) ["string"]) 
+  (is (= (methodcall/parse-params method-call-default-arg) ["string"]) 
       "did not parse untyped string correctly")
-  (is (= (parse-params method-call-string-arg) ["string"]) 
+  (is (= (methodcall/parse-params method-call-string-arg) ["string"]) 
       "did not parse string correctly")
-  (is (= (parse-params method-call-int-arg) [1 0 -1 1000 -1000 42 1 0 -1 1000 -1000 42]) 
+  (is (= (methodcall/parse-params method-call-int-arg)
+         [1 0 -1 1000 -1000 42 1 0 -1 1000 -1000 42]) 
       "did not parse ints correctly")
-  (is (java.util.Arrays/equals (first (parse-params method-call-base64-arg)) base64text-plain) 
+  (is (java.util.Arrays/equals (first (methodcall/parse-params method-call-base64-arg)) base64text-plain) 
       "did not parse base64 correctly") 
-  (is (= (parse-params method-call-double-arg) [1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.5 0.0 -1.5 1000.50 -1000.50 42.234]) 
+  (is (= (methodcall/parse-params method-call-double-arg) [1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.5 0.0 -1.5 1000.50 -1000.50 42.234]) 
       "did not parse doubles correctly")
-  (is (= (parse-params method-call-bool-arg) [true false ]) 
+  (is (= (methodcall/parse-params method-call-bool-arg) [true false ]) 
       "did not parse bools correctly")
-  (is (= (first (parse-params method-call-date-arg)) (time/date-time 2010 11 29 21 02 34)) 
+  (is (= (first (methodcall/parse-params method-call-date-arg)) (time/date-time 2010 11 29 21 02 34)) 
       "did not parse date correctly"))
       
 (deftest compound-params
-  (is (= (parse-params method-call-array-arg) [[] ["string"] ["string" 123 [true]]])
+  (is (= (methodcall/parse-params method-call-array-arg) [[] ["string"] ["string" 123 [true]]])
       "did not parse arrays correctly")
-  (is (= (parse-params method-call-struct-arg) [{} {:key "value"} {:numeral 123, :composite {:key "value", :array! ["frobitz"]}}])
+  (is (= (methodcall/parse-params method-call-struct-arg) [{} {:key "value"} {:numeral 123, :composite {:key "value", :array! ["frobitz"]}}])
       "did not parse arrays correctly"))
   
 (deftest value-type-elem-test
@@ -283,7 +284,7 @@
       "array of 1 item generates correct nodes"))
       
 (deftest emit-method-call-test
-    (is (= (to-xml (emit-methodcall (necessary-evil.methodcall.MethodCall. :test.method.name [])))
+    (is (= (to-xml (with-out-str (xml/emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
          method-call-test-method-name)))
   
   

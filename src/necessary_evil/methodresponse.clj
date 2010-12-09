@@ -15,27 +15,18 @@
 
 ;; serialising methodResponses to XML
 
-(defn value-response
-  "method-response generates xml for a successful method call."
-   [value]
-   (elem :params [(elem :param [(value-elem value)])]))
-
-(defn fault-response
-  "fault-response generates xml for a failed method call"
-  [fault-code fault-message]
-  (elem :fault [(value-elem {:faultCode   (str fault-code)
-                             :faultString (str fault-message)})]))
-
 (defprotocol ResponseElements
   "This protocol is used to generate the correct nodes for a value or a fault."
   (response-elem [v]))
 
 (extend-protocol ResponseElements
   Fault
-  (response-elem [fault] (fault-response (:fault-code fault) (:fault-message fault)))
+  (response-elem
+   [fault] (elem :fault [(value-elem {:faultCode   (str (:fault-code fault))
+                                      :faultString (str (:fault-message fault))})]))
 
   Object
-  (response-elem [v] (value-response v)))
+  (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))
 
 
 (defn emit-method-response

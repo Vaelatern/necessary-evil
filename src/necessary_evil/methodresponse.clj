@@ -7,27 +7,41 @@
         [necessary-evil.xml-utils])
   (:require [clojure.xml :as xml]))
 
+;; returning a Fault record from any piece of rpc handler will result
+;; in a fault methodResponse being generated. Anything else will
+;; generate a params blob
+
+(defrecord Fault [^Integer fault-code ^String fault-message])
 
 ;; serialising methodResponses to XML
 
-(defn method-response-elem
-  "returns wraps the content nodes in the method-response elements"
-  [content-nodes]
-  (elem :methodResponse [content-nodes]))
+(defn value-response
+  "method-response generates xml for a successful method call."
+   [value]
+   (elem :params [(elem :param [(value-elem value)])]))
+
+(defn fault-response
+  "fault-response generates xml for a failed method call"
+  [fault-code fault-message]
+  (elem :fault [(value-elem {:faultCode   (str fault-code)
+                             :faultString (str fault-message)})]))
+
+(defprotocol ResponseElements
+  "This protocol is used to generate the correct nodes for a value or a fault."
+  (response-elem [v]))
+
+(extend-protocol ResponseElements
+  Fault
+  (response-elem [fault] (fault-response (:fault-code fault) (:fault-message fault)))
+
+  Object
+  (response-elem [v] (value-response v)))
 
 
 (defn emit-method-response
-  "emit-method-response generates xml for a successful method call."
+  "returns wraps the content nodes in the method-response elements"
   [value]
-  (let [param-content (value-elem value)]
-    (xml/emit (method-response-elem (elem :params [(elem :param [param-content])])))))
-
-(defn emit-fault-response
-  "emit-fault-response generates xml for a failed method call"
-  [fault-code fault-message]
-  (let [fault-content (value-elem {:faultCode (int fault-code)
-                                   :faultString (str fault-message)})]
-    (xml/emit (method-response-elem (elem :fault [fault-content])))))
-
+  (xml/emit (elem :methodResponse [(response-elem value)])))
 
 ;; deserialising methodResponse XML to clojure structures
+

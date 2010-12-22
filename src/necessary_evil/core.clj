@@ -39,7 +39,8 @@
     (condp = (:request-method req)
         :post (handle-post methods-map req)
         :get {:status 200 ; get handler is merely a convenience for developers
-              :body (string/join ", " (map name (keys methods-map)))})))
+              :body (string/join ", " (map name (keys methods-map)))}
+        {:status 405 :body "Method Not Allowed"})))
 
 ;; client functions
 
@@ -49,3 +50,4 @@
   (let [call (methodcall/MethodCall. method-name args)
         body (-> call methodcall/unparse emit with-out-str)]
     (-> (http/post endpoint-url {:body body}) :body to-xml methodresponse/parse)))
+

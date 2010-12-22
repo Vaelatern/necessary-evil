@@ -3,21 +3,10 @@
   (:require [necessary-evil.methodcall :as methodcall] :reload)
   (:use [necessary-evil.value] :reload)
   (:use [clojure.test]
-        [necessary-evil.xml-utils :only [to-xml]])
+        [necessary-evil.xml-utils :only [to-xml emit]])
   (:require [clj-time.core :as time]
             [clojure.xml :as xml])
   (:import org.apache.commons.codec.binary.Base64))
-
-(defn compare-xml
-  "takes two pieces of xml, either in clojure.xml or textual form and compares them.
-   returns true if two pieces of forms are isomorphic."
-  [a b]
-  (let [munge (fn [x] (if (string? x)
-                       (to-xml x)
-                       (to-xml (with-out-str (xml/emit x)))))
-        a* (munge a)
-        b* (munge b)]
-    (= a b)))
 
 
 (defmacro defxml 
@@ -276,7 +265,7 @@
         {:tag :array :attrs nil :content 
             [{:tag :data :attrs nil :content []}]})
       "empty array generates correct nodes")
-  (is (= (value-type-elem []) 
+  (is (= (value-type-elem [1]) 
         {:tag :array :attrs nil :content 
           [{:tag :data :attrs nil :content 
             [{:tag :value :attrs nil :content 
@@ -284,7 +273,7 @@
       "array of 1 item generates correct nodes"))
       
 (deftest emit-method-call-test
-    (is (= (to-xml (with-out-str (xml/emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
+    (is (= (to-xml (with-out-str (emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
          method-call-test-method-name)))
   
   

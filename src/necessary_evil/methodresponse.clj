@@ -26,7 +26,7 @@
 
    fault-code must be an integer. The exact meaning of this value is not
    prescribed by the spec. By convention necessary-evil assigns fault-codes
-   below 100 to indicate rpc level fault, and assumes uses will use 101 and
+   below 0 to indicate rpc level fault, and assumes users will use 1 and
    greater to indicate faults for the specific handlers.
 
    fault-string is a string that contains a human readable description of

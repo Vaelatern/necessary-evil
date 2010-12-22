@@ -20,3 +20,28 @@
 
 ;; zip-filter selectors
 (defn first-child [n] (first (zf/children n)))
+
+;; the following have been copied from clojure.xml because the
+;; python xmlrpc lib is real picky about white space and as it is a
+;; canonical implementation its safe to assume this will effect real
+;; code. As such these have been modified to not emit new lines
+
+(defn emit-element [e]
+  (if (instance? String e)
+    (print e)
+    (do
+      (print (str "<" (name (:tag e))))
+      (when (:attrs e)
+	(doseq [attr (:attrs e)]
+	  (print (str " " (name (key attr)) "='" (val attr)"'"))))
+      (if (:content e)
+	(do
+	  (print ">")
+	  (doseq [c (:content e)]
+	    (emit-element c))
+	  (print (str "</" (name (:tag e)) ">")))
+	(print "/>")))))
+
+(defn emit [x]
+  (println "<?xml version='1.0' encoding='UTF-8'?>")
+  (emit-element x))

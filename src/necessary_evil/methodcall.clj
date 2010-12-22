@@ -50,13 +50,13 @@
   "This function returns a string that represents a method call record in the 
    XML format described by the xml-rpc 'spec'."
   [mc]
-  (let [name-elem   (elem :methodName [(-> mc :method-name name)])
-        params      (:parameters mc)
-        children (if (seq params) 
-                   [name-elem (elem :params (map #(elem :param
-                                                        [(value-elem %)])
-                                                 params))]
-                   [name-elem])]
+  (let [name-elem (elem :methodName [(-> mc :method-name name)])
+        params    (:parameters mc)
+        children  (if (seq params) 
+                    [name-elem (elem :params (map #(elem :param
+                                                         [(value-elem %)])
+                                                  params))]
+                    [name-elem])]
     (elem :methodCall children)))
 
 

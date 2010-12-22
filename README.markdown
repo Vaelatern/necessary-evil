@@ -7,6 +7,8 @@ library](https://github.com/mmcgrana/ring) for Clojure. XML-RPC is a
 bit nasty, but it is the basis of a number of other standards such as
 certain blogging APIs and Ping Back.
 
+Thanks to [Raynes](https://github.com/Raynes/) for feedback and letting me steal from his `clj-xmlrpc` code.
+
 ## Usage
 
 
@@ -14,12 +16,9 @@ certain blogging APIs and Ping Back.
 
 Making a client request is very simple:
 
-    (xml-rpc/rpc-call "http://example.com/rpc" :system.listMethods) 
+    (xml-rpc/rpc-call "http://example.com/rpc" :hello "World") 
 
-This will either return a clojure data structure (for example you
-might expect a vector of strings here if this was the python implement
-here). If there is a fault, a `necessary-evil.methodresponse.Fault`
-record will be returned in its place.
+This will either return a clojure data structure or, if there is a fault, a `necessary-evil.methodresponse.Fault` record. For the example above, you might expect something like `"Hello, World!"` to be returned.
 
 ### xml-rpc mappings
 

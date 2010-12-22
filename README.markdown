@@ -11,14 +11,24 @@ Thanks to [Raynes](https://github.com/Raynes/) for feedback and letting me steal
 
 ## Usage
 
-
     (require '[necessary-evil.core :as xml-rpc])
 
 Making a client request is very simple:
 
-    (xml-rpc/rpc-call "http://example.com/rpc" :hello "World") 
+    (xml-rpc/call "http://example.com/rpc" :hello "World") 
 
 This will either return a clojure data structure or, if there is a fault, a `necessary-evil.methodresponse.Fault` record. For the example above, you might expect something like `"Hello, World!"` to be returned.
+
+Here is a simple hello world request handler:
+
+    (use 'ring.adapter.jetty)
+    
+    (def handler (xml-rpc/end-point 
+        {:hello (fn hello 
+            ([] (hello "World"))
+            ([name] (str "Hello, " name "!")))}))
+    
+    (run-jetty handler {:port 3000})
 
 ### xml-rpc mappings
 

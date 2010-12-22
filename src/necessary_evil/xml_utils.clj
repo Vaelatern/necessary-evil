@@ -10,13 +10,16 @@
   ([name] (struct xml/element name))
   ([name children] (struct xml/element name nil children)))
 
+(defn xml-from-stream
+  [stream]
+  (-> stream xml/parse zip/xml-zip))
+
 (defn to-xml
   "to-xml takes a string and returns a new xml zipper"
   [xml-string] (-> xml-string
                    java.io.StringReader. 
                    org.xml.sax.InputSource. 
-                   xml/parse
-                   zip/xml-zip))
+                   xml-from-stream))
 
 ;; zip-filter selectors
 (defn first-child [n] (first (zf/children n)))

@@ -110,3 +110,12 @@
   
   clojure.lang.IPersistentMap ; a map becomes a xml-rpc struct 
   (value-type-elem [this] (elem :struct (vec (map struct-member-elem this)))))
+
+;; extends ValueTypeElem for Byte Arrays. This slightly is awkward,
+;; perhaps there is a better approach
+(extend (Class/forName "[B") 
+   ValueTypeElem
+   {:value-type-elem (fn [this] (elem :base64 [(String. (Base64/encodeBase64 this))]))})
+
+   
+   

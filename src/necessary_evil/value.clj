@@ -35,10 +35,11 @@
 
 (defn parse-int [v] (Integer. (strip-leading-plus (text v))))
 
-(defn parse-bool [v] (condp = (.trim (text v))
-                         "0" false
-                         "1" true
-                         "throw exception here"))
+(defn parse-bool [v]
+  (condp = (.trim (text v))
+      "0" false
+      "1" true
+      "throw exception here"))
 
 (defn parse-struct-member [m] (let [name (xml1-> m :name first-child)
                                     val  (xml1-> m :value first-child)]

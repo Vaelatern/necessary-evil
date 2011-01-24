@@ -8,8 +8,15 @@
             [clj-http.client :as http]
             [necessary-evil.methodcall :as methodcall]
             [necessary-evil.methodresponse :as methodresponse])
-  (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]])
+  (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]]
+        [necessary-evil.errorm :only [attempt-all]])
   (:import necessary-evil.methodcall.MethodCall))
+
+;; Extend ComputationFailed to include Fault types
+
+(extend-protocol necessary-evil.errorm/ComputationFailed
+  necessary-evil.methodresponse.Fault
+  (has-failed? [self] true))
 
 ;; server functions
 
@@ -18,12 +25,14 @@
    this function also does all the error handling to check that the method exists,
    that methodcall is valid and catches any exception raised by the exposed function."
   [methods-map req]
-  (let [result (try (if-let [method-call (-> req :body xml-from-stream methodcall/parse)]
-                      (if-let [method (methods-map (:method-name method-call))]
-                        (apply method (:parameters method-call))
-                        (methodresponse/fault -1 (str "unknown method named "
-                                                      (-> method-call :method-name name))))
-                      (methodresponse/fault -2 "invalid methodcall"))
+  (let [result (try (attempt-all
+                     [method-call (-> req :body xml-from-stream methodcall/parse
+                                      (or (methodresponse/fault -2 "invalid methodcall")))
+                      method-name (:method-name method-call)
+                      method      (methods-map method-name
+                                               (methodresponse/fault -1 (str "unknown method named "
+                                                                             (name method-name))))]
+                     (apply method (:parameters method-call)))
                     (catch Exception e (methodresponse/fault -10 (str "Exception: " e))))]
     {:status 200
      :content-type "text/xml"

@@ -1,6 +1,6 @@
 (ns necessary-evil.core
-  "necessary-evil.core provides the main two functions required to act as a server and a
-   client of xml-rpc.
+  "necessary-evil.core provides the main two functions required to act as a
+   server and a client of xml-rpc.
 
    Use end-point to generate a new ring handler.
    Use call to call a method on a server." 
@@ -9,14 +9,8 @@
             [necessary-evil.methodcall :as methodcall]
             [necessary-evil.methodresponse :as methodresponse])
   (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]]
-        [necessary-evil.errorm :only [attempt-all]])
+        [necessary-evil.fault :only [attempt-all fault]])
   (:import necessary-evil.methodcall.MethodCall))
-
-;; Extend ComputationFailed to include Fault types
-
-(extend-protocol necessary-evil.errorm/ComputationFailed
-  necessary-evil.methodresponse.Fault
-  (has-failed? [self] true))
 
 ;; server functions
 
@@ -27,13 +21,13 @@
   [methods-map req]
   (let [result (try (attempt-all
                      [method-call (-> req :body xml-from-stream methodcall/parse
-                                      (or (methodresponse/fault -2 "invalid methodcall")))
+                                      (or (fault -2 "invalid methodcall")))
                       method-name (:method-name method-call)
                       method      (methods-map method-name
-                                               (methodresponse/fault -1 (str "unknown method named "
-                                                                             (name method-name))))]
+                                               (fault -1 (str "unknown method named "
+                                                              (name method-name))))]
                      (apply method (:parameters method-call)))
-                    (catch Exception e (methodresponse/fault -10 (str "Exception: " e))))]
+                    (catch Exception e (fault -10 (str "Exception: " e))))]
     {:status 200
      :content-type "text/xml"
      :body (-> result methodresponse/unparse emit with-out-str)}))

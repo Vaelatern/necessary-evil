@@ -12,28 +12,10 @@
    "
   (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1->]]
         [necessary-evil.value :only [parse-value value-elem]]
+        [necessary-evil.fault :only [fault]]
         [necessary-evil.xml-utils])
-  (:require [clojure.zip :as zip]))
-
-;; returning a Fault record from any piece of rpc handler will result
-;; in a fault methodResponse being generated. Anything else will
-;; generate a params blob
-
-(defrecord Fault [^Integer fault-code ^String fault-string])
-
-(defn fault
-  "Convenience function that creates a new fault record.
-
-   fault-code must be an integer. The exact meaning of this value is not
-   prescribed by the spec. By convention necessary-evil assigns fault-codes
-   below 0 to indicate rpc level fault, and assumes users will use 1 and
-   greater to indicate faults for the specific handlers.
-
-   fault-string is a string that contains a human readable description of
-   the fault in question. Again the spec has nothing to say about the content
-   of this field."
-  [fault-code fault-string]
-  (Fault. fault-code fault-string))
+  (:require [clojure.zip :as zip])
+  (:import necessary-evil.fault.Fault))
 
 ;; deserialising methodResponse XML to clojure structures
 

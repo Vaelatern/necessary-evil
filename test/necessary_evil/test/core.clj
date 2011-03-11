@@ -225,7 +225,7 @@
       "methodName should be nil if missing")
   (is (= (methodcall/parse-method-name method-call-empty-method-name) nil)
        "methodname should be nil if empty")
-  (is (= (methodcall/parse-method-name method-call-test-method-name) :test.method.name)))
+  (is (= (methodcall/parse-method-name method-call-test-method-name) "test.method.name")))
 
 (deftest params
   (is (= (methodcall/parse-params method-call-default-arg) ["string"]) 

@@ -31,7 +31,7 @@
   "returns the method name for a methodcall"
   [x] (when-let [name (xml1-> x :methodName text)]
         (let [clean-name (.trim name)]
-          (when (-> clean-name empty? not) (keyword clean-name)))))
+          (when (-> clean-name empty? not) clean-name))))
 
 (defn parse-params
   "returns a vector containing one element for each param in the method call"

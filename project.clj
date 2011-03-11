@@ -5,6 +5,6 @@
                  [ring/ring-core "0.3.5"]
                  [clj-http "0.1.3"]
                  [commons-codec "1.4"]
-                 [org.clojars.rayne/clj-time "0.1.1-SNAPSHOT"]]
+                 [clj-time "0.3.0-SNAPSHOT"]]
   :dev-dependencies [[ring/ring-jetty-adapter "0.3.5"]
                      [marginalia "0.5.0-alpha"]])

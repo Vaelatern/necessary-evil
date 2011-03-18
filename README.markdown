@@ -1,4 +1,3 @@
-
 # necessary-evil
 
 *necessary-evil* is an implementation of [XML-RPC](http://xml-rpc.com/)
@@ -73,7 +72,8 @@ to XML-RPC types
         <tr><td>double</td><td>java.lang.Double</td></tr>
         <tr><td>i4</td><td>java.lang.Integer</td></tr>
         <tr><td>int</td><td>java.lang.Integer</td></tr>
-        <tr><td>struct</td><td>clojure.lang.IPersistantMap — <em>clojure.lang.Keyword keys</em></td></tr>
+        <tr><td>struct</td><td>clojure.lang.IPersistantMap —
+    <em>String keys</em></td></tr>
         <tr><td><em>no element</em></td><td>java.lang.String</td></tr>
     </tbody>
 </table>
@@ -81,6 +81,15 @@ to XML-RPC types
 **Note:** `nil` is conspicuously absent from the list of types; this is because the spec for xml-rpc itself does not include any canonical representation.
 
 It is possible to extend the support to additional data types trivially. All the details of parsing and unparsing the various value types is handled in the `necessary-evil.value` namespace with the multimethod `parse-value` and the protocol `ValueTypeElem`. Simple implement the appropriate pair for each of these in your own code.
+
+## API Documentation
+
+The follow API documentation is available at [http://brehaut.github.com/necessary-evil/](http://brehaut.github.com/necessary-evil/)
+
+## Changes from 1.1 to 2.0
+
+ * Following the change from keywords to strings for methodcalls,
+   structs now use string keys for the same reason.
 
 ## Changes from 1.0 to 1.1
 

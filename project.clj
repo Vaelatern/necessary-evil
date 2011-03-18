@@ -1,4 +1,4 @@
-(defproject necessary-evil "1.1.0"
+(defproject net.brehaut/necessary-evil "2.0.0-SNAPSHOT"
   :description "An implementation of XML-RPC for the Clojure Ring HTTP stack"
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
@@ -7,4 +7,4 @@
                  [commons-codec "1.4"]
                  [clj-time "0.3.0-SNAPSHOT"]]
   :dev-dependencies [[ring/ring-jetty-adapter "0.3.5"]
-                     [marginalia "0.5.0-alpha"]])
+                     [marginalia "0.5.0"]])

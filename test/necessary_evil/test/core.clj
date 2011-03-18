@@ -234,7 +234,7 @@
       "did not parse string correctly")
   (is (= (methodcall/parse-params method-call-int-arg)
          [1 0 -1 1000 -1000 42 1 0 -1 1000 -1000 42]) 
-      "did not parse ints correctly")
+      "did not parse ints correctlyly")
   (is (java.util.Arrays/equals (first (methodcall/parse-params method-call-base64-arg)) base64text-plain) 
       "did not parse base64 correctly") 
   (is (= (methodcall/parse-params method-call-double-arg) [1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.0 0.0 -1.0 1000.0 -1000.0 42.0 1.5 0.0 -1.5 1000.50 -1000.50 42.234]) 
@@ -247,7 +247,7 @@
 (deftest compound-params
   (is (= (methodcall/parse-params method-call-array-arg) [[] ["string"] ["string" 123 [true]]])
       "did not parse arrays correctly")
-  (is (= (methodcall/parse-params method-call-struct-arg) [{} {:key "value"} {:numeral 123, :composite {:key "value", :array! ["frobitz"]}}])
+  (is (= (methodcall/parse-params method-call-struct-arg) [{} {"key" "value"} {"numeral" 123, "composite" {"key" "value", "array!" ["frobitz"]}}])
       "did not parse arrays correctly"))
   
 (deftest value-type-elem-test

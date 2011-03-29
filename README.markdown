@@ -121,6 +121,7 @@ The follow API documentation is available at [http://brehaut.github.com/necessar
 ## Thanks
 
 Thanks to the following people for their feedback and assistance:
+
  * [Raynes](https://github.com/Raynes/) (also for letting me
  steal from his `clj-xmlrpc` code).
  * [Amalloy](https://github.com/amalloy/) 

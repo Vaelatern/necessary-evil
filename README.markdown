@@ -6,8 +6,6 @@ library](https://github.com/mmcgrana/ring) for Clojure. XML-RPC is a
 bit nasty, but it is the basis of a number of other standards such as
 certain blogging APIs and Ping Back.
 
-Thanks to [Raynes](https://github.com/Raynes/) for feedback and letting me steal from his `clj-xmlrpc` code.
-
 ## Usage
 
     (require '[necessary-evil.core :as xml-rpc])
@@ -119,6 +117,14 @@ The follow API documentation is available at [http://brehaut.github.com/necessar
    than keywords to functions; This is because keyword's names are interned in 
    permgen in the JVM; This would allow a malicious client to cause OOM errors by 
    generating malicious method names. See [Clojure's keyword can fill up your PermGen space](http://www.xcombinator.com/2011/03/02/clojures-keyword-can-fill-up-your-permgen-space/) for more details.
+
+## Thanks
+
+Thanks to the following people for their feedback and assistance:
+ * [Raynes](https://github.com/Raynes/) (also for letting me
+ steal from his `clj-xmlrpc` code).
+ * [Amalloy](https://github.com/amalloy/) 
+ * [kumarshantanu](https://bitbucket.org/kumarshantanu)
 
 ## License
 

@@ -55,6 +55,25 @@ The following is a trivial example to attach an xml-rpc endpoint into a hello wo
 
 In this application `/` is a 404, `/hello` returns "Hello!", and `/xml` is the xmlrpc handler.
 
+### Compojure example:
+
+This snippet implements the same server as the one above for Moustache:
+
+    (require '[necessary-evil.core :as xmlrpc])  
+    (use 'ring.adapter.jetty)   
+    (use 'compojure.core)
+    
+    (def ep (xmlrpc/end-point 
+                {:hello (fn [n] (str "Hello, " n "!"))}))
+
+    (defroutes handler 
+        (GET "/hello" [] "Hello!")
+        (ANY "/xml" [] ep))
+
+    (run-jetty #'handler {:port 3000 :join? false})
+
+Just as in the moustache example above,  `/` is a 404, `/hello` returns "Hello!", and `/xml` is the xmlrpc handler.
+
 ### xml-rpc mappings
 
 This table describes the mapping of clojure datastructures and types

@@ -21,6 +21,14 @@
                    org.xml.sax.InputSource. 
                    xml-from-stream))
 
+(defn to-xml [xml-string]
+  "to-xml takes a string and returns a new xml zipper"
+  (-> xml-string
+      (.getBytes "UTF-8")
+      (java.io.ByteArrayInputStream.)
+      (xml/parse)
+      (zip/xml-zip)))
+
 ;; zip-filter selectors
 (defn first-child [n] (first (zf/children n)))
 

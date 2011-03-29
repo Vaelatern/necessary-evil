@@ -101,7 +101,6 @@ The follow API documentation is available at [http://brehaut.github.com/necessar
    permgen in the JVM; This would allow a malicious client to cause OOM errors by 
    generating malicious method names. See [Clojure's keyword can fill up your PermGen space](http://www.xcombinator.com/2011/03/02/clojures-keyword-can-fill-up-your-permgen-space/) for more details.
 
-
 ## License
 
 Copyright (C) 2010, 2011 Andrew Brehaut

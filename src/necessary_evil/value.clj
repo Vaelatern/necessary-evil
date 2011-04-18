@@ -3,6 +3,15 @@
    shared by the various forms required for method calls, responses and
    response faults.
 
+   If you wish to support sending or recieving nils, you must explicitly
+   enable support for the extension with the allow-nils macro. eg:
+
+      (allow-nils true (end-point { ... }))
+
+   or
+
+      (allow-nils true (call :foo ... ))
+
    The library has a pair of functions, parse-value and value-elem,
    that are used for reading and writing values. 
 
@@ -26,6 +35,24 @@
 ;; dave winer has kindly defined his own variation on ISO 8601 date
 ;; time formatting
 (def winer-time (time-format/formatter "yyyyMMdd'T'HH:mm:ss"))
+
+;; The following is to handle nils
+
+(def ^{:dynamic true
+       :doc "The core XML-RPC spec does not contain any standard for nil/null/None values,
+             however they are provided by an extension - http://ontosys.com/xml-rpc/extensions.php
+
+             By default this extension is disabled. Use allow-nils to enable this."}
+  *allow-nils* false)
+
+(defmacro allow-nils 
+  "xml-rpc does not allow sending or recieving nils by default. You must explicitly enable it with
+   this form."
+  ([body] `(allow-nils true ~body))
+  ([allow? body]
+     `(binding [*allow-nils* ~allow?]
+        ~body)))
+
 
 ;; The following implements deserialization of values with a multi-method
 
@@ -70,6 +97,10 @@
 (defmethod parse-value :array            [v] (parse-array v))
 (defmethod parse-value :default          [v] (text v))
 
+(defmethod parse-value :nil              [v]
+  (if *allow-nils* nil
+      (throw (RuntimeException. "Unexpected nil while parsing xml"))))
+
 
 ;; The following implements serialization of values with a protocol.
 
@@ -110,7 +141,11 @@
   (value-type-elem [this] (elem :array [(elem :data (vec (map value-elem this)))]))
   
   clojure.lang.IPersistentMap ; a map becomes a xml-rpc struct 
-  (value-type-elem [this] (elem :struct (vec (map struct-member-elem this)))))
+  (value-type-elem [this] (elem :struct (vec (map struct-member-elem this))))
+
+  nil
+  (value-type-elem [this] (if *allow-nils* (elem :nil [])
+                              (throw (RuntimeException. "Cannot serialize nil without necessary-evil.value/allow-nils")))))
 
 ;; extends ValueTypeElem for Byte Arrays. This slightly is awkward,
 ;; perhaps there is a better approach

@@ -57,6 +57,9 @@
              (elem :fault [(value-elem fault-struct)])))
 
   Object
+  (response-elem [value] (elem :params [(elem :param [(value-elem value)])]))
+
+  nil
   (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))
 
 

@@ -39,7 +39,7 @@
    methods-map is a map of keyword (method name) to iFn."
   [methods-map]
   (let [methods-map (into {} (map (fn [[k v]] [(name k) v]) methods-map))]
-    (fn [req]
+    (bound-fn [req]
       (condp = (:request-method req)
           :post (handle-post methods-map req)
           :get {:status 200 ; get handler is merely a convenience for developers

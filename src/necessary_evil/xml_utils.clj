@@ -2,7 +2,8 @@
   "A collection of utilities for processing xml"
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
-            [clojure.contrib.zip-filter :as zf]))
+            [clojure.contrib.zip-filter :as zf])
+  (:import org.apache.commons.lang.StringEscapeUtils))
 
 (defn elem 
   "elem is a utility function to make creating xml/element structs (minus
@@ -39,12 +40,12 @@
 
 (defn emit-element [e]
   (if (instance? String e)
-    (print e)
+    (print (StringEscapeUtils/escapeXml e))
     (do
       (print (str "<" (name (:tag e))))
       (when (:attrs e)
 	(doseq [attr (:attrs e)]
-	  (print (str " " (name (key attr)) "='" (val attr)"'"))))
+	  (print (str " " (name (key attr)) "='" (val (StringEscapeUtils/escapeXml attr))"'"))))
       (if (:content e)
 	(do
 	  (print ">")

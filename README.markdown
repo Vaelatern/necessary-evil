@@ -1,4 +1,4 @@
-
+        
 # necessary-evil
 
 *necessary-evil* is an implementation of [XML-RPC](http://xml-rpc.com/)
@@ -116,6 +116,7 @@ Thanks to the following people for their feedback and assistance:
  steal from his `clj-xmlrpc` code).
  * [Amalloy](https://github.com/amalloy/) 
  * [kumarshantanu](https://bitbucket.org/kumarshantanu)
+ * [semperos](https://github.com/semperos)
 
 ## License
 

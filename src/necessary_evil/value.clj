@@ -44,7 +44,7 @@
 (defn parse-struct-member [m] (let [name (xml1-> m :name first-child)
                                     val  (xml1-> m :value first-child)]
                                 (if (or name val)
-                                  [(-> name text .trim),
+                                  [(keyword (-> name text .trim)),
                                    (parse-value val)]
                                   [nil, nil])))
 

@@ -45,14 +45,13 @@
              By default this extension is disabled. Use allow-nils to enable this."}
   *allow-nils* false)
 
-(defmacro allow-nils 
+(defmacro ^{:added "1.2"} allow-nils 
   "xml-rpc does not allow sending or recieving nils by default. You must explicitly enable it with
    this form."
   ([body] `(allow-nils true ~body))
   ([allow? body]
      `(binding [*allow-nils* ~allow?]
         ~body)))
-
 
 ;; The following implements deserialization of values with a multi-method
 
@@ -99,7 +98,7 @@
 
 (defmethod parse-value :nil              [v]
   (if *allow-nils* nil
-      (throw (RuntimeException. "Unexpected nil while parsing xml"))))
+      (throw (Exception. "Unexpected nil while parsing xml"))))
 
 
 ;; The following implements serialization of values with a protocol.
@@ -145,7 +144,7 @@
 
   nil
   (value-type-elem [this] (if *allow-nils* (elem :nil [])
-                              (throw (RuntimeException. "Cannot serialize nil without necessary-evil.value/allow-nils")))))
+                              (throw (Exception. "Cannot serialize nil without necessary-evil.value/allow-nils")))))
 
 ;; extends ValueTypeElem for Byte Arrays. This slightly is awkward,
 ;; perhaps there is a better approach

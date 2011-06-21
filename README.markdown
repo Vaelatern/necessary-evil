@@ -7,6 +7,8 @@ library](https://github.com/mmcgrana/ring) for Clojure. XML-RPC is a
 bit nasty, but it is the basis of a number of other standards such as
 certain blogging APIs and Ping Back.
 
+`necessary-evil` will only with with Java 6+. 
+
 ## Usage
 
     (require '[necessary-evil.core :as xml-rpc])
@@ -99,15 +101,22 @@ to XML-RPC types
 
 It is possible to extend the support to additional data types trivially. All the details of parsing and unparsing the various value types is handled in the `necessary-evil.value` namespace with the multimethod `parse-value` and the protocol `ValueTypeElem`. Simple implement the appropriate pair for each of these in your own code.
 
+## Changes from 1.2 to 1.2.1
+ 
+ * Addes UTF-8 character set to content type headers for both client and server. Thanks to Laurent Petit for this 
+   fix.
+
+## Changes from 1.1 to 1.2
+
+ * Fixes a bug with values containing XML special characters not being escaped
+ * Support for [Null support extension](http://ontosys.com/xml-rpc/extensions.php) with the `necessary-evil.value/allow-nils` form.
+ * Uses non-snapshot `clj-time`
+
 ## Changes from 1.0 to 1.1
 
  * `fault` handling code is now in its own namespace: `necessary-evil.fault`
-   * `necessary-evil.fault` now includes `attempt-all` macro to stream line 
+ * `necessary-evil.fault` now includes `attempt-all` macro to stream line 
      writing code that may generate faults in multiple stages.
- * Internally an endpoint's method map is a map of strings to functions rather 
-   than keywords to functions; This is because keyword's names are interned in 
-   permgen in the JVM; This would allow a malicious client to cause OOM errors by 
-   generating malicious method names. See [Clojure's keyword can fill up your PermGen space](http://www.xcombinator.com/2011/03/02/clojures-keyword-can-fill-up-your-permgen-space/) for more details.
 
 ## Thanks
 
@@ -118,6 +127,7 @@ Thanks to the following people for their feedback and assistance:
  * [Amalloy](https://github.com/amalloy/) 
  * [kumarshantanu](https://bitbucket.org/kumarshantanu)
  * [semperos](https://github.com/semperos)
+ * [laurentpetit](https://github.com/laurentpetit)
 
 ## License
 

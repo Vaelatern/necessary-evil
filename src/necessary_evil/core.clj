@@ -29,7 +29,7 @@
                      (apply method (:parameters method-call)))
                     (catch Exception e (fault -10 (str "Exception: " e))))]
     {:status 200
-     :content-type "text/xml"
+     :content-type "text/xml;charset=UTF-8"
      :body (-> result methodresponse/unparse emit with-out-str)}))
 
 (defn end-point
@@ -53,5 +53,9 @@
   [endpoint-url method-name & args]
   (let [call (methodcall/MethodCall. method-name args)
         body (-> call methodcall/unparse emit with-out-str)]
-    (-> (http/post endpoint-url {:body body}) :body to-xml methodresponse/parse)))
+    (-> (http/post endpoint-url {:body body
+                                 :content-type "text/xml;charset=UTF-8"})
+        :body
+        to-xml
+        methodresponse/parse)))
 

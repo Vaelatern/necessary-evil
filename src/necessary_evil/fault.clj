@@ -25,11 +25,11 @@
   [fault-code fault-string]
   (Fault. fault-code fault-string))
 
-(def fault? (partial instance? Fault))
+(def ^{:added "1.1"} fault? (partial instance? Fault))
 
 ;; Utilities for handling faults:
 
-(defn new-error-m
+(defn ^{:added "1.1"} new-error-m
   "Creates a new monad that short circuits if any part of the computation
    fails. For instance, passing `nil?' produces a maybe-m."
   [has-failed?]
@@ -39,9 +39,9 @@
                         m
                         (f m)))]))
 
-(def error-on-fault-m (new-error-m fault?))
+(def ^{:added "1.1"} error-on-fault-m (new-error-m fault?))
 
-(defmacro attempt-all
+(defmacro ^{:added "1.1"} attempt-all
   "attempt-all is an alternative to complex nested if-let and when-let forms."
   ([bindings return] `(domonad error-on-fault-m ~bindings ~return))
   ([bindings return else]

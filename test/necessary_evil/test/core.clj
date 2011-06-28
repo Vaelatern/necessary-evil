@@ -4,6 +4,7 @@
   (:use [necessary-evil.value] :reload)
   (:use [clojure.test]
         [necessary-evil.xml-utils :only [to-xml emit]])
+  (:use [ring.adapter.jetty :only [run-jetty]])
   (:require [clj-time.core :as time]
             [clojure.xml :as xml])
   (:import org.apache.commons.codec.binary.Base64))
@@ -272,8 +273,25 @@
               [{:tag :int :attrs nil :content ["1"]}]}]}]})
       "array of 1 item generates correct nodes"))
       
+
 (deftest emit-method-call-test
     (is (= (to-xml (with-out-str (emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
          method-call-test-method-name)))
   
-  
+
+
+(defn- ping-server [port]
+ (let [ep (end-point {"method" (fn [argument] {"argument" argument})})]
+   (run-jetty ep {:port port :join? false})))
+
+(deftest chars-rountrip
+ (let [port 12254
+       jetty-server (ping-server port)
+       non-US-ASCII "Eléonore"]
+   (try
+     ;; test non-US-ASCII chars roundtrip
+     (is (= non-US-ASCII
+            (:argument (call (str "http://localhost:" port)
+                             "method"
+                             non-US-ASCII))))
+     (finally (.stop jetty-server)))))

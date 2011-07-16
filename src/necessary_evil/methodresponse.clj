@@ -19,14 +19,14 @@
 
 ;; deserialising methodResponse XML to clojure structures
 
-(defn method-response?
-  "a predicate to ensure that this xml structure is a <methodResponse>."
-  [x] (-> x zip/node :tag (= :methodResponse)))
+(def ^{:doc "a predicate to ensure that this xml structure is a <methodResponse>."}
+  method-response?
+  (comp #{:methodResponse} :tag zip/node))
 
 (defn parse-fault
   [x] (let [f (parse-value x)
-            fault-code (or (:faultCode f) -1)
-            fault-message (or (:faultString f) -1)]
+            fault-code    (:faultCode f -1)
+            fault-message (:faultString f "")]
         (fault fault-code (.trim fault-message))))
 
 (defn parse-response-content

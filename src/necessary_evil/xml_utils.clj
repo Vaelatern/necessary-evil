@@ -24,7 +24,7 @@
       (zip/xml-zip)))
 
 ;; zip-filter selectors
-(defn first-child [n] (first (zf/children n)))
+(def first-child (comp first zf/children))
 
 ;; the following have been copied from clojure.xml because the
 ;; python xmlrpc lib is real picky about white space and as it is a

@@ -15,13 +15,6 @@
   [stream]
   (-> stream xml/parse zip/xml-zip))
 
-(defn to-xml
-  "to-xml takes a string and returns a new xml zipper"
-  [xml-string] (-> xml-string
-                   java.io.StringReader. 
-                   org.xml.sax.InputSource. 
-                   xml-from-stream))
-
 (defn to-xml [xml-string]
   "to-xml takes a string and returns a new xml zipper"
   (-> xml-string

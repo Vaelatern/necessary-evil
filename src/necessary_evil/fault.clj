@@ -3,7 +3,7 @@
 
    Functions and forms to make working with faults easier are also provided.
    attempt-all will short circuit if any Fault is encountered."
-  (:use [clojure.contrib.monads :only [monad domonad]]))
+  (:use [clojure.algo.monads :only [monad domonad]]))
 
 ;; returning a Fault record from any piece of rpc handler will result
 ;; in a fault methodResponse being generated. Anything else will

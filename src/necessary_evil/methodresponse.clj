@@ -10,12 +10,12 @@
    Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to *out* you may need to use with-out-str to capture the result.
    "
-  (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1->]]
+  (:use [clojure.data.zip.xml :only [xml-> xml1->]]
         [necessary-evil.value :only [parse-value value-elem]]
         [necessary-evil.fault :only [fault]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip])
-  (:import necessary-evil.fault.Fault))
+  (:import necessary_evil.fault.Fault))
 
 ;; deserialising methodResponse XML to clojure structures
 

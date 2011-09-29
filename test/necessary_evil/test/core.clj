@@ -275,7 +275,7 @@
       
 
 (deftest emit-method-call-test
-    (is (= (to-xml (with-out-str (emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
+    (is (= (to-xml (with-out-str (emit (methodcall/unparse (methodcall/methodcall :test.method.name [])))))
          method-call-test-method-name)))
   
 

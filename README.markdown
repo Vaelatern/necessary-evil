@@ -101,6 +101,22 @@ to XML-RPC types
 
 It is possible to extend the support to additional data types trivially. All the details of parsing and unparsing the various value types is handled in the `necessary-evil.value` namespace with the multimethod `parse-value` and the protocol `ValueTypeElem`. Simple implement the appropriate pair for each of these in your own code.
 
+## Changes from 1.2.1 to 2.0.0
+
+Despite the big jump in version numbers relatively small changes have occured.
+
+ * Updated to work with Clojure 1.2.1, 1.3.0 and new contrib modules.
+   * Class name munging of '-' characters in Record names caused problems using prior necessary-evil 1.x 
+     to have import errors on Clojure 1.2.1 and 1.3.
+ * Changed mappings in the `ValueTypeElem` protocol:
+   * Instead of `clojure.lang.PersistanceVector`, any
+     `clojure.lang.Sequential` implementor will be serialized to an array; this includes lists and
+     lazy sequences.
+   * `Long`s are now serialized as `Integer`s (and must not exceed `Integer.MAX_VALUE` as the xmlrpc spec only allows for 4 byte signed ints).     
+   * `java.util.Date` objects are now serialized to time
+   
+Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, java dates will return as joda time dates and longs as ints.
+
 ## Changes from 1.2 to 1.2.1
  
  * Addes UTF-8 character set to content type headers for both client and server. Thanks to Laurent Petit for this 

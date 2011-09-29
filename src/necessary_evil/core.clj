@@ -9,8 +9,7 @@
             [necessary-evil.methodcall :as methodcall]
             [necessary-evil.methodresponse :as methodresponse])
   (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]]
-        [necessary-evil.fault :only [attempt-all fault]])
-  (:import necessary-evil.methodcall.MethodCall))
+        [necessary-evil.fault :only [attempt-all fault]]))
 
 ;; server functions
 
@@ -51,7 +50,7 @@
 (defn call
   "Does a syncronous http request to the server and method provided."
   [endpoint-url method-name & args]
-  (let [call (methodcall/MethodCall. method-name args)
+  (let [call (methodcall/methodcall method-name args)
         body (-> call methodcall/unparse emit with-out-str)]
     (-> (http/post endpoint-url {:body body
                                  :content-type "text/xml;charset=UTF-8"})

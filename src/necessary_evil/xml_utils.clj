@@ -2,7 +2,8 @@
   "A collection of utilities for processing xml"
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
-            [clojure.contrib.zip-filter :as zf])
+            [clojure.data.zip :as data.zip]
+            [clojure.data.zip.xml :as zf])
   (:import org.apache.commons.lang.StringEscapeUtils))
 
 (defn elem 
@@ -24,7 +25,7 @@
       (zip/xml-zip)))
 
 ;; zip-filter selectors
-(def first-child (comp first zf/children))
+(def first-child (comp first data.zip/children))
 
 ;; the following have been copied from clojure.xml because the
 ;; python xmlrpc lib is real picky about white space and as it is a

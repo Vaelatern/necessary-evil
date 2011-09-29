@@ -11,7 +11,7 @@
    Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to *out* you may need to use with-out-str to capture the result.
    "
-  (:use [clojure.contrib.zip-filter.xml :on [xml->]]
+  (:use [clojure.data.zip.xml :only [xml-> xml1-> text]]
         (necessary-evil xml-utils value))
   (:require [clojure.zip :as zip]
             [clojure.contrib.zip-filter :as zf]
@@ -19,6 +19,10 @@
   (:import org.apache.commons.codec.binary.Base64))
 
 (defrecord MethodCall [method-name parameters])
+
+(defn methodcall
+  "A convenience function that creates a new MethodCall. record"
+  [method-name parameters] (MethodCall. method-name parameters))
 
 ;; The following functions parse the xml structure of a <methodCall>
 ;; and return a new MethodCall record

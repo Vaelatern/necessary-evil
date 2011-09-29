@@ -22,14 +22,15 @@
    You should also extend the ValueTypeElem protocol to support the
    return type of your new method implementation to generate the xml
    that your parse-value implementation consumes."
-  (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1-> text]]
+  (:use [clojure.data.zip.xml :only [xml-> xml1-> text]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
-            [clojure.contrib.zip-filter :as zf]
+            [clojure.data.zip :as zf]
             [clojure.string :as su]
             [clj-time.core :as time]
-            [clj-time.format :as time-format])
+            [clj-time.format :as time-format]
+            [clj-time.coerce])
   (:import org.apache.commons.codec.binary.Base64))
 
 ;; dave winer has kindly defined his own variation on ISO 8601 date
@@ -125,6 +126,9 @@
   Integer
   (value-type-elem [this] (elem :int [(str this)]))
 
+  Long ;; must cast to int as xmlrpc spec only allows 4 byte signed ints
+  (value-type-elem [this] (elem :int [(str (int this))]))
+
   Boolean
   (value-type-elem [this] (elem :boolean [(if this "1" "0")]))
   
@@ -135,8 +139,11 @@
   (value-type-elem [this] (elem :dateTime.iso8601 [(time-format/unparse
                                                     winer-time
                                                     this)]))
+
+  java.util.Date
+  (value-type-elem [this] (value-type-elem (clj-time.coerce/from-date this)))
   
-  clojure.lang.IPersistentVector ; a vector becomes an xml-rpc array
+  clojure.lang.Sequential ; a vector becomes an xml-rpc array
   (value-type-elem [this] (elem :array [(elem :data (vec (map value-elem this)))]))
   
   clojure.lang.IPersistentMap ; a map becomes a xml-rpc struct 
@@ -148,6 +155,9 @@
 
 ;; extends ValueTypeElem for Byte Arrays. This slightly is awkward,
 ;; perhaps there is a better approach
+;;
+;; Note that String. is used rather than str because the string
+;; constructor accepts an array of bytes
 (extend (Class/forName "[B") 
    ValueTypeElem
    {:value-type-elem (fn [this] (elem :base64 [(String. (Base64/encodeBase64 this))]))})

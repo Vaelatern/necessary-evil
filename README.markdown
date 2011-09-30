@@ -7,7 +7,7 @@ library](https://github.com/mmcgrana/ring) for Clojure. XML-RPC is a
 bit nasty, but it is the basis of a number of other standards such as
 certain blogging APIs and Ping Back.
 
-`necessary-evil` will only with with Java 6+. 
+`necessary-evil` will only work with Java 6+. 
 
 ## Usage
 
@@ -77,11 +77,12 @@ Just as in the moustache example above,  `/` is a 404, `/hello` returns "Hello!"
 
 ### xml-rpc mappings
 
-This table describes the mapping of clojure datastructures and types
-to XML-RPC types
+These tables describes the mapping of clojure datastructures and types
+to XML-RPC types. Note that as of version 2.0.0 these are no longer symmetric operations. 
 
 <table style="width: 100%">
     <thead>
+    <tr><th colspan="2">XML-RPC &rarr; Clojure</th></tr>
     <tr><th>XML-RPC Element</th><th>Clojure or Java type</th></tr>
     </thead>
     <tbody>
@@ -97,9 +98,47 @@ to XML-RPC types
     </tbody>
 </table>
 
+<table style="width: 100%">
+    <thead>
+    <tr><th colspan="2">Clojure &rarr; XML-RPC</th></tr>
+    <tr><th>Clojure or Java type</th><th>XML-RPC Element</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>byte-array</td><td>base64</td></tr>
+        <tr><td>clojure.lang.IPersistantMap — <em>clojure.lang.Keyword keys</em></td><td>struct</td></tr>
+        <tr><td>clojure.lang.Sequential</td><td>array</td></tr>
+        <tr><td>java.lang.Boolean</td><td>boolean</td></tr>
+        <tr><td>java.lang.Double</td><td>double</td></tr>
+        <tr><td>java.lang.Integer</td><td>int</td></tr>
+        <tr>
+            <td>java.lang.Long</td>
+            <td>int – <em>Longs that are greater than
+Integer/MAX_VALUE will cause an exception to be thrown.</em>
+            </td>
+        </tr>
+        <tr><td>java.lang.String</td><td><em>string</em></td></tr>
+        <tr><td>java.util.Date</td><td>dateTime.iso8601</td></tr>
+        <tr><td>org.joda.time.DateTime</td><td>dateTime.iso8601</td></tr>
+    </tbody>
+</table>
+
 **Note:** `nil` is conspicuously absent from the list of types; this is because the spec for xml-rpc itself does not include any canonical representation.
 
+#### Implementing additional mappings.
+
 It is possible to extend the support to additional data types trivially. All the details of parsing and unparsing the various value types is handled in the `necessary-evil.value` namespace with the multimethod `parse-value` and the protocol `ValueTypeElem`. Simple implement the appropriate pair for each of these in your own code.
+
+Keep in mind that if you specify a mapping from a new Clojure type to an existing xmlrpc type that the mapping will be asymmetric. If you add additional xmlrpc types keep in mind that the xmlrpc implementation at the other end will also need to know how to serialize and deserialize the type. 
+
+## Primary API
+
+The following the main API functions that you will use as a consumer of the library. 
+
+ * `necessary-evil.core/end-point` — Defines a Ring handler that acts as an XML-RPC end-point. See above for examples.
+ * `necessary-evil.core/call` — Calls an XML-RPC function at a given end point.
+ * `necessary-evil.fault/fault` — Creates a new fault, use this if you need to return an error condition to the caller.
+ * `necessary-evil.fault/fault?` — Predicate that tests a value for being a Fault record.
+ * `necessary-evil.fault/attempt-all` — A comprehension form to make it easier to work with potentially Fault returning functions. For more detail on this macro see my [Error Monads](http://brehaut.net/blog/2011/error_monads#attempt_all) and [Error Monads Revisited ](http://brehaut.net/blog/2011/error_monads_revisited) blog posts.
 
 ## Changes from 1.2.1 to 2.0.0
 
@@ -115,7 +154,7 @@ Despite the big jump in version numbers relatively small changes have occured.
    * `Long`s are now serialized as `Integer`s (and must not exceed `Integer.MAX_VALUE` as the xmlrpc spec only allows for 4 byte signed ints).     
    * `java.util.Date` objects are now serialized to time
    
-Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, java dates will return as joda time dates and longs as ints.
+Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, Java dates will return as Joda time dates and longs as ints.
 
 ## Changes from 1.2 to 1.2.1
  
@@ -133,6 +172,10 @@ Note that the serialization and deserialization processes are now *asymmetric*: 
  * `fault` handling code is now in its own namespace: `necessary-evil.fault`
  * `necessary-evil.fault` now includes `attempt-all` macro to stream line 
      writing code that may generate faults in multiple stages.
+
+## Notes
+
+Laurent Petit has a recipe for making [Make a SSL certificate visible to your app](https://gist.github.com/e3b6d07cbc8b26373deb). This may be relevant if you wish to secure your api with HTTPS and are not running your application behind another web server.
 
 ## Thanks
 

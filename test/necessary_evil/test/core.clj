@@ -1,6 +1,8 @@
 (ns necessary-evil.test.core
   (:use [necessary-evil.core] :reload)
-  (:require [necessary-evil.methodcall :as methodcall] :reload)
+  (:require [necessary-evil.methodcall :as methodcall]
+            [necessary-evil.methodresponse :as methodresponse]
+            :reload)
   (:use [necessary-evil.value] :reload)
   (:use [clojure.test]
         [necessary-evil.xml-utils :only [to-xml emit]])
@@ -35,6 +37,15 @@
             <methodName>test.method.name</methodName>
             <params><param><value>string</value></param></params>
         </methodCall>")
+
+(defxml method-call-empty-default-arg xml-prolog
+        "<methodCall>
+            <methodName>test.method.name</methodName>
+            <params><param><value></value></param></params>
+        </methodCall>")
+
+(defxml github-issue-4-xml xml-prolog
+  "<methodResponse><params><param><value><struct><member><name>foo</name><value></value></member><member><name>bar</name><value>xyz</value></member></struct></value></param></params></methodResponse>")
 
 (defxml method-call-string-arg xml-prolog
         "<methodCall>
@@ -231,6 +242,8 @@
 (deftest params
   (is (= (methodcall/parse-params method-call-default-arg) ["string"]) 
       "did not parse untyped string correctly")
+  (is (= (methodcall/parse-params method-call-empty-default-arg) [""])
+      "did not parse untyped empty string correctly")
   (is (= (methodcall/parse-params method-call-string-arg) ["string"]) 
       "did not parse string correctly")
   (is (= (methodcall/parse-params method-call-int-arg)
@@ -295,3 +308,9 @@
                              "method"
                              non-US-ASCII))))
      (finally (.stop jetty-server)))))
+
+
+(deftest github-issue-4
+  (is (methodresponse/parse github-issue-4-xml)
+      {:foo ""
+       :bar "xyz"}))

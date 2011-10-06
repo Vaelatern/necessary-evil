@@ -6,7 +6,8 @@
                  [org.clojure/algo.monads "0.1.1-SNAPSHOT"]
                  [clj-http "0.1.3"]
                  [commons-codec "1.4"]
-                 [clj-time "0.3.0"]
+                 [clj-time "0.3.1"]
                  [commons-lang "2.6"]]
   :dev-dependencies [[ring/ring-jetty-adapter "0.3.11"]
-                     [marginalia "0.5.0-alpha"]])
+                     [marginalia "0.7.0-SNAPSHOT"]
+                     [lein-marginalia "0.6.1"]])

@@ -58,20 +58,20 @@
 
 (declare parse-value)
 
-(defn strip-leading-plus [s] (su/replace (.trim  s) #"^\+" ""))
+(defn strip-leading-plus [^String s] (su/replace (.trim  s) #"^\+" ""))
 
-(defn parse-int [v] (Integer. (strip-leading-plus (text v))))
+(defn parse-int [v] (Integer. ^String (strip-leading-plus (text v))))
 
 (defn parse-bool [v]
-  (condp = (.trim (text v))
+  (condp = (.trim ^String (text v))
       "0" false
       "1" true
       "throw exception here"))
 
 (defn parse-struct-member [m] (let [name (xml1-> m :name first-child)
-                                    val  (xml1-> m :value first-child)]
+                                     val  (xml1-> m :value first-child)]
                                 (if (or name val)
-                                  [(keyword (-> name text .trim)),
+                                  [(keyword (.trim ^String (text name))),
                                    (parse-value val)]
                                   [nil, nil])))
 
@@ -81,18 +81,18 @@
 (defn parse-array [v] (vec (map parse-value
                                 (xml-> v :array :data :value first-child))))
 
-(defmulti parse-value #(:tag (zip/node %)))
+(defmulti parse-value #(if % (:tag (zip/node %)) :default))
 
 (defmethod parse-value :i4               [v] (parse-int v))
 (defmethod parse-value :int              [v] (parse-int v))
 
 (defmethod parse-value :boolean          [v] (parse-bool v))
 (defmethod parse-value :string           [v] (text v))
-(defmethod parse-value :double           [v] (Double. (strip-leading-plus
-                                                       (text v))))
+(defmethod parse-value :double           [v] (Double. ^String (strip-leading-plus
+                                                               (text v))))
 (defmethod parse-value :dateTime.iso8601 [v] (time-format/parse winer-time
                                                                 (text v)))
-(defmethod parse-value :base64           [v] (-> (text v) Base64/decodeBase64))
+(defmethod parse-value :base64           [v] (Base64/decodeBase64 ^String (text v)))
 (defmethod parse-value :struct           [v] (parse-struct v))
 (defmethod parse-value :array            [v] (parse-array v))
 (defmethod parse-value :default          [v] (text v))

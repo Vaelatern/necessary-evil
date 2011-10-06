@@ -16,7 +16,7 @@
   [stream]
   (-> stream xml/parse zip/xml-zip))
 
-(defn to-xml [xml-string]
+(defn to-xml [^String xml-string]
   "to-xml takes a string and returns a new xml zipper"
   (-> xml-string
       (.getBytes "UTF-8")

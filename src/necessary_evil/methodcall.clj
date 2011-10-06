@@ -33,7 +33,7 @@
 
 (defn parse-method-name
   "returns the method name for a methodcall"
-  [x] (when-let [name (xml1-> x :methodName text)]
+  [x] (when-let [name ^String (xml1-> x :methodName text)]
         (let [clean-name (.trim name)]
           (when (-> clean-name empty? not) clean-name))))
 

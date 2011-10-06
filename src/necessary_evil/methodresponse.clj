@@ -26,7 +26,7 @@
 (defn parse-fault
   [x] (let [f (parse-value x)
             fault-code    (:faultCode f -1)
-            fault-message (:faultString f "")]
+            fault-message ^String (:faultString f "")]
         (fault fault-code (.trim fault-message))))
 
 (defn parse-response-content

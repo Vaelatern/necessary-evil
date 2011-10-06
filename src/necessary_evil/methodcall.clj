@@ -35,7 +35,7 @@
 
 (defn parse-params
   "returns a vector containing one element for each param in the method call"
-  [x] (vec (map parse-value (xml-> x :params :param :value first-child))))
+  [x] (vec (map (comp parse-value first-child) (xml-> x :params :param :value))))
 
 (defn parse
   "Takes xml structure representing an RPC method call and returns a new

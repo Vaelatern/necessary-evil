@@ -80,7 +80,7 @@
 (defn parse-array [v] (vec (map parse-value
                                 (xml-> v :array :data :value first-child))))
 
-(defmulti parse-value #(:tag (zip/node %)))
+(defmulti parse-value #(when % (:tag (zip/node %))))
 
 (defmethod parse-value :i4               [v] (parse-int v))
 (defmethod parse-value :int              [v] (parse-int v))
@@ -94,7 +94,7 @@
 (defmethod parse-value :base64           [v] (-> (text v) Base64/decodeBase64))
 (defmethod parse-value :struct           [v] (parse-struct v))
 (defmethod parse-value :array            [v] (parse-array v))
-(defmethod parse-value :default          [v] (text v))
+(defmethod parse-value :default          [v] (if v (text v) ""))
 
 (defmethod parse-value :nil              [v]
   (if *allow-nils* nil

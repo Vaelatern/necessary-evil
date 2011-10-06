@@ -1,9 +1,12 @@
 (ns necessary-evil.test.core
   (:use [necessary-evil.core] :reload)
-  (:require [necessary-evil.methodcall :as methodcall] :reload)
+  (:require [necessary-evil.methodcall :as methodcall]
+            [necessary-evil.methodresponse :as methodresponse]
+            :reload)
   (:use [necessary-evil.value] :reload)
   (:use [clojure.test]
         [necessary-evil.xml-utils :only [to-xml emit]])
+  (:use [ring.adapter.jetty :only [run-jetty]])
   (:require [clj-time.core :as time]
             [clojure.xml :as xml])
   (:import org.apache.commons.codec.binary.Base64))
@@ -34,6 +37,15 @@
             <methodName>test.method.name</methodName>
             <params><param><value>string</value></param></params>
         </methodCall>")
+
+(defxml method-call-empty-default-arg xml-prolog
+        "<methodCall>
+            <methodName>test.method.name</methodName>
+            <params><param><value></value></param></params>
+        </methodCall>")
+
+(defxml github-issue-4-xml xml-prolog
+  "<methodResponse><params><param><value><struct><member><name>foo</name><value></value></member><member><name>bar</name><value>xyz</value></member></struct></value></param></params></methodResponse>")
 
 (defxml method-call-string-arg xml-prolog
         "<methodCall>
@@ -230,6 +242,8 @@
 (deftest params
   (is (= (methodcall/parse-params method-call-default-arg) ["string"]) 
       "did not parse untyped string correctly")
+  (is (= (methodcall/parse-params method-call-empty-default-arg) [""])
+      "did not parse untyped empty string correctly")
   (is (= (methodcall/parse-params method-call-string-arg) ["string"]) 
       "did not parse string correctly")
   (is (= (methodcall/parse-params method-call-int-arg)
@@ -275,5 +289,27 @@
 (deftest emit-method-call-test
     (is (= (to-xml (with-out-str (emit (methodcall/unparse (necessary-evil.methodcall.MethodCall. :test.method.name [])))))
          method-call-test-method-name)))
-  
-  
+
+
+(defn- ping-server [port]
+ (let [ep (end-point {"method" (fn [argument] {"argument" argument})})]
+   (run-jetty ep {:port port :join? false})))
+
+(deftest chars-rountrip
+ (let [port 12254
+       jetty-server (ping-server port)
+       non-US-ASCII "Eléonore"]
+   (try
+     ;; test non-US-ASCII chars roundtrip
+     (is (= non-US-ASCII
+            (:argument (call (str "http://localhost:" port)
+                             "method"
+                             non-US-ASCII))))
+     (finally (.stop jetty-server)))))
+
+
+(deftest github-issue-4
+  (is (methodresponse/parse github-issue-4-xml)
+      {:foo ""
+       :bar "xyz"}))
+

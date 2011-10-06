@@ -1,5 +1,359 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="An implementation of XML-RPC for the Clojure Ring HTTP stack" name="description" /><script type="text/javascript">/*!
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="An implementation of XML-RPC for the Clojure Ring HTTP stack" name="description" /><style type="text/css">/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ * 
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.syntaxhighlighter {
+/*  width: 100% !important; */
+  margin: 1em 0 1em 0 !important;
+  position: relative !important;
+  overflow: auto !important;
+}
+.syntaxhighlighter.source {
+  overflow: hidden !important;
+}
+.syntaxhighlighter .bold {
+  font-weight: bold !important;
+}
+.syntaxhighlighter .italic {
+  font-style: italic !important;
+}
+.syntaxhighlighter .line {
+  white-space: pre !important;
+}
+.syntaxhighlighter table {
+/*    width: 100% !important;*/
+}
+.syntaxhighlighter table caption {
+  text-align: left !important;
+  padding: .5em 0 0.5em 1em !important;
+}
+.syntaxhighlighter table td.code {
+  width: 100% !important;
+}
+.syntaxhighlighter table td.code .container {
+  position: relative !important;
+}
+.syntaxhighlighter table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.syntaxhighlighter table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.5em 0 1em !important;
+}
+.syntaxhighlighter table td.code .line {
+  padding: 0 1em !important;
+}
+.syntaxhighlighter.nogutter td.code .container textarea, .syntaxhighlighter.nogutter td.code .line {
+  padding-left: 0em !important;
+}
+.syntaxhighlighter.show {
+  display: block !important;
+}
+.syntaxhighlighter.collapsed table {
+  display: none !important;
+}
+.syntaxhighlighter.collapsed .toolbar {
+    display: none;
+/*  padding: 0.1em 0.8em 0em 0.8em !important;
+  font-size: 1em !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;*/
+}
+.syntaxhighlighter.collapsed .toolbar span {
+  display: inline !important;
+  margin-right: 1em !important;
+}
+.syntaxhighlighter.collapsed .toolbar span a {
+  padding: 0 !important;
+  display: none !important;
+}
+.syntaxhighlighter.collapsed .toolbar span a.expandSource {
+  display: inline !important;
+}
+.syntaxhighlighter .toolbar {
+    display: none;
+/*  position: absolute !important;
+  right: 1px !important;
+  top: 1px !important;
+  width: 11px !important;
+  height: 11px !important;
+  font-size: 10px !important;
+  z-index: 10 !important;*/
+}
+.syntaxhighlighter .toolbar span.title {
+  display: inline !important;
+}
+.syntaxhighlighter .toolbar a {
+  display: block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  padding-top: 1px !important;
+}
+.syntaxhighlighter .toolbar a.expandSource {
+  display: none !important;
+}
+.syntaxhighlighter.ie {
+  font-size: .9em !important;
+  padding: 1px 0 1px 0 !important;
+}
+.syntaxhighlighter.ie .toolbar {
+  line-height: 8px !important;
+}
+.syntaxhighlighter.ie .toolbar a {
+  padding-top: 0px !important;
+}
+.syntaxhighlighter.printing .line.alt1 .content,
+.syntaxhighlighter.printing .line.alt2 .content,
+.syntaxhighlighter.printing .line.highlighted .number,
+.syntaxhighlighter.printing .line.highlighted.alt1 .content,
+.syntaxhighlighter.printing .line.highlighted.alt2 .content {
+  background: none !important;
+}
+.syntaxhighlighter.printing .line .number {
+  color: #bbbbbb !important;
+}
+.syntaxhighlighter.printing .line .content {
+  color: black !important;
+}
+.syntaxhighlighter.printing .toolbar {
+  display: none !important;
+}
+.syntaxhighlighter.printing a {
+  text-decoration: none !important;
+}
+.syntaxhighlighter.printing .plain, .syntaxhighlighter.printing .plain a {
+  color: black !important;
+}
+.syntaxhighlighter.printing .comments, .syntaxhighlighter.printing .comments a {
+  color: #008200 !important;
+}
+.syntaxhighlighter.printing .string, .syntaxhighlighter.printing .string a {
+  color: blue !important;
+}
+.syntaxhighlighter.printing .keyword {
+  color: #006699 !important;
+  font-weight: bold !important;
+}
+.syntaxhighlighter.printing .preprocessor {
+  color: gray !important;
+}
+.syntaxhighlighter.printing .variable {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter.printing .value {
+  color: #009900 !important;
+}
+.syntaxhighlighter.printing .functions {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.printing .constants {
+  color: #0066cc !important;
+}
+.syntaxhighlighter.printing .script {
+  font-weight: bold !important;
+}
+.syntaxhighlighter.printing .color1, .syntaxhighlighter.printing .color1 a {
+  color: gray !important;
+}
+.syntaxhighlighter.printing .color2, .syntaxhighlighter.printing .color2 a {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.printing .color3, .syntaxhighlighter.printing .color3 a {
+  color: red !important;
+}
+.syntaxhighlighter.printing .break, .syntaxhighlighter.printing .break a {
+  color: black !important;
+}
+</style><style type="text/css">.syntaxhighlighter{overflow:hidden !important;}</style><style type="text/css">/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ * 
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+.syntaxhighlighter {
+  background-color: transparent !important;
+}
+.syntaxhighlighter .line.alt1 {
+  background-color: transparent !important;
+}
+.syntaxhighlighter .line.alt2 {
+  background-color: transparent !important;
+}
+.syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
+  background-color: #c3defe !important;
+}
+.syntaxhighlighter .line.highlighted.number {
+  color: white !important;
+}
+.syntaxhighlighter table caption {
+  color: black !important;
+}
+.syntaxhighlighter .gutter {
+  color: #787878 !important;
+}
+.syntaxhighlighter .gutter .line {
+  border-right: 3px solid #d4d0c8 !important;
+}
+.syntaxhighlighter .gutter .line.highlighted {
+  background-color: #d4d0c8 !important;
+  color: white !important;
+}
+.syntaxhighlighter.printing .line .content {
+  border: none !important;
+}
+.syntaxhighlighter.collapsed {
+  overflow: visible !important;
+}
+.syntaxhighlighter.collapsed .toolbar {
+  color: #3f5fbf !important;
+  background: white !important;
+  border: 1px solid #d4d0c8 !important;
+}
+.syntaxhighlighter.collapsed .toolbar a {
+  color: #3f5fbf !important;
+}
+.syntaxhighlighter.collapsed .toolbar a:hover {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter .toolbar {
+  color: #a0a0a0 !important;
+  background: #d4d0c8 !important;
+  border: none !important;
+}
+.syntaxhighlighter .toolbar a {
+  color: #a0a0a0 !important;
+}
+.syntaxhighlighter .toolbar a:hover {
+  color: red !important;
+}
+.syntaxhighlighter .plain, .syntaxhighlighter .plain a {
+  color: black !important;
+}
+.syntaxhighlighter .comments, .syntaxhighlighter .comments a {
+  color: #3f5fbf !important;
+}
+.syntaxhighlighter .string, .syntaxhighlighter .string a {
+  color: #2a00ff !important;
+}
+.syntaxhighlighter .keyword {
+  color: #7f0055 !important;
+}
+.syntaxhighlighter .preprocessor {
+  color: #646464 !important;
+}
+.syntaxhighlighter .variable {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter .value {
+  color: #009900 !important;
+}
+.syntaxhighlighter .functions {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter .constants {
+  color: #0066cc !important;
+}
+.syntaxhighlighter .script {
+  font-weight: bold !important;
+  color: #7f0055 !important;
+  background-color: none !important;
+}
+.syntaxhighlighter .color1, .syntaxhighlighter .color1 a {
+  color: gray !important;
+}
+.syntaxhighlighter .color2, .syntaxhighlighter .color2 a {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter .color3, .syntaxhighlighter .color3 a {
+  color: red !important;
+}
+
+.syntaxhighlighter .keyword {
+  font-weight: bold !important;
+}
+.syntaxhighlighter .xml .keyword {
+  color: #3f7f7f !important;
+  font-weight: normal !important;
+}
+.syntaxhighlighter .xml .color1, .syntaxhighlighter .xml .color1 a {
+  color: #7f007f !important;
+}
+.syntaxhighlighter .xml .string {
+  font-style: italic !important;
+  color: #2a00ff !important;
+}
+</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><script type="text/javascript">/*!
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
  *
@@ -2054,7 +2408,7 @@ SyntaxHighlighter.brushes.Clojure = function () {
 		{ regex: /\b(true|false|nil)\b/g,
 			css: 'value' },
 		// (un)quoted symbols
-		{ regex: /(`|#?'|~@?)[\w-.\/]+/g,
+		{ regex: /(`|#?'|~@?)[\w-.A-Za-z0-9_&lt;&gt;\-]+/g,
 			css: 'color1' },
 		// keywords
 		{ regex: /:[A-Za-z0-9_\-]+/g,
@@ -2067,7 +2421,8 @@ SyntaxHighlighter.brushes.Clojure = function () {
 			css: 'preprocessor' },
 		// clojure.core
 		{ regex: new ClojureRegExp(this.getKeywords(clojure_core)),
-			css: 'functions' }
+			css: 'functions' },
+                { regex: /[A-Za-z0-9_&lt;&gt;\-]+/g,  css: 'plain'}
 	];
 
 	this.forHtmlScript(SyntaxHighlighter.regexLib.scriptScriptTags);
@@ -2171,362 +2526,8 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><style type="text/css">/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
-.syntaxhighlighter a,
-.syntaxhighlighter div,
-.syntaxhighlighter code,
-.syntaxhighlighter table,
-.syntaxhighlighter table td,
-.syntaxhighlighter table tr,
-.syntaxhighlighter table tbody,
-.syntaxhighlighter table thead,
-.syntaxhighlighter table caption,
-.syntaxhighlighter textarea {
-  -moz-border-radius: 0 0 0 0 !important;
-  -webkit-border-radius: 0 0 0 0 !important;
-  background: none !important;
-  border: 0 !important;
-  bottom: auto !important;
-  float: none !important;
-  height: auto !important;
-  left: auto !important;
-  line-height: 1.1em !important;
-  margin: 0 !important;
-  outline: 0 !important;
-  overflow: visible !important;
-  padding: 0 !important;
-  position: static !important;
-  right: auto !important;
-  text-align: left !important;
-  top: auto !important;
-  vertical-align: baseline !important;
-  width: auto !important;
-  box-sizing: content-box !important;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
-  font-weight: normal !important;
-  font-style: normal !important;
-  min-height: inherit !important;
-  min-height: auto !important;
-}
-
-.syntaxhighlighter {
-/*  width: 100% !important; */
-  margin: 1em 0 1em 0 !important;
-  position: relative !important;
-  overflow: auto !important;
-}
-.syntaxhighlighter.source {
-  overflow: hidden !important;
-}
-.syntaxhighlighter .bold {
-  font-weight: bold !important;
-}
-.syntaxhighlighter .italic {
-  font-style: italic !important;
-}
-.syntaxhighlighter .line {
-  white-space: pre !important;
-}
-.syntaxhighlighter table {
-/*    width: 100% !important;*/
-}
-.syntaxhighlighter table caption {
-  text-align: left !important;
-  padding: .5em 0 0.5em 1em !important;
-}
-.syntaxhighlighter table td.code {
-  width: 100% !important;
-}
-.syntaxhighlighter table td.code .container {
-  position: relative !important;
-}
-.syntaxhighlighter table td.code .container textarea {
-  box-sizing: border-box !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
-  background: white !important;
-  padding-left: 1em !important;
-  overflow: hidden !important;
-  white-space: pre !important;
-}
-.syntaxhighlighter table td.gutter .line {
-  text-align: right !important;
-  padding: 0 0.5em 0 1em !important;
-}
-.syntaxhighlighter table td.code .line {
-  padding: 0 1em !important;
-}
-.syntaxhighlighter.nogutter td.code .container textarea, .syntaxhighlighter.nogutter td.code .line {
-  padding-left: 0em !important;
-}
-.syntaxhighlighter.show {
-  display: block !important;
-}
-.syntaxhighlighter.collapsed table {
-  display: none !important;
-}
-.syntaxhighlighter.collapsed .toolbar {
-    display: none;
-/*  padding: 0.1em 0.8em 0em 0.8em !important;
-  font-size: 1em !important;
-  position: static !important;
-  width: auto !important;
-  height: auto !important;*/
-}
-.syntaxhighlighter.collapsed .toolbar span {
-  display: inline !important;
-  margin-right: 1em !important;
-}
-.syntaxhighlighter.collapsed .toolbar span a {
-  padding: 0 !important;
-  display: none !important;
-}
-.syntaxhighlighter.collapsed .toolbar span a.expandSource {
-  display: inline !important;
-}
-.syntaxhighlighter .toolbar {
-    display: none;
-/*  position: absolute !important;
-  right: 1px !important;
-  top: 1px !important;
-  width: 11px !important;
-  height: 11px !important;
-  font-size: 10px !important;
-  z-index: 10 !important;*/
-}
-.syntaxhighlighter .toolbar span.title {
-  display: inline !important;
-}
-.syntaxhighlighter .toolbar a {
-  display: block !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  padding-top: 1px !important;
-}
-.syntaxhighlighter .toolbar a.expandSource {
-  display: none !important;
-}
-.syntaxhighlighter.ie {
-  font-size: .9em !important;
-  padding: 1px 0 1px 0 !important;
-}
-.syntaxhighlighter.ie .toolbar {
-  line-height: 8px !important;
-}
-.syntaxhighlighter.ie .toolbar a {
-  padding-top: 0px !important;
-}
-.syntaxhighlighter.printing .line.alt1 .content,
-.syntaxhighlighter.printing .line.alt2 .content,
-.syntaxhighlighter.printing .line.highlighted .number,
-.syntaxhighlighter.printing .line.highlighted.alt1 .content,
-.syntaxhighlighter.printing .line.highlighted.alt2 .content {
-  background: none !important;
-}
-.syntaxhighlighter.printing .line .number {
-  color: #bbbbbb !important;
-}
-.syntaxhighlighter.printing .line .content {
-  color: black !important;
-}
-.syntaxhighlighter.printing .toolbar {
-  display: none !important;
-}
-.syntaxhighlighter.printing a {
-  text-decoration: none !important;
-}
-.syntaxhighlighter.printing .plain, .syntaxhighlighter.printing .plain a {
-  color: black !important;
-}
-.syntaxhighlighter.printing .comments, .syntaxhighlighter.printing .comments a {
-  color: #008200 !important;
-}
-.syntaxhighlighter.printing .string, .syntaxhighlighter.printing .string a {
-  color: blue !important;
-}
-.syntaxhighlighter.printing .keyword {
-  color: #006699 !important;
-  font-weight: bold !important;
-}
-.syntaxhighlighter.printing .preprocessor {
-  color: gray !important;
-}
-.syntaxhighlighter.printing .variable {
-  color: #aa7700 !important;
-}
-.syntaxhighlighter.printing .value {
-  color: #009900 !important;
-}
-.syntaxhighlighter.printing .functions {
-  color: #ff1493 !important;
-}
-.syntaxhighlighter.printing .constants {
-  color: #0066cc !important;
-}
-.syntaxhighlighter.printing .script {
-  font-weight: bold !important;
-}
-.syntaxhighlighter.printing .color1, .syntaxhighlighter.printing .color1 a {
-  color: gray !important;
-}
-.syntaxhighlighter.printing .color2, .syntaxhighlighter.printing .color2 a {
-  color: #ff1493 !important;
-}
-.syntaxhighlighter.printing .color3, .syntaxhighlighter.printing .color3 a {
-  color: red !important;
-}
-.syntaxhighlighter.printing .break, .syntaxhighlighter.printing .break a {
-  color: black !important;
-}
-</style><style type="text/css">.syntaxhighlighter{overflow:hidden !important;}</style><style type="text/css">/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
-.syntaxhighlighter {
-  background-color: transparent !important;
-}
-.syntaxhighlighter .line.alt1 {
-  background-color: transparent !important;
-}
-.syntaxhighlighter .line.alt2 {
-  background-color: transparent !important;
-}
-.syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
-  background-color: #c3defe !important;
-}
-.syntaxhighlighter .line.highlighted.number {
-  color: white !important;
-}
-.syntaxhighlighter table caption {
-  color: black !important;
-}
-.syntaxhighlighter .gutter {
-  color: #787878 !important;
-}
-.syntaxhighlighter .gutter .line {
-  border-right: 3px solid #d4d0c8 !important;
-}
-.syntaxhighlighter .gutter .line.highlighted {
-  background-color: #d4d0c8 !important;
-  color: white !important;
-}
-.syntaxhighlighter.printing .line .content {
-  border: none !important;
-}
-.syntaxhighlighter.collapsed {
-  overflow: visible !important;
-}
-.syntaxhighlighter.collapsed .toolbar {
-  color: #3f5fbf !important;
-  background: white !important;
-  border: 1px solid #d4d0c8 !important;
-}
-.syntaxhighlighter.collapsed .toolbar a {
-  color: #3f5fbf !important;
-}
-.syntaxhighlighter.collapsed .toolbar a:hover {
-  color: #aa7700 !important;
-}
-.syntaxhighlighter .toolbar {
-  color: #a0a0a0 !important;
-  background: #d4d0c8 !important;
-  border: none !important;
-}
-.syntaxhighlighter .toolbar a {
-  color: #a0a0a0 !important;
-}
-.syntaxhighlighter .toolbar a:hover {
-  color: red !important;
-}
-.syntaxhighlighter .plain, .syntaxhighlighter .plain a {
-  color: black !important;
-}
-.syntaxhighlighter .comments, .syntaxhighlighter .comments a {
-  color: #3f5fbf !important;
-}
-.syntaxhighlighter .string, .syntaxhighlighter .string a {
-  color: #2a00ff !important;
-}
-.syntaxhighlighter .keyword {
-  color: #7f0055 !important;
-}
-.syntaxhighlighter .preprocessor {
-  color: #646464 !important;
-}
-.syntaxhighlighter .variable {
-  color: #aa7700 !important;
-}
-.syntaxhighlighter .value {
-  color: #009900 !important;
-}
-.syntaxhighlighter .functions {
-  color: #ff1493 !important;
-}
-.syntaxhighlighter .constants {
-  color: #0066cc !important;
-}
-.syntaxhighlighter .script {
-  font-weight: bold !important;
-  color: #7f0055 !important;
-  background-color: none !important;
-}
-.syntaxhighlighter .color1, .syntaxhighlighter .color1 a {
-  color: gray !important;
-}
-.syntaxhighlighter .color2, .syntaxhighlighter .color2 a {
-  color: #ff1493 !important;
-}
-.syntaxhighlighter .color3, .syntaxhighlighter .color3 a {
-  color: red !important;
-}
-
-.syntaxhighlighter .keyword {
-  font-weight: bold !important;
-}
-.syntaxhighlighter .xml .keyword {
-  color: #3f7f7f !important;
-  font-weight: normal !important;
-}
-.syntaxhighlighter .xml .color1, .syntaxhighlighter .xml .color1 a {
-  color: #7f007f !important;
-}
-.syntaxhighlighter .xml .string {
-  font-style: italic !important;
-  color: #2a00ff !important;
-}
-</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><title>necessary-evil -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">necessary-evil</h1><h2 class="project-version">1.1.0</h2><br /><p>An implementation of XML-RPC for the Clojure Ring HTTP stack</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">ring/ring-core</td><td class="dotted"><hr /></td><td class="dep-version">0.3.5</td></tr><tr><td class="dep-name">clj-http</td><td class="dotted"><hr /></td><td class="dep-version">0.1.3</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.4</td></tr><tr><td class="dep-name">clj-time</td><td class="dotted"><hr /></td><td class="dep-version">0.3.0-SNAPSHOT</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">ring/ring-jetty-adapter</td><td class="dotted"><hr /></td><td class="dep-version">0.3.5</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0-alpha</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#necessary-evil.core">necessary-evil.core</a></li><li><a href="#necessary-evil.fault">necessary-evil.fault</a></li><li><a href="#necessary-evil.methodcall">necessary-evil.methodcall</a></li><li><a href="#necessary-evil.methodresponse">necessary-evil.methodresponse</a></li><li><a href="#necessary-evil.value">necessary-evil.value</a></li><li><a href="#necessary-evil.xml-utils">necessary-evil.xml-utils</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.core" name="necessary-evil.core"><h1 class="project-name">necessary-evil.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>necessary-evil.core provides the main two functions required to act as a
+</script><title>necessary-evil -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">necessary-evil</h1><h2 class="project-version">2.0.0-SNAPSHOT</h2><br /><p>An implementation of XML-RPC for the Clojure Ring HTTP stack</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">[1.2.1],[1.3.0]</td></tr><tr><td class="dep-name">org.clojure/data.zip</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr><tr><td class="dep-name">org.clojure/algo.monads</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1-SNAPSHOT</td></tr><tr><td class="dep-name">clj-http</td><td class="dotted"><hr /></td><td class="dep-version">0.1.3</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.4</td></tr><tr><td class="dep-name">clj-time</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">commons-lang</td><td class="dotted"><hr /></td><td class="dep-version">2.6</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">ring/ring-jetty-adapter</td><td class="dotted"><hr /></td><td class="dep-version">0.3.11</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.7.0-SNAPSHOT</td></tr><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#necessary-evil.core">necessary-evil.core</a></li><li><a href="#necessary-evil.fault">necessary-evil.fault</a></li><li><a href="#necessary-evil.methodcall">necessary-evil.methodcall</a></li><li><a href="#necessary-evil.methodresponse">necessary-evil.methodresponse</a></li><li><a href="#necessary-evil.value">necessary-evil.value</a></li><li><a href="#necessary-evil.xml-utils">necessary-evil.xml-utils</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.core" name="necessary-evil.core"><h1 class="project-name">necessary-evil.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>necessary-evil.core provides the main two functions required to act as a
    server and a client of xml-rpc.</p>
 
 <p>   Use end-point to generate a new ring handler.
@@ -2537,76 +2538,82 @@ $(document).ready(function() {
             [necessary-evil.methodcall :as methodcall]
             [necessary-evil.methodresponse :as methodresponse])
   (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]]
-        [necessary-evil.fault :only [attempt-all fault]])
-  (:import necessary-evil.methodcall.MethodCall))</pre></tr><tr><td class="docs"><p>server functions</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>handle-post processes an incoming post request for an xml-rpc end-point.
-   this function also does all the error handling to check that the method exists,
-   that methodcall is valid and catches any exception raised by the exposed function.</p>
+        [necessary-evil.fault :only [attempt-all fault]]))</pre></tr><tr><td class="docs"><p>server functions</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn handle-post
+  &quot;handle-post processes an incoming post request for an xml-rpc end-point.
+   this function also does all the error handling to check that the method exists,
+   that methodcall is valid and catches any exception raised by the exposed function.&quot;
   [methods-map req]
   (let [result (try (attempt-all
-                     [method-call (-> req :body xml-from-stream methodcall/parse
-                                      (or (fault -2 "invalid methodcall")))
+                     [method-call (-&gt; req :body xml-from-stream methodcall/parse
+                                      (or (fault -2 &quot;invalid methodcall&quot;)))
                       method-name (:method-name method-call)
                       method      (methods-map method-name
-                                               (fault -1 (str "unknown method named "
+                                               (fault -1 (str &quot;unknown method named &quot;
                                                               (name method-name))))]
                      (apply method (:parameters method-call)))
-                    (catch Exception e (fault -10 (str "Exception: " e))))]
+                    (catch Exception e (fault -10 (str &quot;Exception: &quot; e))))]
     {:status 200
-     :content-type "text/xml"
-     :body (-> result methodresponse/unparse emit with-out-str)}))</pre></tr><tr><td class="docs"><p>Returns a new ring handler that accepts a request and dispatches it to the
-   appropriate method.</p>
-
-<p>   methods-map is a map of keyword (method name) to iFn.</p>
+     :content-type &quot;text/xml;charset=UTF-8&quot;
+     :body (-&gt; result methodresponse/unparse emit with-out-str)}))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn end-point
+  &quot;Returns a new ring handler that accepts a request and dispatches it to the
+   appropriate method.
+   methods-map is a map of keyword (method name) to iFn.&quot;
   [methods-map]
   (let [methods-map (into {} (map (fn [[k v]] [(name k) v]) methods-map))]
-    (fn [req]
+    (bound-fn [req]
       (condp = (:request-method req)
           :post (handle-post methods-map req)
           :get {:status 200 ; get handler is merely a convenience for developers
-                :body (string/join ", " (map name (keys methods-map)))}
-          {:status 405 :body "Method Not Allowed"}))))</pre></tr><tr><td class="docs"><p>client functions</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>Does a syncronous http request to the server and method provided.</p>
+                :body (string/join &quot;, &quot; (map name (keys methods-map)))}
+          {:status 405 :body &quot;Method Not Allowed&quot;}))))</pre></tr><tr><td class="docs"><p>client functions</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn call
-  [endpoint-url method-name & args]
-  (let [call (methodcall/MethodCall. method-name args)
-        body (-> call methodcall/unparse emit with-out-str)]
-    (-> (http/post endpoint-url {:body body}) :body to-xml methodresponse/parse)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.fault" name="necessary-evil.fault"><h1 class="project-name">necessary-evil.fault</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides the fault record type required to support XML-RPC fault returns.</p>
+  &quot;Does a syncronous http request to the server and method provided.&quot;
+  [endpoint-url method-name &amp; args]
+  (let [call (methodcall/methodcall method-name args)
+        body (-&gt; call methodcall/unparse emit with-out-str)]
+    (-&gt; (http/post endpoint-url {:body body
+                                 :content-type &quot;text/xml;charset=UTF-8&quot;})
+        :body
+        to-xml
+        methodresponse/parse)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.fault" name="necessary-evil.fault"><h1 class="project-name">necessary-evil.fault</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides the fault record type required to support XML-RPC fault returns.</p>
 
 <p>   Functions and forms to make working with faults easier are also provided.
    attempt-all will short circuit if any Fault is encountered.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.fault
-  (:use [clojure.contrib.monads :only [monad domonad]]))</pre></tr><tr><td class="docs"><p>returning a Fault record from any piece of rpc handler will result
+  (:use [clojure.algo.monads :only [monad domonad]]))</pre></tr><tr><td class="docs"><p>returning a Fault record from any piece of rpc handler will result
 in a fault methodResponse being generated. Anything else will
 generate a params blob</p>
 </td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defrecord Fault [^Integer fault-code ^String fault-string])</pre></tr><tr><td class="docs"><p>Convenience function that creates a new fault record.</p>
-
-<p>   fault-code must be an integer. The exact meaning of this value is not
+</td><td class="codes" /><pre class="brush: clojure">(defrecord Fault [^Integer fault-code ^String fault-string])</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn fault
+  &quot;Convenience function that creates a new fault record.
+   fault-code must be an integer. The exact meaning of this value is not
    prescribed by the spec. By convention necessary-evil assigns fault-codes
    below 0 to indicate rpc level fault, and assumes users will use 1 and
-   greater to indicate faults for the specific handlers.</p>
-
-<p>   fault-string is a string that contains a human readable description of
+   greater to indicate faults for the specific handlers.
+   fault-string is a string that contains a human readable description of
    the fault in question. Again the spec has nothing to say about the content
-   of this field.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn fault
+   of this field.&quot;
   [fault-code fault-string]
   (Fault. fault-code fault-string))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def fault? (partial instance? Fault))</pre></tr><tr><td class="docs"><p>Utilities for handling faults:</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>Creates a new monad that short circuits if any part of the computation
-   fails. For instance, passing `nil?' produces a maybe-m.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn new-error-m
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} fault? (partial instance? Fault))</pre></tr><tr><td class="docs"><p>Utilities for handling faults:</p>
+</td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn ^{:added &quot;1.1&quot;} new-error-m
+  &quot;Creates a new monad that short circuits if any part of the computation
+   fails. For instance, passing `nil?' produces a maybe-m.&quot;
   [has-failed?]
   (monad
    [m-result identity
     m-bind   (fn [m f] (if (has-failed? m)
                         m
                         (f m)))]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def error-on-fault-m (new-error-m fault?))</pre></tr><tr><td class="docs"><p>attempt-all is an alternative to complex nested if-let and when-let forms.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defmacro attempt-all
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} error-on-fault-m (new-error-m fault?))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defmacro ^{:added &quot;1.1&quot;} attempt-all
+  &quot;attempt-all is an alternative to complex nested if-let and when-let forms.&quot;
   ([bindings return] `(domonad error-on-fault-m ~bindings ~return))
   ([bindings return else]
      `(let [result# (attempt-all ~bindings ~return)]
@@ -2623,33 +2630,41 @@ generate a params blob</p>
 <p>   Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to <em>out</em> you may need to use with-out-str to capture the result.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.methodcall
-  (:use [clojure.contrib.zip-filter.xml :on [xml->]]
+  (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt; text]]
         (necessary-evil xml-utils value))
   (:require [clojure.zip :as zip]
             [clojure.contrib.zip-filter :as zf]
             [clojure.string :as su])
   (:import org.apache.commons.codec.binary.Base64))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defrecord MethodCall [method-name parameters])</pre></tr><tr><td class="docs"><p>The following functions parse the xml structure of a <methodCall>
+</td><td class="codes" /><pre class="brush: clojure">(defrecord MethodCall [method-name parameters])</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn methodcall
+  &quot;A convenience function that creates a new MethodCall. record&quot;
+  [method-name parameters] (MethodCall. method-name parameters))</pre></tr><tr><td class="docs"><p>The following functions parse the xml structure of a <methodCall>
 and return a new MethodCall record</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>a predicate to ensure that this xml is a methodCall</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn method-call?
-  [x] (-> x zip/node :tag (= :methodCall)))</pre></tr><tr><td class="docs"><p>returns the method name for a methodcall</p>
+  &quot;a predicate to ensure that this xml is a methodCall&quot;
+  [x] (-&gt; x zip/node :tag (= :methodCall)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-method-name
-  [x] (when-let [name (xml1-> x :methodName text)]
+  &quot;returns the method name for a methodcall&quot;
+  [x] (when-let [name ^String (xml1-&gt; x :methodName text)]
         (let [clean-name (.trim name)]
-          (when (-> clean-name empty? not) clean-name))))</pre></tr><tr><td class="docs"><p>returns a vector containing one element for each param in the method call</p>
+          (when (-&gt; clean-name empty? not) clean-name))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-params
-  [x] (vec (map parse-value (xml-> x :params :param :value first-child))))</pre></tr><tr><td class="docs"><p>Takes xml structure representing an RPC method call and returns a new
-   MethodCall record.</p>
+  &quot;returns a vector containing one element for each param in the method call&quot;
+  [x] (vec (map (comp parse-value first-child) (xml-&gt; x :params :param :value))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse
+  &quot;Takes xml structure representing an RPC method call and returns a new
+   MethodCall record.&quot;
   [x] (when (method-call? x) 
         (MethodCall. (parse-method-name x) 
                      (parse-params x))))</pre></tr><tr><td class="docs"><p>The following functions are used to emit a <methodCall> xml structure</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>This function returns a string that represents a method call record in the 
-   XML format described by the xml-rpc 'spec'.</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn unparse
+  &quot;This function returns a string that represents a method call record in the 
+   XML format described by the xml-rpc 'spec'.&quot;
   [mc]
-  (let [name-elem (elem :methodName [(-> mc :method-name name)])
+  (let [name-elem (elem :methodName [(-&gt; mc :method-name name)])
         params    (:parameters mc)
         children  (if (seq params) 
                     [name-elem (elem :params (map #(elem :param
@@ -2667,32 +2682,36 @@ and return a new MethodCall record</p>
 <p>   Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to <em>out</em> you may need to use with-out-str to capture the result.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.methodresponse
-  (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1->]]
+  (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt;]]
         [necessary-evil.value :only [parse-value value-elem]]
         [necessary-evil.fault :only [fault]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip])
-  (:import necessary-evil.fault.Fault))</pre></tr><tr><td class="docs"><p>deserialising methodResponse XML to clojure structures</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>a predicate to ensure that this xml structure is a <methodResponse>.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn method-response?
-  [x] (-> x zip/node :tag (= :methodResponse)))</pre></tr><tr><td class="docs">
+  (:import necessary_evil.fault.Fault))</pre></tr><tr><td class="docs"><p>deserialising methodResponse XML to clojure structures</p>
+</td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:doc &quot;a predicate to ensure that this xml structure is a &lt;methodResponse&gt;.&quot;}
+  method-response?
+  (comp #{:methodResponse} :tag zip/node))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-fault
   [x] (let [f (parse-value x)
-            fault-code (or (:faultCode f) -1)
-            fault-message (or (:faultString f) -1)]
-        (fault fault-code (.trim fault-message))))</pre></tr><tr><td class="docs"><p>Returns a clojure datastructure there is <params>,
-   a Fault record if there is a <fault> or nil otherwise.</p>
+            fault-code    (:faultCode f -1)
+            fault-message ^String (:faultString f )]
+        (fault fault-code (.trim fault-message))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-response-content
+  &quot;Returns a clojure datastructure there is &lt;params&gt;,
+   a Fault record if there is a &lt;fault&gt; or nil otherwise.&quot;
   [x] (condp = (:tag (zip/node x))
-          :params (parse-value (xml1-> x :params :param :value first-child))
-          :fault (parse-fault (xml1-> x :fault :value first-child))))</pre></tr><tr><td class="docs"><p>Converts an XML structure representing an RPC result into either a data
-   structure or a Fault record.</p>
+          :params (parse-value (xml1-&gt; x :params :param :value first-child))
+          :fault (parse-fault (xml1-&gt; x :fault :value first-child))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse
+  &quot;Converts an XML structure representing an RPC result into either a data
+   structure or a Fault record.&quot;
   [x] (when (method-response? x)
-        (parse-response-content (xml1-> x first-child))))</pre></tr><tr><td class="docs"><p>serialising methodResponses to XML</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>This protocol is used to generate the correct nodes for a value or a
-   fault.</p>
+        (parse-response-content (xml1-&gt; x first-child))))</pre></tr><tr><td class="docs"><p>serialising methodResponses to XML</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defprotocol ResponseElements
+  &quot;This protocol is used to generate the correct nodes for a value or a
+   fault.&quot;
   (response-elem [v]))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend-protocol ResponseElements
   Fault
@@ -2702,12 +2721,27 @@ and return a new MethodCall record</p>
              (elem :fault [(value-elem fault-struct)])))
 
   Object
-  (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))</pre></tr><tr><td class="docs"><p>returns wraps the content nodes in the methodResponse elements.</p>
+  (response-elem [value] (elem :params [(elem :param [(value-elem value)])]))
+
+  nil
+  (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn unparse
+  &quot;returns wraps the content nodes in the methodResponse elements.&quot;
   [value]
   (elem :methodResponse [(response-elem value)]))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.value" name="necessary-evil.value"><h1 class="project-name">necessary-evil.value</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module parses and creates xml for xml-rpc value nodes. This is
    shared by the various forms required for method calls, responses and
    response faults.</p>
+
+<p>   If you wish to support sending or recieving nils, you must explicitly
+   enable support for the extension with the allow-nils macro. eg:</p>
+
+<pre><code>  (allow-nils true (end-point { ... }))
+</code></pre>
+
+<p>   or</p>
+
+<pre><code>  (allow-nils true (call :foo ... ))
+</code></pre>
 
 <p>   The library has a pair of functions, parse-value and value-elem,
    that are used for reading and writing values. </p>
@@ -2720,57 +2754,77 @@ and return a new MethodCall record</p>
    return type of your new method implementation to generate the xml
    that your parse-value implementation consumes.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.value
-  (:use [clojure.contrib.zip-filter.xml :only [xml-> xml1-> text]]
+  (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt; text]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
-            [clojure.contrib.zip-filter :as zf]
+            [clojure.data.zip :as zf]
             [clojure.string :as su]
             [clj-time.core :as time]
-            [clj-time.format :as time-format])
+            [clj-time.format :as time-format]
+            [clj-time.coerce])
   (:import org.apache.commons.codec.binary.Base64))</pre></tr><tr><td class="docs"><p>dave winer has kindly defined his own variation on ISO 8601 date
 time formatting</p>
-</td><td class="codes" /><pre class="brush: clojure">(def winer-time (time-format/formatter "yyyyMMdd'T'HH:mm:ss"))</pre></tr><tr><td class="docs"><p>The following implements deserialization of values with a multi-method</p>
+</td><td class="codes" /><pre class="brush: clojure">(def winer-time (time-format/formatter &quot;yyyyMMdd'T'HH:mm:ss&quot;))</pre></tr><tr><td class="docs"><p>The following is to handle nils</p>
+</td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true
+       :doc &quot;The core XML-RPC spec does not contain any standard for nil/null/None values,
+             however they are provided by an extension - http://ontosys.com/xml-rpc/extensions.php
+             By default this extension is disabled. Use allow-nils to enable this.&quot;}
+  *allow-nils* false)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defmacro ^{:added &quot;1.2&quot;} allow-nils 
+  &quot;xml-rpc does not allow sending or recieving nils by default. You must explicitly enable it with
+   this form.&quot;
+  ([body] `(allow-nils true ~body))
+  ([allow? body]
+     `(binding [*allow-nils* ~allow?]
+        ~body)))</pre></tr><tr><td class="docs"><p>The following implements deserialization of values with a multi-method</p>
 </td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(declare parse-value)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn strip-leading-plus [s] (su/replace (.trim  s) #"^\+" ))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-int [v] (Integer. (strip-leading-plus (text v))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn strip-leading-plus [^String s] (su/replace (.trim  s) #&quot;^\+&quot; ))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn parse-int [v] (Integer. ^String (strip-leading-plus (text v))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-bool [v]
-  (condp = (.trim (text v))
-      "0" false
-      "1" true
-      "throw exception here"))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-struct-member [m] (let [name (xml1-> m :name first-child)
-                                    val  (xml1-> m :value first-child)]
+  (condp = (.trim ^String (text v))
+      &quot;0&quot; false
+      &quot;1&quot; true
+      &quot;throw exception here&quot;))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn parse-struct-member [m] (let [name (xml1-&gt; m :name first-child)
+                                     val  (xml1-&gt; m :value first-child)]
                                 (if (or name val)
-                                  [(keyword (-> name text .trim)),
+                                  [(keyword (.trim ^String (text name))),
                                    (parse-value val)]
                                   [nil, nil])))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-struct [v] (into {} (map parse-struct-member
-                                     (xml-> v :struct :member))))</pre></tr><tr><td class="docs">
+                                     (xml-&gt; v :struct :member))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-array [v] (vec (map parse-value
-                                (xml-> v :array :data :value first-child))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti parse-value #(:tag (zip/node %)))</pre></tr><tr><td class="docs">
+                                (xml-&gt; v :array :data :value first-child))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defmulti parse-value #(when % (:tag (zip/node %))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :i4               [v] (parse-int v))
 (defmethod parse-value :int              [v] (parse-int v))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :boolean          [v] (parse-bool v))
 (defmethod parse-value :string           [v] (text v))
-(defmethod parse-value :double           [v] (Double. (strip-leading-plus
-                                                       (text v))))
+(defmethod parse-value :double           [v] (Double. ^String (strip-leading-plus
+                                                               (text v))))
 (defmethod parse-value :dateTime.iso8601 [v] (time-format/parse winer-time
                                                                 (text v)))
-(defmethod parse-value :base64           [v] (-> (text v) Base64/decodeBase64))
+(defmethod parse-value :base64           [v] (Base64/decodeBase64 ^String (text v)))
 (defmethod parse-value :struct           [v] (parse-struct v))
 (defmethod parse-value :array            [v] (parse-array v))
-(defmethod parse-value :default          [v] (text v))</pre></tr><tr><td class="docs"><p>The following implements serialization of values with a protocol.</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>ValueTypeElem defines a single function 'value-type-elem' that is used to emit
-   various types as values for the xml-rpc format</p>
+(defmethod parse-value :default          [v] (if v (text v) &quot;&quot;))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :nil              [v]
+  (if *allow-nils* nil
+      (throw (Exception. &quot;Unexpected nil while parsing xml&quot;))))</pre></tr><tr><td class="docs"><p>The following implements serialization of values with a protocol.</p>
+</td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defprotocol ValueTypeElem
-  (value-type-elem [x]))</pre></tr><tr><td class="docs"><p>value-elem creates the <value> elements and the appropriate child element for it's
-   arguments. This calls out to value-type-elem.</p>
+  &quot;ValueTypeElem defines a single function 'value-type-elem' that is used to emit
+   various types as values for the xml-rpc format&quot;
+  (value-type-elem [x]))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn value-elem
-  [content] (elem :value [(value-type-elem content)]))</pre></tr><tr><td class="docs"><p>creates an xml element for a key-value pair.</p>
+  &quot;value-elem creates the &lt;value&gt; elements and the appropriate child element for it's
+   arguments. This calls out to value-type-elem.&quot;
+  [content] (elem :value [(value-type-elem content)]))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn- struct-member-elem
+  &quot;creates an xml element for a key-value pair.&quot;
   [[key value]] (elem :member [(elem :name [(name key)])
                                (value-elem value)]))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend-protocol ValueTypeElem
@@ -2780,8 +2834,11 @@ time formatting</p>
   Integer
   (value-type-elem [this] (elem :int [(str this)]))
 
+  Long ;; must cast to int as xmlrpc spec only allows 4 byte signed ints
+  (value-type-elem [this] (elem :int [(str (int this))]))
+
   Boolean
-  (value-type-elem [this] (elem :boolean [(if this "1" "0")]))
+  (value-type-elem [this] (elem :boolean [(if this &quot;1&quot; &quot;0&quot;)]))
   
   Double
   (value-type-elem [this] (elem :double [(str this)]))
@@ -2790,53 +2847,68 @@ time formatting</p>
   (value-type-elem [this] (elem :dateTime.iso8601 [(time-format/unparse
                                                     winer-time
                                                     this)]))
+
+  java.util.Date
+  (value-type-elem [this] (value-type-elem (clj-time.coerce/from-date this)))
   
-  clojure.lang.IPersistentVector ; a vector becomes an xml-rpc array
+  clojure.lang.Sequential ; a vector becomes an xml-rpc array
   (value-type-elem [this] (elem :array [(elem :data (vec (map value-elem this)))]))
   
   clojure.lang.IPersistentMap ; a map becomes a xml-rpc struct 
-  (value-type-elem [this] (elem :struct (vec (map struct-member-elem this)))))</pre></tr><tr><td class="docs"><p>extends ValueTypeElem for Byte Arrays. This slightly is awkward,
+  (value-type-elem [this] (elem :struct (vec (map struct-member-elem this))))
+
+  nil
+  (value-type-elem [this] (if *allow-nils* (elem :nil [])
+                              (throw (Exception. &quot;Cannot serialize nil without necessary-evil.value/allow-nils&quot;)))))</pre></tr><tr><td class="docs"><p>extends ValueTypeElem for Byte Arrays. This slightly is awkward,
 perhaps there is a better approach</p>
-</td><td class="codes" /><pre class="brush: clojure">(extend (Class/forName "[B") 
+
+<p>Note that String. is used rather than str because the string
+constructor accepts an array of bytes</p>
+</td><td class="codes" /><pre class="brush: clojure">(extend (Class/forName &quot;[B&quot;) 
    ValueTypeElem
    {:value-type-elem (fn [this] (elem :base64 [(String. (Base64/encodeBase64 this))]))})</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.xml-utils" name="necessary-evil.xml-utils"><h1 class="project-name">necessary-evil.xml-utils</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>A collection of utilities for processing xml</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.xml-utils
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
-            [clojure.contrib.zip-filter :as zf]))</pre></tr><tr><td class="docs"><p>elem is a utility function to make creating xml/element structs (minus
-   attributes)</p>
+            [clojure.data.zip :as data.zip]
+            [clojure.data.zip.xml :as zf])
+  (:import org.apache.commons.lang.StringEscapeUtils))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn elem 
+  &quot;elem is a utility function to make creating xml/element structs (minus
+   attributes)&quot;
   ([name] (struct xml/element name))
   ([name children] (struct xml/element name nil children)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn xml-from-stream
   [stream]
-  (-> stream xml/parse zip/xml-zip))</pre></tr><tr><td class="docs"><p>to-xml takes a string and returns a new xml zipper</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn to-xml
-  [xml-string] (-> xml-string
-                   java.io.StringReader. 
-                   org.xml.sax.InputSource. 
-                   xml-from-stream))</pre></tr><tr><td class="docs"><p>zip-filter selectors</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn first-child [n] (first (zf/children n)))</pre></tr><tr><td class="docs"><p>the following have been copied from clojure.xml because the
+  (-&gt; stream xml/parse zip/xml-zip))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn to-xml [^String xml-string]
+  &quot;to-xml takes a string and returns a new xml zipper&quot;
+  (-&gt; xml-string
+      (.getBytes &quot;UTF-8&quot;)
+      (java.io.ByteArrayInputStream.)
+      (xml/parse)
+      (zip/xml-zip)))</pre></tr><tr><td class="docs"><p>zip-filter selectors</p>
+</td><td class="codes" /><pre class="brush: clojure">(def first-child (comp first data.zip/children))</pre></tr><tr><td class="docs"><p>the following have been copied from clojure.xml because the
 python xmlrpc lib is real picky about white space and as it is a
 canonical implementation its safe to assume this will effect real
 code. As such these have been modified to not emit new lines</p>
 </td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn emit-element [e]
   (if (instance? String e)
-    (print e)
+    (print (StringEscapeUtils/escapeXml e))
     (do
-      (print (str "<" (name (:tag e))))
+      (print (str &quot;&lt;&quot; (name (:tag e))))
       (when (:attrs e)
 	(doseq [attr (:attrs e)]
-	  (print (str " " (name (key attr)) "='" (val attr)"'"))))
+	  (print (str &quot; &quot; (name (key attr)) &quot;='&quot; (val (StringEscapeUtils/escapeXml attr))&quot;'&quot;))))
       (if (:content e)
 	(do
-	  (print ">")
+	  (print &quot;&gt;&quot;)
 	  (doseq [c (:content e)]
 	    (emit-element c))
-	  (print (str "</" (name (:tag e)) ">")))
-	(print "/>")))))</pre></tr><tr><td class="docs">
+	  (print (str &quot;&lt;/&quot; (name (:tag e)) &quot;&gt;&quot;)))
+	(print &quot;/&gt;&quot;)))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn emit [x]
-  (println "<?xml version='1.0' encoding='UTF-8'?>")
+  (println &quot;&lt;?xml version='1.0' encoding='UTF-8'?&gt;&quot;)
   (emit-element x))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_necessary-evil.core">necessary-evil.core</li><li class="floating-toc-li" id="floating-toc_necessary-evil.fault">necessary-evil.fault</li><li class="floating-toc-li" id="floating-toc_necessary-evil.methodcall">necessary-evil.methodcall</li><li class="floating-toc-li" id="floating-toc_necessary-evil.methodresponse">necessary-evil.methodresponse</li><li class="floating-toc-li" id="floating-toc_necessary-evil.value">necessary-evil.value</li><li class="floating-toc-li" id="floating-toc_necessary-evil.xml-utils">necessary-evil.xml-utils</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>

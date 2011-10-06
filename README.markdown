@@ -140,7 +140,7 @@ The following the main API functions that you will use as a consumer of the libr
  * `necessary-evil.fault/fault?` — Predicate that tests a value for being a Fault record.
  * `necessary-evil.fault/attempt-all` — A comprehension form to make it easier to work with potentially Fault returning functions. For more detail on this macro see my [Error Monads](http://brehaut.net/blog/2011/error_monads#attempt_all) and [Error Monads Revisited ](http://brehaut.net/blog/2011/error_monads_revisited) blog posts.
 
-## Changes from 1.2.1 to 2.0.0
+## Changes from 1.2.2 to 2.0.0
 
 Despite the big jump in version numbers relatively small changes have occured.
 
@@ -154,10 +154,13 @@ Despite the big jump in version numbers relatively small changes have occured.
    * `Long`s are now serialized as `Integer`s (and must not exceed `Integer.MAX_VALUE` as the xmlrpc spec only allows for 4 byte signed ints).     
    * `java.util.Date` objects are now serialized to time
  * Type hints to avoid reflection added across all namespaces.
- * Fixed issue #4 where empty string values that have no type elements
-   would mysteriously disappear.
  
 Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, Java dates will return as Joda time dates and longs as ints.
+
+## Changes from 1.2.1 to 1.2.2
+
+ * Fixed issue #4 where empty string values that have no type elements
+   would mysteriously disappear.
 
 ## Changes from 1.2 to 1.2.1
  

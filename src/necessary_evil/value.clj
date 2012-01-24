@@ -87,7 +87,7 @@
 (defmethod parse-value :int              [v] (parse-int v))
 
 (defmethod parse-value :boolean          [v] (parse-bool v))
-(defmethod parse-value :string           [v] (text v))
+(defmethod parse-value :string           [v] (unnormalized-text v))
 (defmethod parse-value :double           [v] (Double. ^String (strip-leading-plus
                                                                (text v))))
 (defmethod parse-value :dateTime.iso8601 [v] (time-format/parse winer-time
@@ -95,7 +95,7 @@
 (defmethod parse-value :base64           [v] (Base64/decodeBase64 ^String (text v)))
 (defmethod parse-value :struct           [v] (parse-struct v))
 (defmethod parse-value :array            [v] (parse-array v))
-(defmethod parse-value :default          [v] (if v (text v) ""))
+(defmethod parse-value :default          [v] (if v (unnormalized-text v) ""))
 
 (defmethod parse-value :nil              [v]
   (if *allow-nils* nil

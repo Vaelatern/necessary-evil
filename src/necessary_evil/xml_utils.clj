@@ -16,13 +16,19 @@
   [stream]
   (-> stream xml/parse zip/xml-zip))
 
-(defn to-xml [^String xml-string]
+(defn to-xml
   "to-xml takes a string and returns a new xml zipper"
+  [^String xml-string]
   (-> xml-string
       (.getBytes "UTF-8")
       (java.io.ByteArrayInputStream.)
       (xml/parse)
       (zip/xml-zip)))
+
+(defn unnormalized-text
+  "Like clojure.data.zip.xml's text but it doesn't normalise whitespace. "
+  [loc]
+  (apply str (zf/xml-> loc data.zip/descendants zip/node string?)))
 
 ;; zip-filter selectors
 (def first-child (comp first data.zip/children))

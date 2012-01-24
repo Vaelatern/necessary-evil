@@ -153,7 +153,9 @@ Despite the big jump in version numbers relatively small changes have occured.
      lazy sequences.
    * `Long`s are now serialized as `Integer`s (and must not exceed `Integer.MAX_VALUE` as the xmlrpc spec only allows for 4 byte signed ints).     
    * `java.util.Date` objects are now serialized to time
+ * String values no longer normalize whitespace: You may now find you have to remove newlines or other whitespace yourself.
  * Type hints to avoid reflection added across all namespaces.
+
  
 Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, Java dates will return as Joda time dates and longs as ints.
 

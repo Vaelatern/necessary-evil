@@ -47,14 +47,41 @@
 
 ;; client functions
 
-(defn call
-  "Does a syncronous http request to the server and method provided."
-  [endpoint-url method-name & args]
+(defn ^{:added "2.0.0"}
+  call*
+  "Does a syncronous http request to the server and method provided.
+
+   call* allows more control over how the call is sent to the endpoint server.
+   Note that unlike call, call* takes a seq for args rather than as varags.
+
+   Optional keyword arguments:
+     post-fn - this function does the actual http request. Must take the same
+       arguments as clj-http's post function. This is to allow you supply additional
+       middleware etc that may be required for your particular needs.
+
+     request - a map of all the request arguments as specified by clj-http. Any
+       values provided here will override the defaults with the exception of :body
+       which is (unsurprisingly) provided by call*
+
+   See https://github.com/dakrone/clj-http/ for more details.
+  "
+  [endpoint-url method-name args & {:keys [post-fn request]
+                                    :or   {post-fn http/post
+                                           request {}}}]
   (let [call (methodcall/methodcall method-name args)
-        body (-> call methodcall/unparse emit with-out-str)]
-    (-> (http/post endpoint-url {:body body
-                                 :content-type "text/xml;charset=UTF-8"})
+        body (-> call methodcall/unparse emit with-out-str)
+        post-params (merge {:content-type "text/xml;charset=UTF-8"}
+                           request)
+        response (post-fn endpoint-url (assoc post-params :body body))]
+    (-> response
         :body
         to-xml
         methodresponse/parse)))
 
+
+(defn call
+  "Does a syncronous http request to the server and method provided.
+   This is a simple interface. If you need more control over the http request,
+   see call*"
+  [endpoint-url method-name & args]
+  (call* endpoint-url method-name args))

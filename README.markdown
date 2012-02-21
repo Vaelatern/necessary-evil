@@ -136,6 +136,7 @@ The following the main API functions that you will use as a consumer of the libr
 
  * `necessary-evil.core/end-point` — Defines a Ring handler that acts as an XML-RPC end-point. See above for examples.
  * `necessary-evil.core/call` — Calls an XML-RPC function at a given end point.
+ * `necessary-evil.core/call*` — Calls an XML-RPC function at a given end point. Allows for more control than `necessary-evil.core/call`.
  * `necessary-evil.fault/fault` — Creates a new fault, use this if you need to return an error condition to the caller.
  * `necessary-evil.fault/fault?` — Predicate that tests a value for being a Fault record.
  * `necessary-evil.fault/attempt-all` — A comprehension form to make it easier to work with potentially Fault returning functions. For more detail on this macro see my [Error Monads](http://brehaut.net/blog/2011/error_monads#attempt_all) and [Error Monads Revisited ](http://brehaut.net/blog/2011/error_monads_revisited) blog posts.
@@ -153,9 +154,11 @@ Despite the big jump in version numbers relatively small changes have occured.
      lazy sequences.
    * `Long`s are now serialized as `Integer`s (and must not exceed `Integer.MAX_VALUE` as the xmlrpc spec only allows for 4 byte signed ints).     
    * `java.util.Date` objects are now serialized to time
+ * `call*` function added to `necessary-evil.core` to add more fine grained control to the http request.
+   `call` now uses `call*` under the hood. The major difference is that `call*` takes the remote functions arguments as a sequence, and has keyword options for the configurable things.
  * String values no longer normalize whitespace: You may now find you have to remove newlines or other whitespace yourself.
  * Type hints to avoid reflection added across all namespaces.
-
+ 
  
 Note that the serialization and deserialization processes are now *asymmetric*: For example in a round trip a list will return as vector, Java dates will return as Joda time dates and longs as ints.
 

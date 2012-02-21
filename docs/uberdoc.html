@@ -34,7 +34,7 @@
   height: auto !important;
   left: auto !important;
   line-height: 1.1em !important;
-  margin: 0 !important;
+/*  margin: 0 !important; */
   outline: 0 !important;
   overflow: visible !important;
   padding: 0 !important;
@@ -226,10 +226,6 @@
   color: black !important;
 }
 </style><style type="text/css">.syntaxhighlighter{overflow:hidden !important;}</style><style type="text/css">/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
  * @version
@@ -339,9 +335,6 @@
   color: red !important;
 }
 
-.syntaxhighlighter .keyword {
-  font-weight: bold !important;
-}
 .syntaxhighlighter .xml .keyword {
   color: #3f7f7f !important;
   font-weight: normal !important;
@@ -353,7 +346,43 @@
   font-style: italic !important;
   color: #2a00ff !important;
 }
-</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><script type="text/javascript">/*!
+
+.clojure.syntaxhighlighter .invalid { 
+   background-color: #FAA !important;
+}
+
+.clojure.syntaxhighlighter .quoted {      
+    font-style: italic !important;
+}
+
+.syntaxhighlighter .clojure.variable,
+.syntaxhighlighter .clojure.symbol,
+.syntaxhighlighter .clojure.value
+{
+    color: #006060 !important;
+}
+
+.syntaxhighlighter .clojure.string {
+    color: #55B !important;
+}
+
+.syntaxhighlighter .clojure.functions {
+    color: black !important;
+}
+
+.syntaxhighlighter .clojure.color1 {
+    color: #666 !important;
+}
+
+.syntaxhighlighter .clojure.color3 {
+    color: #900 !important;
+}
+
+.syntaxhighlighter .clojure.constants {
+    color: #1A734D !important;
+}
+
+</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{display:inline;font-size:34px;}h2.project-version{display:inline;margin-left:10px;margin-top:0;font-size:18px;}.toc-link{margin-left:10px;color:#252519;font-size:12px;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{margin:0;font-size:34px;}.docs-header{margin-bottom:25px;padding-bottom:10px;border-bottom:dotted #aaa 1px;}.toc h1{font-size:24px;}.toc{margin-bottom:40px;border-bottom:solid #bbb 1px;}.toc ul{padding-left:0px;margin-left:20px;margin-top:0;padding-top:0;}.toc li{padding-left:0;list-style-type:none;}.dependencies{}.dependencies table{border:none;width:99.99%;margin-left:20px;font-size:16px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{padding-left:0px;margin-left:20px;margin-top:0;padding-top:0;}.plugins li{padding-left:0;list-style-type:none;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;text-align:right;overflow:hidden;top:10px;right:20px;height:20px;}#floating-toc li{margin:0;padding:0;list-style-type:none;}</style><style type="text/css">body{margin:0;padding:0;color:#252519;font-size:16px;background-color:#F5F5FF;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;}h1{margin-top:0;font-size:20px;}a.anchor{color:#252519;text-decoration:none;}a.anchor:hover{color:#5050A6;}table{margin-bottom:10px;border-bottom:solid #ddd 1px;;border-spacing:0;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{border:none;margin:0px;padding-left:55px;width:410px;padding-right:20px;vertical-align:top;max-width:410px;background-color:#FFF;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;background-color:ghostWhite;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><script type="text/javascript">/*!
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
  *
@@ -2242,308 +2271,780 @@ return sh;
 
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
-</script><script type="text/javascript">/*!
- * Copyright ¬© 2010 Sattvik Software & Technology Resources, Ltd. Co.
- * All rights reserved.
- *
- * sh-clojure may be used under the terms of either the GNU Lesser General Public
- * License (LGPL) or the Eclipse Public License (EPL).  As a recipient of
- * sh-clojure, you may choose which license to receive the code under.  See the
- * LICENSE file distributed with sh-clojure for details.
- *
- * Written by Daniel Solano G√≥mez
- *
- * Version 0.9.1 - 10 Apr 2010
- */
+</script><script type="text/javascript">// (inc clojure-brush) ;; an improved SyntaxHighlighter brush for clojure
+//
+// Copyright (C) 2011 Andrew Brehaut
+//
+// Distributed under the Eclipse Public License, the same as Clojure.
+//
+// https://github.com/brehaut/inc-clojure-brush
+//
+// Written by Andrew Brehaut
+// V0.9.1, November 2011
 
-function ClojureRegExp(pattern) {
-	pattern = pattern + '(?=[[\\]{}(),\\s])';
-	this.regex = new RegExp(pattern, 'g');
-	this.lookBehind = /[\[\]{}(),\s]$/;
-}
+if (typeof net == "undefined") net = {};
+if (!(net.brehaut)) net.brehaut = {};
 
-ClojureRegExp.prototype.exec = function (str) {
-	var match, leftContext;
-	while (match=this.regex.exec(str)) {
-		leftContext = str.substring(0, match.index);
-		if (this.lookBehind.test(leftContext)) {
-			return match;
-		}
-		else {
-			this.regex.lastIndex = match.index + 1;
-		}
-	}
-	return null;
-};
+net.brehaut.ClojureTools = (function (SH) {
+  "use strict";
+  // utiliies
+  if (!Object.create) Object.create = function object(o) {
+    function F() {};
+    F.prototype = o;  
+    return new F();
+  };
+        
+  // data
+  
+  function Token(value, index, tag, length) {
+    this.value = value;
+    this.index = index;
+    this.length = length || value.length;
+    this.tag = tag;
+    this.secondary_tags = {};
+  }
+  
+  // null_token exists so that LispNodes that have not had a closing tag attached
+  // can have a dummy token to simplify annotation
+  var null_token = new Token("", -1, "null", -1);
+  
+  /* LispNodes are aggregate nodes for sexpressions. 
+   *
+   */
+  function LispNode(tag, children, opening) {
+    this.tag = tag;            // current metadata for syntax inference
+    this.parent = null;        // the parent expression
+    this.list = children;      // all the child forms in order
+    this.opening = opening;    // the token that opens this form.
+    this.closing = null_token; // the token that closes this form.
+    this.meta = null;          // metadata nodes will be attached here if they are found
+  }
 
-SyntaxHighlighter.brushes.Clojure = function () {
-	var special_forms =
-			'. def do fn if let loop monitor-enter monitor-exit new quote recur set! ' +
-			'throw try var',
-	    clojure_core =
-			'* *1 *2 *3 *agent* *allow-unresolved-vars* *assert* *clojure-version* ' +
-			'*command-line-args* *compile-files* *compile-path* *e *err* *file* ' +
-			'*flush-on-newline* *in* *macro-meta* *math-context* *ns* *out* ' +
-			'*print-dup* *print-length* *print-level* *print-meta* *print-readably* ' +
-			'*read-eval* *source-path* *use-context-classloader* ' +
-			'*warn-on-reflection* + - -> -&gt; ->> -&gt;&gt; .. / < &lt; <= &lt;= = ' +
-			'== > &gt; >= &gt;= accessor aclone ' +
-			'add-classpath add-watch agent agent-errors aget alength alias all-ns ' +
-			'alter alter-meta! alter-var-root amap ancestors and apply areduce ' +
-			'array-map aset aset-boolean aset-byte aset-char aset-double aset-float ' +
-			'aset-int aset-long aset-short assert assoc assoc! assoc-in associative? ' +
-			'atom await await-for await1 bases bean bigdec bigint binding bit-and ' +
-			'bit-and-not bit-clear bit-flip bit-not bit-or bit-set bit-shift-left ' +
-			'bit-shift-right bit-test bit-xor boolean boolean-array booleans ' +
-			'bound-fn bound-fn* butlast byte byte-array bytes cast char char-array ' +
-			'char-escape-string char-name-string char? chars chunk chunk-append ' +
-			'chunk-buffer chunk-cons chunk-first chunk-next chunk-rest chunked-seq? ' +
-			'class class? clear-agent-errors clojure-version coll? comment commute ' +
-			'comp comparator compare compare-and-set! compile complement concat cond ' +
-			'condp conj conj! cons constantly construct-proxy contains? count ' +
-			'counted? create-ns create-struct cycle dec decimal? declare definline ' +
-			'defmacro defmethod defmulti defn defn- defonce defstruct delay delay? ' +
-			'deliver deref derive descendants destructure disj disj! dissoc dissoc! ' +
-			'distinct distinct? doall doc dorun doseq dosync dotimes doto double ' +
-			'double-array doubles drop drop-last drop-while empty empty? ensure ' +
-			'enumeration-seq eval even? every? false? ffirst file-seq filter find ' +
-			'find-doc find-ns find-var first float float-array float? floats flush ' +
-			'fn fn? fnext for force format future future-call future-cancel ' +
-			'future-cancelled? future-done? future? gen-class gen-interface gensym ' +
-			'get get-in get-method get-proxy-class get-thread-bindings get-validator ' +
-			'hash hash-map hash-set identical? identity if-let if-not ifn? import ' +
-			'in-ns inc init-proxy instance? int int-array integer? interleave intern ' +
-			'interpose into into-array ints io! isa? iterate iterator-seq juxt key ' +
-			'keys keyword keyword? last lazy-cat lazy-seq let letfn line-seq list ' +
-			'list* list? load load-file load-reader load-string loaded-libs locking ' +
-			'long long-array longs loop macroexpand macroexpand-1 make-array ' +
-			'make-hierarchy map map? mapcat max max-key memfn memoize merge ' +
-			'merge-with meta method-sig methods min min-key mod name namespace neg? ' +
-			'newline next nfirst nil? nnext not not-any? not-empty not-every? not= ' +
-			'	ns ns-aliases ns-imports ns-interns ns-map ns-name ns-publics ' +
-			'ns-refers ns-resolve ns-unalias ns-unmap nth nthnext num number? odd? ' +
-			'or parents partial partition pcalls peek persistent! pmap pop pop! ' +
-			'pop-thread-bindings pos? pr pr-str prefer-method prefers ' +
-			'primitives-classnames print print-ctor print-doc print-dup print-method ' +
-			'print-namespace-doc print-simple print-special-doc print-str printf ' +
-			'println println-str prn prn-str promise proxy proxy-call-with-super ' +
-			'proxy-mappings proxy-name proxy-super push-thread-bindings pvalues quot ' +
-			'rand rand-int range ratio? rational? rationalize re-find re-groups ' +
-			're-matcher re-matches re-pattern re-seq read read-line read-string ' +
-			'reduce ref ref-history-count ref-max-history ref-min-history ref-set ' +
-			'refer refer-clojure release-pending-sends rem remove remove-method ' +
-			'remove-ns remove-watch repeat repeatedly replace replicate require ' +
-			'reset! reset-meta! resolve rest resultset-seq reverse reversible? rseq ' +
-			'rsubseq second select-keys send send-off seq seq? seque sequence ' +
-			'sequential? set set-validator! set? short short-array shorts ' +
-			'shutdown-agents slurp some sort sort-by sorted-map sorted-map-by ' +
-			'sorted-set sorted-set-by sorted? special-form-anchor special-symbol? ' +
-			'split-at split-with str stream? string? struct struct-map subs subseq ' +
-			'subvec supers swap! symbol symbol? sync syntax-symbol-anchor take ' +
-			'take-last take-nth take-while test the-ns time to-array to-array-2d ' +
-			'trampoline transient tree-seq true? type unchecked-add unchecked-dec ' +
-			'unchecked-divide unchecked-inc unchecked-multiply unchecked-negate ' +
-			'unchecked-remainder unchecked-subtract underive unquote ' +
-			'unquote-splicing update-in update-proxy use val vals var-get var-set ' +
-			'var? vary-meta vec vector vector? when when-first when-let when-not ' +
-			'while with-bindings with-bindings* with-in-str with-loading-context ' +
-			'with-local-vars with-meta with-open with-out-str with-precision xml-seq ' +
-			'zero? zipmap ';
+  var null_lispnode = new LispNode("null", [], null_token);
 
-	this.getKeywords = function (keywordStr) {
-		// quote special characters
-		keywordStr = keywordStr.replace(/[\-\[\]{}()*+?.\\\^$|,#]/g, "\\$&");
-		// trim whitespace and convert to alternatives
-		keywordStr = keywordStr.replace(/^\s+|\s+$/g, '').replace(/\s+/g, '|');
-		// create pattern
-		return '(?:' + keywordStr + ')';
-	};
+  
+  function PrefixNode(tag, token, attached_node) {
+    this.tag = tag;
+    this.token = token;
+    this.attached_node = attached_node;
+    this.parent = null;
+  }
 
-	this.regexList = [
-		// comments
-		{ regex: new RegExp(';.*$', 'gm'),
-			css: 'comments' },
-		// strings
-		{ regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString,
-			css: 'string' },
-		// regular expressions
-		{ regex: /#"(?:\.|(\\\")|[^\""\n])*"/g,
-			css: 'string' },
-		// vectors
-		{ regex: /\[|\]/g,
-			css: 'keyword' },
-		// amperstands
-		{ regex: /&(amp;)?/g,
-			css: 'keyword' },
-		// sets and maps
-		{ regex: /#?\{|\}/g,
-			css: 'keyword' },
-		// metadata
-		{ regex: /#\^\{/g,
-			css: 'keyword' },
-		// anonymous fn syntactic sugar
-		{ regex: /#\(|%/g,
-			css: 'keyword' },
-		// deref reader macro
-		{ regex: /@/g,
-			css: 'keyword' },
-		// (un)quoted sexprs
-		{ regex: /(['`]|~@?)[\[({]/g,
-			css: 'keyword' },
-		// lists
-		{ regex: /\(|\)/g,
-			css: 'keyword' },
-		// character literals
-		{ regex: /\\.\b/g,
-			css: 'value' },
-		// hexadecimal literals
-		{ regex: /[+\-]?\b0x[0-9A-F]+\b/gi,
-			css: 'value' },
-		// integer/octal/float/bigdecimal literals
-		{ regex: new ClojureRegExp("[+-]?\\b\\d+(\\.\\d*)?([eE][+-]?\\d+|M)?\\b"),
-			css: 'value' },
-		{ regex: /^[+\-]?\b\d+(\.\d*)?([eE][+\-]?\d+|M)?\b/g,
-			css: 'value' },
-		// booleans+nil
-		{ regex: /\b(true|false|nil)\b/g,
-			css: 'value' },
-		// (un)quoted symbols
-		{ regex: /(`|#?'|~@?)[\w-.A-Za-z0-9_&lt;&gt;\-]+/g,
-			css: 'color1' },
-		// keywords
-		{ regex: /:[A-Za-z0-9_\-]+/g,
-			css: 'constants' },
-		// special forms
-		{ regex: new ClojureRegExp(this.getKeywords(special_forms)),
-			css: 'preprocessor' },
-		// type hints
-		{ regex: /\#\^[A-Za-z]\w*/g,
-			css: 'preprocessor' },
-		// clojure.core
-		{ regex: new ClojureRegExp(this.getKeywords(clojure_core)),
-			css: 'functions' },
-                { regex: /[A-Za-z0-9_&lt;&gt;\-]+/g,  css: 'plain'}
-	];
+  
+  
+  // tokenize
 
-	this.forHtmlScript(SyntaxHighlighter.regexLib.scriptScriptTags);
-};
-
-SyntaxHighlighter.brushes.Clojure.prototype = new SyntaxHighlighter.Highlighter();
-SyntaxHighlighter.brushes.Clojure.aliases   = ['clojure', 'Clojure', 'clj'];
-
-// vim: ts=2 sw=2 noet
-</script><script type="text/javascript">
-// hackity-hack
-
-$(document).ready(function() {
-    var ft = $("#floating-toc")
-    var ul = ft.find('ul')
-    var lis = ft.find('li')
-
-    ul.css('maring', '0px')
-
-    var liHeight = $(lis.get(0)).height()
-
-    ft.css('height', (liHeight) + 'px')
-
-
-    showNs = function(ns) {
-        //this is killing performance, lookup table.
-        //var el = $("[id='floating-toc_" + ns + "']")
-        //var index = lis.index(el)
-
-        var index = 0
-
-        for(i in nsPositions.nss) {
-            if(ns == nsPositions.nss[i]) index = i
-        }
-
-        console.log(index)
-
-        if(index == lastNsIndex) return;
-
-        lastNsIndex = index
-
-
-        ul.animate({marginTop: (-1 * liHeight * index) + 'px'},
-               300)
-        //        ul.css('margin-top', (-1 * liHeight * index) + 'px')
-
-    }
-
-    var calcNsPositions = function() {
-        var nss = []
-        var anchors = []
-        var positions = []
-        $.each(lis, function(i, el) {
-            var ns = $(el).attr('id').split('_')[1]
-            nss.push(ns)
-            var a = $("a[name='"+ns+"']")
-            anchors.push(a)
-            positions.push(a.offset().top)
-            console.log(a.offset().top)
-        });
-
-        return {nss: nss, positions: positions}
-    }
-
-    var nsPositions = calcNsPositions()
-
-    console.log(nsPositions)
-
-    var lastNsIndex = -1
-
-    var $window = $(window)
-
-    var currentSection = function(nsp) {
-
-        var ps = nsp.positions
-        var nss = nsp.nss
-        var scroll = $window.scrollTop() + 300
-        var nsIndex = -1
-        for(var i in ps) {
-            var p = ps[i]
-            if(p >= scroll) {
-                nsIndex = i-1
-                break;
-            }
+  function tokenize(code) {
+    var tokens = [];
+    var tn = 0;
+    
+    var zero = "0".charCodeAt(0);
+    var nine = "9".charCodeAt(0); 
+    var lower_a = "a".charCodeAt(0);
+    var lower_f = "f".charCodeAt(0);    
+    var upper_a = "A".charCodeAt(0);
+    var upper_f = "F".charCodeAt(0);
+    
+    var dispatch = false; // have we just seen a # character?
+    
+    // i tracks the start of the current window
+    // extent is the window for slicing
+    
+    for (var i = 0, 
+             extent = i, 
+             j = code.length; 
+             i < j && extent <= j;) {          
                 
+      var c = code[i];
+      
+      // we care about capturing the whole token when dispatch is used, so back up the
+      // starting index by 1
+      if (dispatch) i--; 
+      
+      switch (c) {
+        // dispatch alters the value of the next thing read
+        case "#":
+          dispatch = true;
+          i++;
+          extent++;
+          continue;
+          
+        case " ":    // ignore whitespace
+        case "\t":
+        case "\n":
+        case "\r":
+        case ",":   
+          extent++
+          break; 
+          
+        // simple terms
+        case "^":
+        case "`":
+        case ")":
+        case "[":
+        case "]":
+        case "}":
+        case "@":
+          tokens[tn++] = new Token(c, i, c, ++extent - i);
+          break;
+        
+        case "'":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "#'" : "'", extent - i);
+          break
+        
+        case "(":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, "(", extent - i);
+          break;          
+          
+        case "{":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "#{" : "{", extent - i);
+          break;  
+        
+        case "\\":
+          if (code.slice(i + 1, i + 8) === "newline") {
+            tokens[tn++] = new Token("\\newline", i, "value", 8);
+            extent = i + 9; 
+          }
+          else if (code.slice(i + 1, i + 6) === "space") {
+            tokens[tn++] = new Token("\\space", i, "value", 6);
+            extent = i + 6;
+          }
+          else if (code.slice(i + 1, i + 4) === "tab") {
+            tokens[tn++] = new Token("\\tab", i, "value", 4);
+            extent = i + 5;
+          } // work around fun bug with &,>,< in character literals
+          else if (code.slice(i + 1, i + 6) === "&amp;") {
+            tokens[tn++] = new Token("\\&amp;", i, "value", 6);
+            extent = i + 6; 
+          }
+          else if (code.slice(i + 1, i + 5) === "&lt;") {
+            tokens[tn++] = new Token("\\&lt;", i, "value", 5);
+            extent = i + 5;
+          }
+          else if (code.slice(i + 1, i + 5) === "&gt;") {
+            tokens[tn++] = new Token("\\&gt;", i, "value", 5);
+            extent = i + 5;
+          }
+          
+          else {
+            extent += 2;
+            tokens[tn++] = new Token(code.slice(i, extent), i, "value", 2);
+          }
+          break;
+        
+        case "~": // slice
+          if (code[i + 1] === "@") {
+            extent += 2;
+            tokens[tn++] = new Token(code.slice(i, extent), i, "splice", 2);
+          }
+          else {
+            tokens[tn++] = new Token(code.slice(i, ++extent), i, "unquote", 2);
+          }
+          break;
+        
+        // complicated terms
+        case "\"": // strings and regexps
+          for (extent++; extent <= j; extent++) {
+            if (code[extent] === "\\") extent++;
+            else if (code[extent] === "\"") break;
+          }
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "regexp" : "string", extent - i);       
+          break;
+          
+        case ";":
+          for (; extent <= j && code[extent] !== "\n" && code[extent] !== "\r"; extent++);
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, "comments", extent - i);   
+          break;
+        
+        case "+": // numbers; fall through to symbol for + and - not prefixing a number
+        case "-":
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        // todo: exponents, hex
+        // http://my.safaribooksonline.com/9781449310387/14?reader=pf&readerfullscreen=&readerleftmenu=1
+          var c2 = code.charCodeAt(i + 1);
+          if (((c === "+" || c === "-") && (c2 >= zero && c2 <= nine)) // prefixes
+              || (c !== "+" && c !== "-")) {
+            if (c === "+" || c === "-") extent++; 
+            for (; extent <= j; extent++) {
+              var charCode = code.charCodeAt(extent);
+              if (charCode < zero || charCode > nine) break;
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "r" || c === "R" || c === "/" || c === ".") // interstitial characters
+                && (c2 >= zero && c2 <= nine)) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (charCode < zero || charCode > nine) break;
+              }
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "x" || c === "X") && 
+                ((c2 >= zero && c2 <= nine) 
+                 || (c2 >= lower_a && c2 <= lower_f)
+                 || (c2 >= upper_a && c2 <= upper_f))) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (((charCode >= zero && charCode <= nine) 
+                    || (charCode >= lower_a && charCode <= lower_f)
+                    || (charCode >= upper_a && charCode <= upper_f))) continue;
+                break;
+              }
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "e" || c === "E") 
+                && (c2 >= zero && c2 <= nine)) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (charCode < zero || charCode > nine) break;
+              }
+            }
+            
+            c = code[extent];
+            if (c === "N" || c === "M") extent++;
+
+            tokens[tn++] = new Token(code.slice(i, extent), i, "value", extent - i);
+            break;
+          }
+
+        case "_":
+          if (dispatch && c === "_") {
+            tokens[tn++] = new Token(code.slice(i, ++extent), i, "skip", extent - i);
+            break;
+          } // if not a skip, fall through to symbols
+        
+        // Allow just about any other symbol as a symbol. This is far more permissive than 
+        // clojure actually allows, but should catch any weirdo crap that accidentally gets
+        // into the code.
+        default: 
+          for (extent++; extent <= j; extent++) {
+            switch (code[extent]) {
+              case " ":
+              case "\t":
+              case "\n":
+              case "\r":
+              case "\\":
+              case ",":
+              case "{":
+              case "}":
+              case "(":
+              case ")":
+              case "[":
+              case "]":
+              case "^":
+              case "`":
+              case "@":   
+                break;
+              case ";":   
+                // theres a weird bug via syntax highligher that gives us escaped entities.
+                // need to watch out for these
+                if (code.slice(extent-3, extent+1) === "&lt;"
+                    ||code.slice(extent-3, extent+1) === "&gt;"
+                    ||code.slice(extent-4, extent+1) === "&amp;") {
+                  continue;
+                }
+                break;
+              default:
+                continue;
+            }
+            break;
+          }
+          
+          var value = code.slice(i, extent);
+          var tag = "symbol";
+          if (value[0] == ":") {
+            tag = "keyword";
+          }
+          else if (value === "true" || value === "false" || value === "nil") {
+            tag = "value";
+          }
+          tokens[tn++] = new Token(value, i, tag, extent - i);
+      }
+      
+      dispatch = false;
+      i = extent;
+    } 
+
+    return tokens;
+  }
+
+
+  function build_tree(tokens) {
+    var toplevel = {
+      list: [], 
+      tag: "toplevel", 
+      parent: null, 
+      opening: null,
+      closing: null,
+      depth: -1
+    };
+    
+    // loop variables hoisted out as semi globals to track position in token stream
+    var i = -1;
+    var j = tokens.length;
+    
+    function parse_one(t) {
+      // ignore special tokens and forms that dont belong in the tree
+      for (; t && (t.tag === "comments" || t.tag === "invalid" || t.tag == "skip") && i < j; ) {
+        if (t.tag === "skip") {
+          t.tag = "preprocessor";
+          annotate_comment(parse_one(tokens[++i]));
         }
-
-        if(nsIndex == -1 && scroll >= ps[0]) {
-            nsIndex = ps.length-1
-        }
-
-        if(nsIndex == -1) nsIndex = 0
-
-        return nss[nsIndex]
+        t = tokens[++i];
+      }
+      
+      if (!t) return {}; // hackity hack
+      
+      switch (t.tag) {
+        case "{":
+          return build_aggregate(new LispNode("map", [], t), "}");
+        case "(":
+          return build_aggregate(new LispNode("list", [], t), ")");
+        case "#{":
+          return build_aggregate(new LispNode("set", [], t), "}");
+        case "[":
+          return build_aggregate(new LispNode("vector", [], t), "]");
+        case "'":
+          return new PrefixNode("quote", t, parse_one(tokens[++i]));
+        case "#'":
+          return new PrefixNode("varquote", t, parse_one(tokens[++i]));  
+        case "@":
+          return new PrefixNode("deref", t, parse_one(tokens[++i]));  
+        case "`":
+          return new PrefixNode("quasiquote", t, parse_one(tokens[++i]));  
+        case "unquote":
+          return new PrefixNode("unquote", t, parse_one(tokens[++i]));
+        case "splice":
+          return new PrefixNode("splice", t, parse_one(tokens[++i]));  
+        case "^":
+          t.tag = "meta";
+          var meta = parse_one(tokens[++i]);
+          var next = parse_one(tokens[++i]);
+          next.meta = meta;
+          return next;
+      }
+      
+      return t;
     }
+    
+    // build_aggregate collects to ether sub forms for one aggregate for. 
+    function build_aggregate(current, expected_closing) {
+      for (i++; i < j; i++) {
+        var t = tokens[i];
 
-    $(window).scroll(function(e) {
-        showNs(currentSection(nsPositions))
-    })
+        if (t.tag === "}" || t.tag === ")" || t.tag === "]") {
+          if (t.tag !== expected_closing) t.tag = "invalid";
+          current.closing = t;
+          if (expected_closing) return current;
+        }
+        var node = parse_one(t);
 
-    ul.css('margin-top', '0px')
+        node.parent = current;
+        current.list[current.list.length] = node;
+      }
+      
+      return current;
+    }
+    
+    build_aggregate(toplevel, null);
+    
+    return toplevel;
+  }
 
-})
+  // annotation rules to apply to a form based on its head
+
+  var show_locals = true;  // HACK. would rather not use a (semi)-global.
+
+  /* annotate_comment is a special case annotation. 
+   * in addition to its role in styling specific forms, it is called by parse_one to
+   * ignore any forms skipped with #_
+   */ 
+  function annotate_comment(exp) {
+    exp.tag = "comments";
+
+    if (exp.list) {
+      exp.opening.tag = "comments";
+      exp.closing.tag = "comments";
+    
+      for (var i = 0; i < exp.list.length; i++) {
+        var child = exp.list[i];
+        if (child.list) {
+          annotate_comment(child);
+        }
+        if (child.attached_node) {
+          annotate_comment(child.attached_node);
+        }
+        else {
+          child.tag = "comments";
+        }
+      }
+    }
+  }
+
+  /* custom annotation rules are stored here */
+  var annotation_rules = {};
+  
+  // this function is exposed to allow ad hoc extension of the customisation rules
+  function register_annotation_rule(names, rule) {
+    for (var i = 0; i < names.length; i++) {
+      annotation_rules[names[i]] = rule;
+    }
+  }
+
+
+  function annotate_destructuring (exp, scope) {
+    if (exp.list) {
+      if (exp.tag === "vector") {
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_destructuring(exp.list[i], scope);
+        }
+      } 
+      else if (exp.tag === "map") {
+        for (var i = 0; i < exp.list.length; i += 2) {
+          var key = exp.list[i];
+          var val = exp.list[i + 1];
+          
+          if (key.tag === "keyword" && val.tag === "vector") {
+            for (var ii = 0, jj = val.list.length; ii < jj; ii++) {
+              if (val.list[ii].tag !== "symbol") continue;
+              val.list[ii].tag = "variable";
+              scope[val.list[ii].value] = true;
+            }
+          }
+          else {
+            annotate_destructuring(key, scope);
+            annotate_expressions(val, scope);
+          }
+        } 
+      }
+    } 
+    else if (exp.tag === "symbol" && (exp.value !== "&" && exp.value !== "&amp;")){
+      exp.tag = "variable";
+      scope[exp.value] = true;
+    }
+  }
+
+  function _annotate_binding_vector (exp, scope) {
+    if (exp.tag !== "vector") return;
+  
+    var bindings = exp.list;
+
+    if (bindings.length % 2 === 1) return;
+    
+    for (var i = 0; i < bindings.length; i += 2) {
+      annotate_destructuring(bindings[i], scope);
+      annotate_expressions(bindings[i + 1], scope);
+    }    
+  }
+
+  function annotate_binding (exp, scope) {
+    var bindings = exp.list[1];
+    if (!show_locals) return; // HACK
+
+    if (bindings) {
+      scope = Object.create(scope);
+      _annotate_binding_vector(bindings, scope);
+    }
+    for (var i = 2; i < exp.list.length; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+  
+  function _annotate_function_body (exp, scope, start_idx) {
+    var argvec = exp.list[start_idx];
+    if (argvec.tag !== "vector") return;
+
+    scope = Object.create(scope);
+
+    for (var i = 0, j = argvec.list.length; i < j; i++) {
+      annotate_destructuring(argvec.list[i], scope);
+    }
+    
+    for (var i = start_idx, j = exp.list.length; i < j; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+  
+  function annotate_function (exp, scope) {
+    for (var i = 1, j = exp.list.length; i < j; i++) {
+      var child = exp.list[i];
+      
+      if (child.tag === "vector") {
+        _annotate_function_body (exp, scope, i);
+        return;
+      }
+      else if (child.tag === "list") {
+        _annotate_function_body(child, scope, 0)
+      }
+    }
+  }
+  
+  function annotate_letfn (exp, scope) {
+    scope = Object.create(scope);
+    var bindings = exp.list[1];
+    
+    var fn;
+    for (var i = 0, j = bindings.list.length; i < j; i++) {
+      fn = bindings.list[i];
+      if (!fn.list[0]) continue;
+      fn.list[0].tag = "variable";
+      scope[fn.list[0].value] = true;
+    }
+    
+    for (i = 0, j = bindings.list.length; i < j; i++) {
+      var fn = bindings.list[i];
+      annotate_function(fn, scope);
+    }
+    
+    for (i = 2, j = exp.list.length; i < j; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+
+  register_annotation_rule(
+    ["comment"],
+    annotate_comment
+  );
+  
+  register_annotation_rule(
+    ["let", "when-let", "if-let", "binding", "doseq", "for", "dotimes", "let*"],
+    annotate_binding
+  );
+  
+  register_annotation_rule(
+    ["defn", "defn-", "fn", "bound-fn", "defmacro", "fn*", "defmethod"],
+    annotate_function
+  );
+  
+  register_annotation_rule(
+    ["letfn"],
+    annotate_letfn
+  );
+
+  // standard annotations
+
+  function _annotate_metadata_recursive(meta, scope) {
+    if (!meta) return;
+
+    if (meta.list !== undefined && meta.list !== null) {
+      for (var i = 0, j = meta.list.length; i < j; i++) {
+        meta.opening.secondary_tags.meta = true
+        meta.closing.secondary_tags.meta = true
+        _annotate_metadata_recursive(meta.list[i], scope);
+      }
+    }
+    else if (meta.attached_node) {
+      meta.token.secondary_tags.meta = true;
+      _annotate_metadata_recursive(meta.attached_node, scope);
+    }
+    else {
+      meta.secondary_tags.meta = true;
+    }
+  }
+  
+  function annotate_metadata(exp) {
+    if (!(exp && exp.meta)) return;
+    var meta = exp.meta;
+    
+     annotate_expressions(meta, {});    
+    _annotate_metadata_recursive(meta, {});
+  }
+
+
+  function annotate_quoted(exp, scope) {
+    if (!exp) return;
+
+    if (exp.list !== undefined && exp.list !== null) {
+      for (var i = 0, j = exp.list.length; i < j; i++) {
+        exp.opening.secondary_tags.quoted = true
+        exp.closing.secondary_tags.quoted = true
+        annotate_quoted(exp.list[i], scope);
+      }
+    }
+    else if (exp.attached_node) {
+      if (exp.tag === "unquote" || exp.tag === "splice") return;
+      exp.token.secondary_tags.quoted = true;
+      annotate_quoted(exp.attached_node, scope);
+    }
+    else {
+      exp.secondary_tags.quoted = true;
+    }
+  }
+
+
+  function annotate_expressions(exp, scope) {
+    annotate_metadata(exp);
+    
+    switch (exp.tag) {
+      case "toplevel": 
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_expressions(exp.list[i], scope);
+        }
+        break;
+      
+      case "list": // functions, macros, special forms, comments
+        var head = exp.list[0];
+      
+        if (head) {
+          if (head.tag === "list" || head.tag === "vector" 
+           || head.tag === "map" || head.tag === "set") {
+            annotate_expressions(head, scope);
+          }
+          else if (head.attached_node) {
+            annotate_expressions(head.attached_node, scope);
+          }
+          else {
+            head.tag = (head.value.match(/(^\.)|(\.$)|[A-Z].*\//)
+                        ? "method"
+                        : "function");
+          }
+
+          // apply specific rules
+          if (annotation_rules.hasOwnProperty(head.value)) {
+            annotation_rules[head.value](exp, scope);
+          } 
+          else {
+            for (var i = 1; i < exp.list.length; i++) {
+              annotate_expressions(exp.list[i], scope);
+            }
+          } 
+        }
+        else { // empty list
+          exp.opening.tag = "value";
+          exp.closing.tag = "value";
+        }
+      
+        break;
+      
+      case "vector": // data
+      case "map":
+      case "set":
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_expressions(exp.list[i], scope);
+        }
+        break;
+      
+      case "symbol":
+        if (exp.value.match(/[A-Z].*\/[A-Z_]+/)) {
+          exp.tag = "constant";
+        }
+        else if (show_locals && scope[exp.value]) {
+          exp.tag = "variable";
+        }
+        else if (exp.tag === "symbol" && exp.value.match(/([A-Z].*\/)?[A-Z_]+/)) {
+          exp.tag = "type";
+        }
+        break;
+      
+      case "quote":
+      case "quasiquote":
+        annotate_quoted(exp.attached_node, scope);
+        
+      default:
+        if (exp.attached_node) annotate_expressions(exp.attached_node, scope);
+    }
+  }
+
+  // translation of tag to css:
+  var css_translation = {
+    "constant":     "constants",
+    "keyword":      "constants",
+    "method":       "color1",
+    "type":         "color3", 
+    "function":     "functions",
+    "string":       "string",
+    "regexp":       "string",
+    "value":        "value",
+    "comments":     "comments",
+    "symbol":       "symbol",
+    "variable":     "variable",
+    "splice":       "preprocessor", 
+    "unquote":      "preprocessor",     
+    "preprocessor": "preprocessor",
+    "meta":         "preprocessor", 
+    "'":            "preprocessor", 
+    "#'":           "preprocessor",    
+    "(":            "plain",
+    ")":            "plain",
+    "{":            "keyword",
+    "}":            "keyword",
+    "#{":           "keyword",   
+    "[":            "keyword",
+    "]":            "keyword",
+    "invalid":      "invalid",
+    "@":            "plain" 
+  };
+  
+  function translate_tags_to_css(tokens) {
+    for (var i = 0, j = tokens.length; i < j; i++) {
+      var token = tokens[i];
+      token.css = css_translation[token.tag];
+      for (var k in token.secondary_tags) if (token.secondary_tags.hasOwnProperty(k))
+        token.css += " " + k ;
+    };
+  }
+  
+  
+  // create the new brush
+
+  SH.brushes.Clojure = function () {};
+  SH.brushes.Clojure.prototype = new SyntaxHighlighter.Highlighter();
+  
+  SH.brushes.Clojure.prototype.findMatches = function find_matches (regexpList, code) {
+    // this is a nasty global hack. need to resolve this
+    if (this.params && this.params.locals) {
+      show_locals = this.params.locals === true || this.params.locals === "true"; 
+    }
+    else {
+      show_locals = true;
+    }
+    
+    var tokens = tokenize(code);
+    annotate_expressions(build_tree(tokens), {});
+    translate_tags_to_css(tokens);
+
+    return tokens;
+  };
+  
+  SH.brushes.Clojure.aliases = ['clojure', 'Clojure', 'clj'];
+  SH.brushes.Clojure.register_annotation_rule = register_annotation_rule;
+
+  return {
+    tokenize: tokenize,
+    build_tree: build_tree
+  };
+})(SyntaxHighlighter);
 </script><title>necessary-evil -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">necessary-evil</h1><h2 class="project-version">2.0.0-SNAPSHOT</h2><br /><p>An implementation of XML-RPC for the Clojure Ring HTTP stack</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">[1.2.1],[1.3.0]</td></tr><tr><td class="dep-name">org.clojure/data.zip</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr><tr><td class="dep-name">org.clojure/algo.monads</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1-SNAPSHOT</td></tr><tr><td class="dep-name">clj-http</td><td class="dotted"><hr /></td><td class="dep-version">0.1.3</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.4</td></tr><tr><td class="dep-name">clj-time</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">commons-lang</td><td class="dotted"><hr /></td><td class="dep-version">2.6</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">ring/ring-jetty-adapter</td><td class="dotted"><hr /></td><td class="dep-version">0.3.11</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.7.0-SNAPSHOT</td></tr><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#necessary-evil.core">necessary-evil.core</a></li><li><a href="#necessary-evil.fault">necessary-evil.fault</a></li><li><a href="#necessary-evil.methodcall">necessary-evil.methodcall</a></li><li><a href="#necessary-evil.methodresponse">necessary-evil.methodresponse</a></li><li><a href="#necessary-evil.value">necessary-evil.value</a></li><li><a href="#necessary-evil.xml-utils">necessary-evil.xml-utils</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.core" name="necessary-evil.core"><h1 class="project-name">necessary-evil.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>necessary-evil.core provides the main two functions required to act as a
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">[1.2.1],[1.3.0]</td></tr><tr><td class="dep-name">org.clojure/data.zip</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr><tr><td class="dep-name">org.clojure/algo.monads</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1-SNAPSHOT</td></tr><tr><td class="dep-name">clj-http</td><td class="dotted"><hr /></td><td class="dep-version">0.2.7</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.4</td></tr><tr><td class="dep-name">clj-time</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">commons-lang</td><td class="dotted"><hr /></td><td class="dep-version">2.6</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">ring/ring-jetty-adapter</td><td class="dotted"><hr /></td><td class="dep-version">1.0.1</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.7.0-SNAPSHOT</td></tr><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.7.0-SNAPSHOT</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#necessary-evil.core">necessary-evil.core</a></li><li><a href="#necessary-evil.fault">necessary-evil.fault</a></li><li><a href="#necessary-evil.methodcall">necessary-evil.methodcall</a></li><li><a href="#necessary-evil.methodresponse">necessary-evil.methodresponse</a></li><li><a href="#necessary-evil.value">necessary-evil.value</a></li><li><a href="#necessary-evil.xml-utils">necessary-evil.xml-utils</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.core" name="necessary-evil.core"><h1 class="project-name">necessary-evil.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>necessary-evil.core provides the main two functions required to act as a
    server and a client of xml-rpc.</p>
 
 <p>   Use end-point to generate a new ring handler.
    Use call to call a method on a server.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.core
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.core
   (:require [clojure.string :as string]
             [clj-http.client :as http]
             [necessary-evil.methodcall :as methodcall]
             [necessary-evil.methodresponse :as methodresponse])
   (:use [necessary-evil.xml-utils :only [to-xml emit xml-from-stream]]
-        [necessary-evil.fault :only [attempt-all fault]]))</pre></tr><tr><td class="docs"><p>server functions</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn handle-post
-  &quot;handle-post processes an incoming post request for an xml-rpc end-point.
+        [necessary-evil.fault :only [attempt-all fault]]))</pre></td></tr><tr><td class="docs"><p>server functions</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>handle-post processes an incoming post request for an xml-rpc end-point.
    this function also does all the error handling to check that the method exists,
-   that methodcall is valid and catches any exception raised by the exposed function.&quot;
+   that methodcall is valid and catches any exception raised by the exposed function.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn handle-post
   [methods-map req]
   (let [result (try (attempt-all
                      [method-call (-&gt; req :body xml-from-stream methodcall/parse
@@ -2556,11 +3057,11 @@ $(document).ready(function() {
                     (catch Exception e (fault -10 (str &quot;Exception: &quot; e))))]
     {:status 200
      :content-type &quot;text/xml;charset=UTF-8&quot;
-     :body (-&gt; result methodresponse/unparse emit with-out-str)}))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn end-point
-  &quot;Returns a new ring handler that accepts a request and dispatches it to the
-   appropriate method.
-   methods-map is a map of keyword (method name) to iFn.&quot;
+     :body (-&gt; result methodresponse/unparse emit with-out-str)}))</pre></td></tr><tr><td class="docs"><p>Returns a new ring handler that accepts a request and dispatches it to the
+   appropriate method.</p>
+
+<p>   methods-map is a map of keyword (method name) to iFn.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn end-point
   [methods-map]
   (let [methods-map (into {} (map (fn [[k v]] [(name k) v]) methods-map))]
     (bound-fn [req]
@@ -2568,57 +3069,80 @@ $(document).ready(function() {
           :post (handle-post methods-map req)
           :get {:status 200 ; get handler is merely a convenience for developers
                 :body (string/join &quot;, &quot; (map name (keys methods-map)))}
-          {:status 405 :body &quot;Method Not Allowed&quot;}))))</pre></tr><tr><td class="docs"><p>client functions</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn call
-  &quot;Does a syncronous http request to the server and method provided.&quot;
-  [endpoint-url method-name &amp; args]
+          {:status 405 :body &quot;Method Not Allowed&quot;}))))</pre></td></tr><tr><td class="docs"><p>client functions</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>Does a syncronous http request to the server and method provided.</p>
+
+<p>   call* allows more control over how the call is sent to the endpoint server.
+   Note that unlike call, call* takes a seq for args rather than as varags.</p>
+
+<p>   Optional keyword arguments:
+     post-fn - this function does the actual http request. Must take the same
+       arguments as clj-http's post function. This is to allow you supply additional
+       middleware etc that may be required for your particular needs.</p>
+
+<pre><code> request - a map of all the request arguments as specified by clj-http. Any
+   values provided here will override the defaults with the exception of :body
+   which is (unsurprisingly) provided by call*
+</code></pre>
+
+<p>   See https://github.com/dakrone/clj-http/ for more details.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^{:added &quot;2.0.0&quot;}
+  call*
+  [endpoint-url method-name args &amp; {:keys [post-fn request]
+                                    :or   {post-fn http/post
+                                           request {}}}]
   (let [call (methodcall/methodcall method-name args)
-        body (-&gt; call methodcall/unparse emit with-out-str)]
-    (-&gt; (http/post endpoint-url {:body body
-                                 :content-type &quot;text/xml;charset=UTF-8&quot;})
+        body (-&gt; call methodcall/unparse emit with-out-str)
+        post-params (merge {:content-type &quot;text/xml;charset=UTF-8&quot;}
+                           request)
+        response (post-fn endpoint-url (assoc post-params :body body))]
+    (-&gt; response
         :body
         to-xml
-        methodresponse/parse)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.fault" name="necessary-evil.fault"><h1 class="project-name">necessary-evil.fault</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides the fault record type required to support XML-RPC fault returns.</p>
+        methodresponse/parse)))</pre></td></tr><tr><td class="docs"><p>Does a syncronous http request to the server and method provided.
+   This is a simple interface. If you need more control over the http request,
+   see call*</p>
+</td><td class="codes"><pre class="brush: clojure">(defn call
+  [endpoint-url method-name &amp; args]
+  (call* endpoint-url method-name args))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.fault" name="necessary-evil.fault"><h1 class="project-name">necessary-evil.fault</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides the fault record type required to support XML-RPC fault returns.</p>
 
 <p>   Functions and forms to make working with faults easier are also provided.
    attempt-all will short circuit if any Fault is encountered.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.fault
-  (:use [clojure.algo.monads :only [monad domonad]]))</pre></tr><tr><td class="docs"><p>returning a Fault record from any piece of rpc handler will result
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.fault
+  (:use [clojure.algo.monads :only [monad domonad]]))</pre></td></tr><tr><td class="docs"><p>returning a Fault record from any piece of rpc handler will result
 in a fault methodResponse being generated. Anything else will
 generate a params blob</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defrecord Fault [^Integer fault-code ^String fault-string])</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn fault
-  &quot;Convenience function that creates a new fault record.
-   fault-code must be an integer. The exact meaning of this value is not
+</td><td class="codes"></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defrecord Fault [^Integer fault-code ^String fault-string])</pre></td></tr><tr><td class="docs"><p>Convenience function that creates a new fault record.</p>
+
+<p>   fault-code must be an integer. The exact meaning of this value is not
    prescribed by the spec. By convention necessary-evil assigns fault-codes
    below 0 to indicate rpc level fault, and assumes users will use 1 and
-   greater to indicate faults for the specific handlers.
-   fault-string is a string that contains a human readable description of
+   greater to indicate faults for the specific handlers.</p>
+
+<p>   fault-string is a string that contains a human readable description of
    the fault in question. Again the spec has nothing to say about the content
-   of this field.&quot;
+   of this field.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn fault
   [fault-code fault-string]
-  (Fault. fault-code fault-string))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} fault? (partial instance? Fault))</pre></tr><tr><td class="docs"><p>Utilities for handling faults:</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^{:added &quot;1.1&quot;} new-error-m
-  &quot;Creates a new monad that short circuits if any part of the computation
-   fails. For instance, passing `nil?' produces a maybe-m.&quot;
+  (Fault. fault-code fault-string))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} fault? (partial instance? Fault))</pre></td></tr><tr><td class="docs"><p>Utilities for handling faults:</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>Creates a new monad that short circuits if any part of the computation
+   fails. For instance, passing `nil?' produces a maybe-m.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^{:added &quot;1.1&quot;} new-error-m
   [has-failed?]
   (monad
    [m-result identity
     m-bind   (fn [m f] (if (has-failed? m)
                         m
-                        (f m)))]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} error-on-fault-m (new-error-m fault?))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmacro ^{:added &quot;1.1&quot;} attempt-all
-  &quot;attempt-all is an alternative to complex nested if-let and when-let forms.&quot;
+                        (f m)))]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def ^{:added &quot;1.1&quot;} error-on-fault-m (new-error-m fault?))</pre></td></tr><tr><td class="docs"><p>attempt-all is an alternative to complex nested if-let and when-let forms.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro ^{:added &quot;1.1&quot;} attempt-all
   ([bindings return] `(domonad error-on-fault-m ~bindings ~return))
   ([bindings return else]
      `(let [result# (attempt-all ~bindings ~return)]
         (if (fault? result#) ~else
-            result#))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.methodcall" name="necessary-evil.methodcall"><h1 class="project-name">necessary-evil.methodcall</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module implements the methodCall wire format portion of the
+            result#))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.methodcall" name="necessary-evil.methodcall"><h1 class="project-name">necessary-evil.methodcall</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module implements the methodCall wire format portion of the
    XML-RPC spec. You can find the official spect at
    http://www.xml-rpc.com/spec.</p>
 
@@ -2629,40 +3153,34 @@ generate a params blob</p>
 
 <p>   Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to <em>out</em> you may need to use with-out-str to capture the result.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.methodcall
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.methodcall
   (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt; text]]
         (necessary-evil xml-utils value))
   (:require [clojure.zip :as zip]
             [clojure.contrib.zip-filter :as zf]
             [clojure.string :as su])
-  (:import org.apache.commons.codec.binary.Base64))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defrecord MethodCall [method-name parameters])</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn methodcall
-  &quot;A convenience function that creates a new MethodCall. record&quot;
-  [method-name parameters] (MethodCall. method-name parameters))</pre></tr><tr><td class="docs"><p>The following functions parse the xml structure of a <methodCall>
+  (:import org.apache.commons.codec.binary.Base64))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defrecord MethodCall [method-name parameters])</pre></td></tr><tr><td class="docs"><p>A convenience function that creates a new MethodCall. record</p>
+</td><td class="codes"><pre class="brush: clojure">(defn methodcall
+  [method-name parameters] (MethodCall. method-name parameters))</pre></td></tr><tr><td class="docs"><p>The following functions parse the xml structure of a <methodCall>
 and return a new MethodCall record</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn method-call?
-  &quot;a predicate to ensure that this xml is a methodCall&quot;
-  [x] (-&gt; x zip/node :tag (= :methodCall)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-method-name
-  &quot;returns the method name for a methodcall&quot;
+</td><td class="codes"></td></tr><tr><td class="docs"><p>a predicate to ensure that this xml is a methodCall</p>
+</td><td class="codes"><pre class="brush: clojure">(defn method-call?
+  [x] (-&gt; x zip/node :tag (= :methodCall)))</pre></td></tr><tr><td class="docs"><p>returns the method name for a methodcall</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse-method-name
   [x] (when-let [name ^String (xml1-&gt; x :methodName text)]
         (let [clean-name (.trim name)]
-          (when (-&gt; clean-name empty? not) clean-name))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-params
-  &quot;returns a vector containing one element for each param in the method call&quot;
-  [x] (vec (map (comp parse-value first-child) (xml-&gt; x :params :param :value))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse
-  &quot;Takes xml structure representing an RPC method call and returns a new
-   MethodCall record.&quot;
+          (when (-&gt; clean-name empty? not) clean-name))))</pre></td></tr><tr><td class="docs"><p>returns a vector containing one element for each param in the method call</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse-params
+  [x] (vec (map (comp parse-value first-child) (xml-&gt; x :params :param :value))))</pre></td></tr><tr><td class="docs"><p>Takes xml structure representing an RPC method call and returns a new
+   MethodCall record.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse
   [x] (when (method-call? x) 
         (MethodCall. (parse-method-name x) 
-                     (parse-params x))))</pre></tr><tr><td class="docs"><p>The following functions are used to emit a <methodCall> xml structure</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn unparse
-  &quot;This function returns a string that represents a method call record in the 
-   XML format described by the xml-rpc 'spec'.&quot;
+                     (parse-params x))))</pre></td></tr><tr><td class="docs"><p>The following functions are used to emit a <methodCall> xml structure</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>This function returns a string that represents a method call record in the 
+   XML format described by the xml-rpc 'spec'.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn unparse
   [mc]
   (let [name-elem (elem :methodName [(-&gt; mc :method-name name)])
         params    (:parameters mc)
@@ -2671,7 +3189,7 @@ and return a new MethodCall record</p>
                                                          [(value-elem %)])
                                                   params))]
                     [name-elem])]
-    (elem :methodCall children)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.methodresponse" name="necessary-evil.methodresponse"><h1 class="project-name">necessary-evil.methodresponse</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module implementents the methodResponse wire format portion of the
+    (elem :methodCall children)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.methodresponse" name="necessary-evil.methodresponse"><h1 class="project-name">necessary-evil.methodresponse</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module implementents the methodResponse wire format portion of the
    XML-RPC spec. You can find the official spec at
    http://www.xml-rpc.com/spec.</p>
 
@@ -2681,39 +3199,36 @@ and return a new MethodCall record</p>
 
 <p>   Use clojure.xml/emit to turn the xml structure returned into text. As emit
    prints to <em>out</em> you may need to use with-out-str to capture the result.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.methodresponse
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.methodresponse
   (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt;]]
         [necessary-evil.value :only [parse-value value-elem]]
         [necessary-evil.fault :only [fault]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip])
-  (:import necessary_evil.fault.Fault))</pre></tr><tr><td class="docs"><p>deserialising methodResponse XML to clojure structures</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:doc &quot;a predicate to ensure that this xml structure is a &lt;methodResponse&gt;.&quot;}
+  (:import necessary_evil.fault.Fault))</pre></td></tr><tr><td class="docs"><p>deserialising methodResponse XML to clojure structures</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>a predicate to ensure that this xml structure is a <methodResponse>.</p>
+</td><td class="codes"><pre class="brush: clojure">(def 
   method-response?
-  (comp #{:methodResponse} :tag zip/node))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-fault
+  (comp #{:methodResponse} :tag zip/node))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-fault
   [x] (let [f (parse-value x)
             fault-code    (:faultCode f -1)
             fault-message ^String (:faultString f )]
-        (fault fault-code (.trim fault-message))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-response-content
-  &quot;Returns a clojure datastructure there is &lt;params&gt;,
-   a Fault record if there is a &lt;fault&gt; or nil otherwise.&quot;
+        (fault fault-code (.trim fault-message))))</pre></td></tr><tr><td class="docs"><p>Returns a clojure datastructure there is <params>,
+   a Fault record if there is a <fault> or nil otherwise.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse-response-content
   [x] (condp = (:tag (zip/node x))
           :params (parse-value (xml1-&gt; x :params :param :value first-child))
-          :fault (parse-fault (xml1-&gt; x :fault :value first-child))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse
-  &quot;Converts an XML structure representing an RPC result into either a data
-   structure or a Fault record.&quot;
+          :fault (parse-fault (xml1-&gt; x :fault :value first-child))))</pre></td></tr><tr><td class="docs"><p>Converts an XML structure representing an RPC result into either a data
+   structure or a Fault record.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse
   [x] (when (method-response? x)
-        (parse-response-content (xml1-&gt; x first-child))))</pre></tr><tr><td class="docs"><p>serialising methodResponses to XML</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defprotocol ResponseElements
-  &quot;This protocol is used to generate the correct nodes for a value or a
-   fault.&quot;
-  (response-elem [v]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(extend-protocol ResponseElements
+        (parse-response-content (xml1-&gt; x first-child))))</pre></td></tr><tr><td class="docs"><p>serialising methodResponses to XML</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>This protocol is used to generate the correct nodes for a value or a
+   fault.</p>
+</td><td class="codes"><pre class="brush: clojure">(defprotocol ResponseElements
+  (response-elem [v]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(extend-protocol ResponseElements
   Fault
   (response-elem
    [fault] (let [fault-struct {:faultCode   (:fault-code fault)
@@ -2724,11 +3239,10 @@ and return a new MethodCall record</p>
   (response-elem [value] (elem :params [(elem :param [(value-elem value)])]))
 
   nil
-  (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn unparse
-  &quot;returns wraps the content nodes in the methodResponse elements.&quot;
+  (response-elem [value] (elem :params [(elem :param [(value-elem value)])])))</pre></td></tr><tr><td class="docs"><p>returns wraps the content nodes in the methodResponse elements.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn unparse
   [value]
-  (elem :methodResponse [(response-elem value)]))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.value" name="necessary-evil.value"><h1 class="project-name">necessary-evil.value</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module parses and creates xml for xml-rpc value nodes. This is
+  (elem :methodResponse [(response-elem value)]))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.value" name="necessary-evil.value"><h1 class="project-name">necessary-evil.value</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This module parses and creates xml for xml-rpc value nodes. This is
    shared by the various forms required for method calls, responses and
    response faults.</p>
 
@@ -2753,7 +3267,7 @@ and return a new MethodCall record</p>
 <p>   You should also extend the ValueTypeElem protocol to support the
    return type of your new method implementation to generate the xml
    that your parse-value implementation consumes.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.value
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.value
   (:use [clojure.data.zip.xml :only [xml-&gt; xml1-&gt; text]]
         [necessary-evil.xml-utils])
   (:require [clojure.zip :as zip]
@@ -2763,46 +3277,47 @@ and return a new MethodCall record</p>
             [clj-time.core :as time]
             [clj-time.format :as time-format]
             [clj-time.coerce])
-  (:import org.apache.commons.codec.binary.Base64))</pre></tr><tr><td class="docs"><p>dave winer has kindly defined his own variation on ISO 8601 date
+  (:import org.apache.commons.codec.binary.Base64))</pre></td></tr><tr><td class="docs"><p>dave winer has kindly defined his own variation on ISO 8601 date
 time formatting</p>
-</td><td class="codes" /><pre class="brush: clojure">(def winer-time (time-format/formatter &quot;yyyyMMdd'T'HH:mm:ss&quot;))</pre></tr><tr><td class="docs"><p>The following is to handle nils</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true
-       :doc &quot;The core XML-RPC spec does not contain any standard for nil/null/None values,
-             however they are provided by an extension - http://ontosys.com/xml-rpc/extensions.php
-             By default this extension is disabled. Use allow-nils to enable this.&quot;}
-  *allow-nils* false)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmacro ^{:added &quot;1.2&quot;} allow-nils 
-  &quot;xml-rpc does not allow sending or recieving nils by default. You must explicitly enable it with
-   this form.&quot;
+</td><td class="codes"><pre class="brush: clojure">(def winer-time (time-format/formatter &quot;yyyyMMdd'T'HH:mm:ss&quot;))</pre></td></tr><tr><td class="docs"><p>The following is to handle nils</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>The core XML-RPC spec does not contain any standard for nil/null/None values,
+             however they are provided by an extension - http://ontosys.com/xml-rpc/extensions.php</p>
+
+<pre><code>         By default this extension is disabled. Use allow-nils to enable this.
+</code></pre>
+</td><td class="codes"><pre class="brush: clojure">(def ^{:dynamic true
+       :doc }
+  *allow-nils* false)</pre></td></tr><tr><td class="docs"><p>xml-rpc does not allow sending or recieving nils by default. You must explicitly enable it with
+   this form.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro ^{:added &quot;1.2&quot;} allow-nils 
   ([body] `(allow-nils true ~body))
   ([allow? body]
      `(binding [*allow-nils* ~allow?]
-        ~body)))</pre></tr><tr><td class="docs"><p>The following implements deserialization of values with a multi-method</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(declare parse-value)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn strip-leading-plus [^String s] (su/replace (.trim  s) #&quot;^\+&quot; ))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-int [v] (Integer. ^String (strip-leading-plus (text v))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-bool [v]
+        ~body)))</pre></td></tr><tr><td class="docs"><p>The following implements deserialization of values with a multi-method</p>
+</td><td class="codes"></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(declare parse-value)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn strip-leading-plus [^String s] (su/replace (.trim  s) #&quot;^\+&quot; ))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-int [v] (Integer. ^String (strip-leading-plus (text v))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-bool [v]
   (condp = (.trim ^String (text v))
       &quot;0&quot; false
       &quot;1&quot; true
-      &quot;throw exception here&quot;))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-struct-member [m] (let [name (xml1-&gt; m :name first-child)
+      &quot;throw exception here&quot;))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-struct-member [m] (let [name (xml1-&gt; m :name first-child)
                                      val  (xml1-&gt; m :value first-child)]
                                 (if (or name val)
                                   [(keyword (.trim ^String (text name))),
                                    (parse-value val)]
-                                  [nil, nil])))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-struct [v] (into {} (map parse-struct-member
-                                     (xml-&gt; v :struct :member))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-array [v] (vec (map parse-value
-                                (xml-&gt; v :array :data :value first-child))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti parse-value #(when % (:tag (zip/node %))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :i4               [v] (parse-int v))
-(defmethod parse-value :int              [v] (parse-int v))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :boolean          [v] (parse-bool v))
-(defmethod parse-value :string           [v] (text v))
+                                  [nil, nil])))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-struct [v] (into {} (map parse-struct-member
+                                     (xml-&gt; v :struct :member))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-array [v] (vec (map parse-value
+                                (xml-&gt; v :array :data :value first-child))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmulti parse-value #(when % (:tag (zip/node %))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod parse-value :i4               [v] (parse-int v))
+(defmethod parse-value :int              [v] (parse-int v))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod parse-value :boolean          [v] (parse-bool v))
+(defmethod parse-value :string           [v] (unnormalized-text v))
 (defmethod parse-value :double           [v] (Double. ^String (strip-leading-plus
                                                                (text v))))
 (defmethod parse-value :dateTime.iso8601 [v] (time-format/parse winer-time
@@ -2810,24 +3325,21 @@ time formatting</p>
 (defmethod parse-value :base64           [v] (Base64/decodeBase64 ^String (text v)))
 (defmethod parse-value :struct           [v] (parse-struct v))
 (defmethod parse-value :array            [v] (parse-array v))
-(defmethod parse-value :default          [v] (if v (text v) &quot;&quot;))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod parse-value :nil              [v]
+(defmethod parse-value :default          [v] (if v (unnormalized-text v) &quot;&quot;))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod parse-value :nil              [v]
   (if *allow-nils* nil
-      (throw (Exception. &quot;Unexpected nil while parsing xml&quot;))))</pre></tr><tr><td class="docs"><p>The following implements serialization of values with a protocol.</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defprotocol ValueTypeElem
-  &quot;ValueTypeElem defines a single function 'value-type-elem' that is used to emit
-   various types as values for the xml-rpc format&quot;
-  (value-type-elem [x]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn value-elem
-  &quot;value-elem creates the &lt;value&gt; elements and the appropriate child element for it's
-   arguments. This calls out to value-type-elem.&quot;
-  [content] (elem :value [(value-type-elem content)]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- struct-member-elem
-  &quot;creates an xml element for a key-value pair.&quot;
+      (throw (Exception. &quot;Unexpected nil while parsing xml&quot;))))</pre></td></tr><tr><td class="docs"><p>The following implements serialization of values with a protocol.</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>ValueTypeElem defines a single function 'value-type-elem' that is used to emit
+   various types as values for the xml-rpc format</p>
+</td><td class="codes"><pre class="brush: clojure">(defprotocol ValueTypeElem
+  (value-type-elem [x]))</pre></td></tr><tr><td class="docs"><p>value-elem creates the <value> elements and the appropriate child element for it's
+   arguments. This calls out to value-type-elem.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn value-elem
+  [content] (elem :value [(value-type-elem content)]))</pre></td></tr><tr><td class="docs"><p>creates an xml element for a key-value pair.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- struct-member-elem
   [[key value]] (elem :member [(elem :name [(name key)])
-                               (value-elem value)]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(extend-protocol ValueTypeElem
+                               (value-elem value)]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(extend-protocol ValueTypeElem
   String 
   (value-type-elem [this] (elem :string [this]))
 
@@ -2859,41 +3371,43 @@ time formatting</p>
 
   nil
   (value-type-elem [this] (if *allow-nils* (elem :nil [])
-                              (throw (Exception. &quot;Cannot serialize nil without necessary-evil.value/allow-nils&quot;)))))</pre></tr><tr><td class="docs"><p>extends ValueTypeElem for Byte Arrays. This slightly is awkward,
+                              (throw (Exception. &quot;Cannot serialize nil without necessary-evil.value/allow-nils&quot;)))))</pre></td></tr><tr><td class="docs"><p>extends ValueTypeElem for Byte Arrays. This slightly is awkward,
 perhaps there is a better approach</p>
 
 <p>Note that String. is used rather than str because the string
 constructor accepts an array of bytes</p>
-</td><td class="codes" /><pre class="brush: clojure">(extend (Class/forName &quot;[B&quot;) 
+</td><td class="codes"><pre class="brush: clojure">(extend (Class/forName &quot;[B&quot;) 
    ValueTypeElem
-   {:value-type-elem (fn [this] (elem :base64 [(String. (Base64/encodeBase64 this))]))})</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.xml-utils" name="necessary-evil.xml-utils"><h1 class="project-name">necessary-evil.xml-utils</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>A collection of utilities for processing xml</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns necessary-evil.xml-utils
+   {:value-type-elem (fn [this] (elem :base64 [(String. (Base64/encodeBase64 this))]))})</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#necessary-evil.xml-utils" name="necessary-evil.xml-utils"><h1 class="project-name">necessary-evil.xml-utils</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>A collection of utilities for processing xml</p>
+</td><td class="codes"><pre class="brush: clojure">(ns necessary-evil.xml-utils
   (:require [clojure.zip :as zip]
             [clojure.xml :as xml]
             [clojure.data.zip :as data.zip]
             [clojure.data.zip.xml :as zf])
-  (:import org.apache.commons.lang.StringEscapeUtils))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn elem 
-  &quot;elem is a utility function to make creating xml/element structs (minus
-   attributes)&quot;
+  (:import org.apache.commons.lang.StringEscapeUtils))</pre></td></tr><tr><td class="docs"><p>elem is a utility function to make creating xml/element structs (minus
+   attributes)</p>
+</td><td class="codes"><pre class="brush: clojure">(defn elem 
   ([name] (struct xml/element name))
-  ([name children] (struct xml/element name nil children)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn xml-from-stream
+  ([name children] (struct xml/element name nil children)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn xml-from-stream
   [stream]
-  (-&gt; stream xml/parse zip/xml-zip))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn to-xml [^String xml-string]
-  &quot;to-xml takes a string and returns a new xml zipper&quot;
+  (-&gt; stream xml/parse zip/xml-zip))</pre></td></tr><tr><td class="docs"><p>to-xml takes a string and returns a new xml zipper</p>
+</td><td class="codes"><pre class="brush: clojure">(defn to-xml
+  [^String xml-string]
   (-&gt; xml-string
       (.getBytes &quot;UTF-8&quot;)
       (java.io.ByteArrayInputStream.)
       (xml/parse)
-      (zip/xml-zip)))</pre></tr><tr><td class="docs"><p>zip-filter selectors</p>
-</td><td class="codes" /><pre class="brush: clojure">(def first-child (comp first data.zip/children))</pre></tr><tr><td class="docs"><p>the following have been copied from clojure.xml because the
+      (zip/xml-zip)))</pre></td></tr><tr><td class="docs"><p>Like clojure.data.zip.xml's text but it doesn't normalise whitespace. </p>
+</td><td class="codes"><pre class="brush: clojure">(defn unnormalized-text
+  [loc]
+  (apply str (zf/xml-&gt; loc data.zip/descendants zip/node string?)))</pre></td></tr><tr><td class="docs"><p>zip-filter selectors</p>
+</td><td class="codes"><pre class="brush: clojure">(def first-child (comp first data.zip/children))</pre></td></tr><tr><td class="docs"><p>the following have been copied from clojure.xml because the
 python xmlrpc lib is real picky about white space and as it is a
 canonical implementation its safe to assume this will effect real
 code. As such these have been modified to not emit new lines</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn emit-element [e]
+</td><td class="codes"></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn emit-element [e]
   (if (instance? String e)
     (print (StringEscapeUtils/escapeXml e))
     (do
@@ -2907,8 +3421,8 @@ code. As such these have been modified to not emit new lines</p>
 	  (doseq [c (:content e)]
 	    (emit-element c))
 	  (print (str &quot;&lt;/&quot; (name (:tag e)) &quot;&gt;&quot;)))
-	(print &quot;/&gt;&quot;)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn emit [x]
+	(print &quot;/&gt;&quot;)))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn emit [x]
   (println &quot;&lt;?xml version='1.0' encoding='UTF-8'?&gt;&quot;)
-  (emit-element x))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_necessary-evil.core">necessary-evil.core</li><li class="floating-toc-li" id="floating-toc_necessary-evil.fault">necessary-evil.fault</li><li class="floating-toc-li" id="floating-toc_necessary-evil.methodcall">necessary-evil.methodcall</li><li class="floating-toc-li" id="floating-toc_necessary-evil.methodresponse">necessary-evil.methodresponse</li><li class="floating-toc-li" id="floating-toc_necessary-evil.value">necessary-evil.value</li><li class="floating-toc-li" id="floating-toc_necessary-evil.xml-utils">necessary-evil.xml-utils</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
+  (emit-element x))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>

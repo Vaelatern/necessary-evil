@@ -1,6 +1,8 @@
 (defproject necessary-evil "2.0.0-SNAPSHOT"
   :description "An implementation of XML-RPC for the Clojure Ring HTTP stack"
   :repositories {"sonatype-snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"}
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "[1.2.1],[1.3.0]"]
                  [org.clojure/data.zip "0.1.0"]
                  [org.clojure/algo.monads "0.1.1-SNAPSHOT"]

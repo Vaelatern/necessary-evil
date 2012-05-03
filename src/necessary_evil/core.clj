@@ -68,15 +68,16 @@
   [endpoint-url method-name args & {:keys [post-fn request]
                                     :or   {post-fn http/post
                                            request {}}}]
-  (let [call (methodcall/methodcall method-name args)
-        body (-> call methodcall/unparse emit with-out-str)
-        post-params (merge {:content-type "text/xml;charset=UTF-8"}
-                           request)
-        response (post-fn endpoint-url (assoc post-params :body body))]
-    (-> response
-        :body
-        to-xml
-        methodresponse/parse)))
+  (io! "XML-RPC in transaction"
+   (let [call (methodcall/methodcall method-name args)
+         body (-> call methodcall/unparse emit with-out-str)
+         post-params (merge {:content-type "text/xml;charset=UTF-8"}
+                            request)
+         response (post-fn endpoint-url (assoc post-params :body body))]
+     (-> response
+         :body
+         to-xml
+         methodresponse/parse))))
 
 
 (defn call

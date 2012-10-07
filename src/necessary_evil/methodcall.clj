@@ -14,7 +14,7 @@
   (:use [clojure.data.zip.xml :only [xml-> xml1-> text]]
         (necessary-evil xml-utils value))
   (:require [clojure.zip :as zip]
-            [clojure.contrib.zip-filter :as zf]
+            [clojure.data.zip  :as zf]
             [clojure.string :as su])
   (:import org.apache.commons.codec.binary.Base64))
 

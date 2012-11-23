@@ -5,7 +5,7 @@
   :dependencies {org.clojure/clojure "[1.2.1,)",
                  org.clojure/data.zip "0.1.0",
                  org.clojure/algo.monads "0.1.3-SNAPSHOT",
-                 clj-http "0.2.7",
+                 clj-http "0.5.8",
                  commons-codec "1.4",
                  clj-time "0.4.4",
                  commons-lang "2.6"}

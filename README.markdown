@@ -7,7 +7,7 @@ library](https://github.com/mmcgrana/ring) for Clojure. XML-RPC is a
 bit nasty, but it is the basis of a number of other standards such as
 certain blogging APIs and Ping Back.
 
-`necessary-evil` will only work with Java 6+. 
+`necessary-evil` will only work with Java 6+, and Clojure 1.2.1+ 
 
 ## Usage
 

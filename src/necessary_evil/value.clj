@@ -33,8 +33,9 @@
             [clj-time.coerce])
   (:import org.apache.commons.codec.binary.Base64))
 
-;; dave winer has kindly defined his own variation on ISO 8601 date
-;; time formatting
+;; despite the xml-rpc spec claiming to use iso8601 timestamp format,
+;; it doesnt appear to actually use a standard format. for convenience
+;; it is defined here 
 (def winer-time (time-format/formatter "yyyyMMdd'T'HH:mm:ss"))
 
 ;; The following is to handle nils

@@ -153,6 +153,10 @@ The following the main API functions that you will use as a consumer of the libr
  * `necessary-evil.fault/fault?` — Predicate that tests a value for being a Fault record.
  * `necessary-evil.fault/attempt-all` — A comprehension form to make it easier to work with potentially Fault returning functions. For more detail on this macro see my [Error Monads](http://brehaut.net/blog/2011/error_monads#attempt_all) and [Error Monads Revisited ](http://brehaut.net/blog/2011/error_monads_revisited) blog posts.
 
+## Changes from 2.0.0 to 2.0.1
+
+ * Updated dependencies to newer versions
+
 ## Changes from 1.2.2 to 2.0.0
 
 Despite the big jump in version numbers relatively small changes have occured.

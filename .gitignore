@@ -1,3 +1,4 @@
+lib/*.jar
 /target
 /lib
 /classes

@@ -8,7 +8,7 @@
   
   :dependencies {org.clojure/clojure "1.7.0",
                  org.clojure/data.zip "0.1.1",
-                 org.clojure/algo.monads "0.1.5",
+                 org.clojure/algo.monads "0.1.6",
                  clj-http "0.5.8",
                  commons-codec "1.9",
                  clj-time "0.9.0",

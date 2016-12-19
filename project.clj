@@ -13,7 +13,7 @@
                  commons-codec "1.9",
                  clj-time "0.9.0",
                  commons-lang "2.6"}
-  :profiles {:dev {:dependencies {ring/ring-jetty-adapter "1.0.1", marginalia "0.7.0-SNAPSHOT"}
+  :profiles {:dev {:dependencies {ring/ring-jetty-adapter "1.4.0", marginalia "0.7.0-SNAPSHOT"}
                    :plugins {lein-marginalia "0.7.0-SNAPSHOT"}}}
   :repositories {"sonatype-snapshots"
                  "https://oss.sonatype.org/content/repositories/snapshots/"}
